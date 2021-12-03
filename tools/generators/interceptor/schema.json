@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "interceptor",
+  "type": "object",
+  "description": "Creates interceptor",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Interceptor project name:"
+    },
+    "module": {
+      "type": "string",
+      "description": "Module name",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Interceptor module name:"
+    },
+    "name": {
+      "type": "string",
+      "description": "Interceptor name",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "Interceptor name:"
+    }
+  },
+  "required": ["project", "module", "name"]
+}

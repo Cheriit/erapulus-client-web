@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "store",
+  "type": "object",
+  "description": "Creates store",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Store project name:"
+    },
+    "module": {
+      "type": "string",
+      "description": "Module name",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Store module name:"
+    },
+    "name": {
+      "type": "string",
+      "description": "Store name",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "Store name:"
+    },
+    "root": {
+      "type": "boolean",
+      "description": "Is store in root",
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      },
+      "x-prompt": "Is store in root:"
+    }
+  },
+  "required": ["project", "module", "name", "root"]
+}

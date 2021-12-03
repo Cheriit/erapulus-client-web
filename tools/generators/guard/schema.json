@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "guard",
+  "type": "object",
+  "description": "Creates guard",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Guard project name:"
+    },
+    "module": {
+      "type": "string",
+      "description": "Module name",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Guard module name:"
+    },
+    "name": {
+      "type": "string",
+      "description": "Guard name",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "Guard name:"
+    }
+  },
+  "required": ["project", "module", "name"]
+}

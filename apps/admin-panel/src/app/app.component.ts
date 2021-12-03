@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'erapulus-root',
+  selector: 'ep-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

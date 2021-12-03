@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "service",
+  "type": "object",
+  "description": "Creates service",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Service project name:"
+    },
+    "module": {
+      "type": "string",
+      "description": "Module name",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Service module name:"
+    },
+    "name": {
+      "type": "string",
+      "description": "Service name",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "Service name:"
+    }
+  },
+  "required": ["project", "module", "name"]
+}

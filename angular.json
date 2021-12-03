@@ -1,43 +1,11 @@
 {
   "version": 1,
-  "schematics": {
-    "@schematics/angular:component": {
-      "style": "scss",
-      "changeDetection": "OnPush",
-      "displayBlock": true,
-      "skipTests": true,
-      "inlineTemplate": true,
-      "name": "NewComponent"
-    },
-    "@schematics/angular:directive": {
-      "export": true,
-      "name": "NewDirective"
-    },
-    "@schematics/angular:guard": {
-      "implements": ["CanActivate", "CanActivateChild", "CanLoad", "CanDeactivate"],
-      "name": "NewGuard"
-    },
-    "@schematics/angular:interceptor": {
-      "name": "NewInterceptor"
-    },
-    "@schematics/angular:service": {
-      "name": "NewService"
-    },
-    "@ngrx/schematics:store": {
-      "no-flat": true
-    },
-    "@nrwl/angular:ngrx": {
-      "barrels": true,
-      "facade": true,
-      "useDataPersistence": true
-    }
-  },
   "projects": {
     "admin-panel": {
       "projectType": "application",
       "root": "apps/admin-panel",
       "sourceRoot": "apps/admin-panel/src",
-      "prefix": "erapulus",
+      "prefix": "ep",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
