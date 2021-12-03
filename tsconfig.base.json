@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@erapulus/assets": ["libs/ui/assets/src/index.ts"],
+      "@erapulus/auth": ["libs/features/auth/src/index.ts"],
+      "@erapulus/erapulus": ["libs/data-access/erapulus/src/index.ts"],
+      "@erapulus/forms": ["libs/features/forms/src/index.ts"],
+      "@erapulus/local-storage": ["libs/utils/local-storage/src/index.ts"],
+      "@erapulus/rest": ["libs/utils/rest/src/index.ts"],
+      "@erapulus/snackbar": ["libs/ui/components/snackbar/src/index.ts"],
+      "@erapulus/themes": ["libs/ui/themes/src/index.ts"],
+      "@erapulus/translations": ["libs/utils/translations/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

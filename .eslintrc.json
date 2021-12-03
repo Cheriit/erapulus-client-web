@@ -13,8 +13,33 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "e2e",
+                "onlyDependOnLibsWithTags": ["application"]
+              },
+              {
+                "sourceTag": "application",
+                "onlyDependOnLibsWithTags": [
+                  "data-access",
+                  "utils",
+                  "ui",
+                  "features"
+                ]
+              },
+              {
+                "sourceTag": "features",
+                "onlyDependOnLibsWithTags": ["data-access", "utils", "ui"]
+              },
+              {
+                "sourceTag": "data-access",
+                "onlyDependOnLibsWithTags": ["utils", "ui"]
+              },
+              {
+                "sourceTag": "ui",
+                "onlyDependOnLibsWithTags": ["data-access", "utils", "ui"]
+              },
+              {
+                "sourceTag": "utils",
+                "onlyDependOnLibsWithTags": ["utils"]
               }
             ]
           }

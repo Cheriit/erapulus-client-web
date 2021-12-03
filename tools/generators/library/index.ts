@@ -10,7 +10,7 @@ export default async function (tree: Tree, schema: any) {
     importPath: `@erapulus/${schema.name}`,
     linter: 'eslint',
     simpleModuleName: true,
-    tags: `${schema.type}`,
+    tags: `type:${schema.type}`,
     unitTestRunner: 'jest',
     strict: true,
     testEnvironment: 'node',
