@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "component",
+  "type": "object",
+  "description": "Creates component",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Component project name:"
+    },
+    "module": {
+      "type": "string",
+      "description": "Module name",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Component module name:"
+    },
+    "name": {
+      "type": "string",
+      "description": "Component name",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "Component name:"
+    },
+    "routing": {
+      "type": "string",
+      "description": "Module has routing",
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      },
+      "x-prompt": "Does module has rooting? "
+    },
+    "route": {
+      "type": "string",
+      "description": "Route name",
+      "$default": {
+        "$source": "argv",
+        "index": 4
+      },
+      "x-prompt": "Route name:"
+    }
+  },
+  "required": ["project", "module", "name", "routing"]
+}

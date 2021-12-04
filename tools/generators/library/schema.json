@@ -10,7 +10,8 @@
       "$default": {
         "$source": "argv",
         "index": 0
-      }
+      },
+      "x-prompt": "Library name: "
     },
     "type": {
       "type": "string",
@@ -18,6 +19,28 @@
       "$default": {
         "$source": "argv",
         "index": 1
+      },
+      "x-prompt": {
+        "message": "Which type of library would you like to generate?",
+        "type": "list",
+        "items": [
+          {
+            "value": "data-access",
+            "label": "Data Access"
+          },
+          {
+            "value": "features",
+            "label": "Feature"
+          },
+          {
+            "value": "ui",
+            "label": "UI"
+          },
+          {
+            "value": "utils",
+            "label": "Util"
+          }
+        ]
       }
     }
   },
