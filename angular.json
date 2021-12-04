@@ -1,142 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "admin-panel": {
-      "projectType": "application",
-      "root": "apps/admin-panel",
-      "sourceRoot": "apps/admin-panel/src",
-      "prefix": "ep",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/admin-panel",
-            "index": "apps/admin-panel/src/index.html",
-            "main": "apps/admin-panel/src/main.ts",
-            "polyfills": "apps/admin-panel/src/polyfills.ts",
-            "tsConfig": "apps/admin-panel/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/admin-panel/src/favicon.ico",
-              "apps/admin-panel/src/assets",
-              {
-                "input": "libs/ui/assets/src/lib",
-                "glob": "**/*",
-                "output": "assets"
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": ["libs/ui/themes/src/lib/styles"]
-            },
-            "styles": [
-              "apps/admin-panel/src/styles.scss",
-              "libs/ui/themes/src/lib/styles/index.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "apps/admin-panel/src/environments/environment.ts",
-                  "with": "apps/admin-panel/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "admin-panel:build:production",
-              "proxyConfig": "apps/admin-panel/proxy-prod.conf.json"
-            },
-            "development": {
-              "browserTarget": "admin-panel:build:development",
-              "proxyConfig": "apps/admin-panel/proxy-local.conf.json"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "admin-panel:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/admin-panel/src/**/*.ts",
-              "apps/admin-panel/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/admin-panel"],
-          "options": {
-            "jestConfig": "apps/admin-panel/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": ["type:application"],
-      "implicitDependencies": ["ui-assets", "ui-themes"]
-    },
-    "admin-panel-e2e": {
-      "root": "apps/admin-panel-e2e",
-      "sourceRoot": "apps/admin-panel-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/admin-panel-e2e/cypress.json",
-            "devServerTarget": "admin-panel:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "admin-panel:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/admin-panel-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": ["type:e2e"],
-      "implicitDependencies": ["admin-panel"]
-    },
     "data-access-erapulus": {
       "root": "libs/data-access/erapulus",
       "sourceRoot": "libs/data-access/erapulus/src",
@@ -235,6 +99,142 @@
         }
       },
       "tags": ["type:features"]
+    },
+    "management-panel": {
+      "projectType": "application",
+      "root": "apps/management-panel",
+      "sourceRoot": "apps/management-panel/src",
+      "prefix": "ep",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/management-panel",
+            "index": "apps/management-panel/src/index.html",
+            "main": "apps/management-panel/src/main.ts",
+            "polyfills": "apps/management-panel/src/polyfills.ts",
+            "tsConfig": "apps/management-panel/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/management-panel/src/favicon.ico",
+              "apps/management-panel/src/assets",
+              {
+                "input": "libs/ui/assets/src/lib",
+                "glob": "**/*",
+                "output": "assets"
+              }
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/ui/themes/src/lib/styles"]
+            },
+            "styles": [
+              "apps/management-panel/src/styles.scss",
+              "libs/ui/themes/src/lib/styles/index.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/management-panel/src/environments/environment.ts",
+                  "with": "apps/management-panel/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "management-panel:build:production",
+              "proxyConfig": "apps/management-panel/proxy-prod.conf.json"
+            },
+            "development": {
+              "browserTarget": "management-panel:build:development",
+              "proxyConfig": "apps/management-panel/proxy-local.conf.json"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "management-panel:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/management-panel/src/**/*.ts",
+              "apps/management-panel/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/management-panel"],
+          "options": {
+            "jestConfig": "apps/management-panel/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["type:application"],
+      "implicitDependencies": ["ui-assets", "ui-themes"]
+    },
+    "management-panel-e2e": {
+      "root": "apps/management-panel-e2e",
+      "sourceRoot": "apps/management-panel-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/management-panel-e2e/cypress.json",
+            "devServerTarget": "management-panel:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "management-panel:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/management-panel-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["management-panel"]
     },
     "ui-assets": {
       "root": "libs/ui/assets",

@@ -42,7 +42,7 @@ jobs:
           path: ./dist
 
 
-  deploy-admin-panel:
+  deploy-management-panel:
     runs-on: ubuntu-latest
     needs: build
 
