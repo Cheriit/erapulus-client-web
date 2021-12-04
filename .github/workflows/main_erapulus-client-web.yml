@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: management-panel-app
-          path: ./dist/apps/admin-panel/*
+          path: ./dist
 
 
   deploy-admin-panel:
@@ -59,4 +59,4 @@ jobs:
           app-name: 'erapulus-client-web'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FEE8B314406542858A39140CEE8BCFB8 }}
-          package: ./dist/apps/admin-panel
+          package: .
