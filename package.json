@@ -10,7 +10,8 @@
     "build admin-panel": "nx build admin-panel --parallel --prod",
     "lint": "nx affected --target=lint",
     "build": "nx affected --target=build --base=master --head=HEAD",
-    "test": "nx affected --target=test --all --parllalel=5",
+    "build-prod": "nx affected --target=build --base=master --head=HEAD --prod",
+    "test": "nx affected --target=test --parllalel=5",
     "format": "nx affected --target=format:write --parllalel=5 --base=master --head=HEAD",
     "e2e": "nx affected --target=e2e --parallel=5"
   },
