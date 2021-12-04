@@ -27,7 +27,7 @@ jobs:
         run: npm run lint
 
       - name: Build application
-        run: npm run build
+        run: npm run build-prod
 
       - name: Run unit tests
         run: npm run test
@@ -59,4 +59,4 @@ jobs:
           app-name: 'erapulus-client-web'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FEE8B314406542858A39140CEE8BCFB8 }}
-          package: ./dist/apps/admin-panel
+          package: .
