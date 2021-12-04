@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: management-panel-app
-          path: dist/apps/admin-panel
+          path: ./dist/apps/admin-panel/*
 
 
   deploy-admin-panel:
