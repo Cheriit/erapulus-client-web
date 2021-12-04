@@ -7,13 +7,13 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
     "start admin-panel": "nx serve admin-panel --parallel",
-    "build admin-panel": "nx build admin-panel --parallel --prod",
-    "lint": "nx affected --target=lint",
-    "build": "nx affected --target=build --base=master --head=HEAD",
-    "build-prod": "nx affected --target=build --base=master --head=HEAD --prod",
-    "test": "nx affected --target=test --parllalel=5",
-    "format": "nx affected --target=format:write --parllalel=5 --base=master --head=HEAD",
-    "e2e": "nx affected --target=e2e --parallel=5"
+    "build admin-panel": "nx build admin-panel --parallel",
+    "lint": "nx affected --target=lint --base=main --head=HEAD",
+    "build": "nx affected --target=build --base=main --head=HEAD",
+    "build-prod": "nx affected --target=build --base=main --head=HEAD --prod",
+    "test": "nx affected --target=test --parllalel=5 --base=main --head=HEAD",
+    "format": "nx affected --target=format:write --parllalel=5 --base=main --head=HEAD",
+    "e2e": "nx affected --target=e2e --parallel=5 --base=main --head=HEAD"
   },
   "private": true,
   "dependencies": {
