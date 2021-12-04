@@ -7,7 +7,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
     "start admin-panel": "nx serve admin-panel --parallel",
-    "build admin-panel": "nx build admin-panel --parallel --prod",
+    "build admin-panel": "nx build admin-panel --parallel",
     "lint": "nx affected --target=lint --base=main --head=HEAD",
     "build": "nx affected --target=build --base=main --head=HEAD",
     "build-prod": "nx affected --target=build --base=main --head=HEAD --prod",
