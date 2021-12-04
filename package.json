@@ -11,9 +11,9 @@
     "lint": "nx lint",
     "build": "nx build",
     "build-prod": "nx build --prod --parallel",
-    "test": "nx affected --target=test --parllalel=5 --base=main --head=HEAD",
-    "format": "nx affected --target=format:write --parllalel=5 --base=main --head=HEAD",
-    "e2e": "nx affected --target=e2e --parallel=5 --base=main --head=HEAD"
+    "test": "nx affected --target=test --parllalel=5 --base=master --head=HEAD",
+    "format": "nx affected --target=format:write --parllalel=5 --base=master --head=HEAD",
+    "e2e": "nx affected --target=e2e --parallel=5 --base=master --head=HEAD"
   },
   "private": true,
   "dependencies": {
