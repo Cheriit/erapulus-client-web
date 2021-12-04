@@ -21,26 +21,26 @@ jobs:
         with:
           node-version: '14.15.2'
 
-      - name: npm install
+      - name: Install dependencies
         run: npm install
 
-      - name: npm lint
+      - name: Run linters
         run: npm run lint
 
-      - name: npm build
+      - name: Build application
         run: npm run build-prod
 
-      - name: npm test
+      - name: Run unit tests
         run: npm run test
 
-      - name: npm e2e
+      - name: Run e2e tests
         run: npm run e2e
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: dist/
 
   deploy:
     runs-on: ubuntu-latest
