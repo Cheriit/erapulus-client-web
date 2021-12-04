@@ -29,7 +29,10 @@
             "stylePreprocessorOptions": {
               "includePaths": ["libs/ui/themes/src/lib/styles"]
             },
-            "styles": ["apps/admin-panel/src/styles.scss"],
+            "styles": [
+              "apps/admin-panel/src/styles.scss",
+              "libs/ui/themes/src/lib/styles/index.scss"
+            ],
             "scripts": []
           },
           "configurations": {
