@@ -70,16 +70,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "proxyConfig": "appps/admin-panel/proxy.conf.json",
-            "browserTarget": "admin-panel:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "admin-panel:build:production"
+              "browserTarget": "admin-panel:build:production",
+              "proxyConfig": "apps/admin-panel/proxy-prod.conf.json"
             },
             "development": {
-              "browserTarget": "admin-panel:build:development"
+              "browserTarget": "admin-panel:build:development",
+              "proxyConfig": "apps/admin-panel/proxy-local.conf.json"
             }
           },
           "defaultConfiguration": "development"
