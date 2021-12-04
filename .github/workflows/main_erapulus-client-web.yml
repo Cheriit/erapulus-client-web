@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'erapulus-client-web'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FEE8B314406542858A39140CEE8BCFB8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE4B84EF02CF4D748AD0DBCE80E627B3 }}
           package: .
