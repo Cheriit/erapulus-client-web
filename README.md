@@ -32,7 +32,6 @@ npm install
 - `npx workspace-generators module` - generates module
 - `npx workspace-generators service` - generates service
 - `npx workspace-generators store` - generates store
-- `npx workspace-generators ui-library` - generates ui library
 
 ## Utils
 - `npm run lint` - lints project
