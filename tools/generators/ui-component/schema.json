@@ -15,5 +15,5 @@
       "x-prompt": "Component name:"
     }
   },
-  "required": ["project", "module", "name"]
+  "required": ["name"]
 }

@@ -24,14 +24,15 @@ npm install
 - `npm run build manatement-panel` - builds `management-panel` for.
 
 ## Generators
-- `npx workspace-generators compoenent` - generates component
-- `npx workspace-generators directive` - generates directive
-- `npx workspace-generators guard` - generates guard
-- `npx workspace-generators interceptor` - generates interceptor
-- `npx workspace-generators library` - generates library
-- `npx workspace-generators module` - generates module
-- `npx workspace-generators service` - generates service
-- `npx workspace-generators store` - generates store
+- `npx nx workspace-generator compoenent` - generates component
+- `npx nx workspace-generator ui-compoenent` - generates UI component
+- `npx nx workspace-generator directive` - generates directive
+- `npx nx workspace-generator guard` - generates guard
+- `npx nx workspace-generator interceptor` - generates interceptor
+- `npx nx workspace-generator library` - generates library
+- `npx nx workspace-generator module` - generates module
+- `npx nx workspace-generator service` - generates service
+- `npx nx workspace-generator store` - generates store
 
 ## Utils
 - `npm run lint` - lints project

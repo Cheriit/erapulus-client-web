@@ -1,1 +1,1 @@
-export * from './lib/translations';
+export * from './lib/translations.module';

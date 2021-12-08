@@ -158,7 +158,7 @@
               "apps/management-panel/src/favicon.ico",
               "apps/management-panel/src/assets",
               {
-                "input": "libs/ui/assets/src/lib",
+                "input": "libs/ui/assets/src/assets",
                 "glob": "**/*",
                 "output": "assets"
               }

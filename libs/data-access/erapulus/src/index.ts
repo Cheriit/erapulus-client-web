@@ -1,1 +1,1 @@
-export * from './lib/erapulus';
+export * from './lib/erapulus.module';

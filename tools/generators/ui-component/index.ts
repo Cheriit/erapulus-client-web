@@ -5,7 +5,7 @@ export default async function (tree: Tree, schema: any) {
   const schematic_component =  wrapAngularDevkitSchematic('@schematics/angular', 'module');
   await schematic_component(tree, {
     "name": schema.name,
-    "module": "UiComponents",
+    "module": "ui-components",
     "project": "ui-components"
   })
 
