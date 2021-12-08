@@ -17,6 +17,7 @@
     "paths": {
       "@erapulus/assets": ["libs/ui/assets/src/index.ts"],
       "@erapulus/auth": ["libs/features/auth/src/index.ts"],
+      "@erapulus/components": ["libs/ui/components/src/index.ts"],
       "@erapulus/erapulus": ["libs/data-access/erapulus/src/index.ts"],
       "@erapulus/forms": ["libs/features/forms/src/index.ts"],
       "@erapulus/local-storage": ["libs/utils/local-storage/src/index.ts"],

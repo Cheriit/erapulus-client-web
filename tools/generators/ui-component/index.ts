@@ -20,7 +20,8 @@ export default async function (tree: Tree, schema: any) {
     "inlineTemplate": true,
     "name": schema.name,
     "module": schema.name,
-    "project": "ui-components"
+    "project": "ui-components",
+    "export": true
   })
   await formatFiles(tree);
   return () => {
