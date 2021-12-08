@@ -269,39 +269,6 @@
       },
       "tags": ["type:ui"]
     },
-    "ui-components-snackbar": {
-      "root": "libs/ui/components/snackbar",
-      "sourceRoot": "libs/ui/components/snackbar/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/workspace:tsc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/ui/components/snackbar",
-            "main": "libs/ui/components/snackbar/src/index.ts",
-            "tsConfig": "libs/ui/components/snackbar/tsconfig.lib.json",
-            "assets": ["libs/ui/components/snackbar/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/ui/components/snackbar/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/components/snackbar"],
-          "options": {
-            "jestConfig": "libs/ui/components/snackbar/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": ["type:ui"]
-    },
     "ui-themes": {
       "root": "libs/ui/themes",
       "sourceRoot": "libs/ui/themes/src",
