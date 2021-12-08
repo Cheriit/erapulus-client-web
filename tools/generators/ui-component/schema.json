@@ -1,28 +1,10 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "component",
+  "$id": "ui-component",
   "type": "object",
-  "description": "Creates component",
+  "description": "Creates UI component",
   "properties": {
-    "project": {
-      "type": "string",
-      "description": "Project name",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "Component project name:"
-    },
-    "module": {
-      "type": "string",
-      "description": "Module name",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": "Component module name:"
-    },
     "name": {
       "type": "string",
       "description": "Component name",

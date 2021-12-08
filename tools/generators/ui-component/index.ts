@@ -4,8 +4,6 @@ import {wrapAngularDevkitSchematic} from "@nrwl/tao/src/commands/ngcli-adapter";
 export default async function (tree: Tree, schema: any) {
   const schematic_component =  wrapAngularDevkitSchematic('@schematics/angular', 'module');
   await schematic_component(tree, {
-    "routing": schema.route,
-    "route": schema.route? schema.routeName : undefined,
     "name": schema.name,
     "module": "UiComponents",
     "project": "ui-components"
