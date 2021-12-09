@@ -1,5 +1,5 @@
-import { Tree, formatFiles, installPackagesTask } from '@nrwl/devkit';
-import { libraryGenerator } from '@nrwl/workspace/generators';
+import {formatFiles, installPackagesTask, Tree} from '@nrwl/devkit';
+import {libraryGenerator} from '@nrwl/workspace/generators';
 import {wrapAngularDevkitSchematic} from "@nrwl/tao/src/commands/ngcli-adapter";
 
 export default async function (tree: Tree, schema: any) {
@@ -17,7 +17,7 @@ export default async function (tree: Tree, schema: any) {
     testEnvironment: 'node'
   });
 
-  const schematic =  wrapAngularDevkitSchematic('@schematics/angular', 'module');
+  const schematic = wrapAngularDevkitSchematic('@schematics/angular', 'module');
   await schematic(tree, {
     "routing": true,
     "name": schema.name,

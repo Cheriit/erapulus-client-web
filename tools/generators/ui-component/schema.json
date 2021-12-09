@@ -15,5 +15,7 @@
       "x-prompt": "Component name:"
     }
   },
-  "required": ["name"]
+  "required": [
+    "name"
+  ]
 }

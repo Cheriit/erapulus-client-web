@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-  selector: 'snackbar',
-  template: ` <p>snackbar works!</p> `,
+  selector: 'ep-snackbar',
+  template: ' <p>snackbar works!</p> ',
   styleUrls: ['./snackbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SnackbarComponent {
 }

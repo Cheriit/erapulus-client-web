@@ -51,5 +51,10 @@
       "x-prompt": "Route name:"
     }
   },
-  "required": ["project", "module", "name", "routing"]
+  "required": [
+    "project",
+    "module",
+    "name",
+    "routing"
+  ]
 }

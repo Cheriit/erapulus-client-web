@@ -33,5 +33,9 @@
       "x-prompt": "Guard name:"
     }
   },
-  "required": ["project", "module", "name"]
+  "required": [
+    "project",
+    "module",
+    "name"
+  ]
 }

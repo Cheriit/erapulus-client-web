@@ -42,5 +42,10 @@
       "x-prompt": "Is store in root:"
     }
   },
-  "required": ["project", "module", "name", "root"]
+  "required": [
+    "project",
+    "module",
+    "name",
+    "root"
+  ]
 }

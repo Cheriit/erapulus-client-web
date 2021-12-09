@@ -1,10 +1,10 @@
 // ***********************************************
 // This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
+// Create various custom commands and overwrite
+// Existing commands.
 //
 // For more comprehensive examples of custom
-// commands please read more here:
+// Commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
@@ -18,6 +18,7 @@ declare namespace Cypress {
 //
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, password) => {
+  // eslint-disable-next-line no-console
   console.log('Custom command example: Login', email, password);
 });
 //

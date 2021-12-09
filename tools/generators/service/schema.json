@@ -33,5 +33,9 @@
       "x-prompt": "Service name:"
     }
   },
-  "required": ["project", "module", "name"]
+  "required": [
+    "project",
+    "module",
+    "name"
+  ]
 }

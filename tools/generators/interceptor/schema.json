@@ -33,5 +33,9 @@
       "x-prompt": "Interceptor name:"
     }
   },
-  "required": ["project", "module", "name"]
+  "required": [
+    "project",
+    "module",
+    "name"
+  ]
 }
