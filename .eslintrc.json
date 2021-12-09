@@ -1,7 +1,15 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": [
+    "@nrwl/nx",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@angular-eslint/recommended"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -62,7 +70,104 @@
     },
     {
       "files": ["*.component.ts"],
-      "extends": ["plugin:@angular-eslint/template/process-inline-templates"]
+      "parser": "@angular-eslint/template-parser",
+      "rules": {
+        "@angular-eslint/template/accessibility-alt-text": "error",
+        "@angular-eslint/template/accessibility-elements-content": "error",
+        "@angular-eslint/template/accessibility-valid-aria": "error",
+        "@angular-eslint/template/banana-in-box": "error",
+        "@angular-eslint/template/no-any": "error",
+        "@angular-eslint/template/no-autofocus\t": "error",
+        "@angular-eslint/template/no-negated-async": "error",
+        "@angular-eslint/template/i18n": "error"
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "plugin:@nrwl/nx/angular",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/contextual-decorator": "error",
+        "@angular-eslint/contextual-lifecycle": "error",
+        "@angular-eslint/no-attribute-decorator": "error",
+        "@angular-eslint/no-conflicting-lifecycle": "error",
+        "@angular-eslint/no-lifecycle-call": "error",
+        "@angular-eslint/no-output-native": "error",
+        "@angular-eslint/prefer-on-push-component-change-detection": "error",
+        "@angular-eslint/prefer-output-readonly": "error",
+        "@angular-eslint/relative-url-prefix": "error",
+        "@angular-eslint/use-injectable-provided-in": "error",
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "array-bracket-newline": "error",
+        "array-bracket-spacing": "error",
+        "array-callback-return": "error",
+        "array-element-newline": "error",
+        "arrow-parens": "error",
+        "arrow-spacing": "error",
+        "block-scoped-var": "error",
+        "block-spacing": "error",
+        "brace-style": "error",
+        "camelcase": "error",
+        "capitalized-comments": "error",
+        "comma-dangle": ["error", "never"],
+        "comma-style": "error",
+        "complexity": ["error", 10],
+        "computed-property-spacing": "error",
+        "consistent-this": "error",
+        "default-case": "error",
+        "eol-last": "error",
+        "eqeqeq": "error",
+        "func-call-spacing": ["error", "never"],
+        "generator-star-spacing": "error",
+        "indent": ["error", 2],
+        "lines-around-directive": "error",
+        "no-await-in-loop": "warn",
+        "no-console": "warn",
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-shadow": "error",
+        "no-use-before-define": "error",
+        "no-useless-rename": "error",
+        "no-var": "error",
+        "operator-linebreak": "error",
+        "padding-line-between-statements": "error",
+        "prefer-arrow-callback": "error",
+        "prefer-const": "error",
+        "prefer-destructuring": "error",
+        "prefer-rest-params": "error",
+        "prefer-spread": "error",
+        "prefer-template": "error",
+        "quotes": ["error", "single"],
+        "require-await": "error",
+        "semi": "error",
+        "space-before-blocks": "error",
+        "space-before-function-paren": "error",
+        "space-in-parens": "error",
+        "space-infix-ops": "error",
+        "spaced-comment": "error",
+        "strict": "error",
+        "switch-colon-spacing": "error",
+        "yoda": "error",
+
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "ep",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "ep",
+            "style": "kebab-case"
+          }
+        ]
+      }
     }
   ]
 }
