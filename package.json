@@ -59,7 +59,7 @@
     "@storybook/angular": "~6.4.0-rc.3",
     "@storybook/builder-webpack5": "~6.4.0-rc.3",
     "@storybook/manager-webpack5": "~6.4.0-rc.3",
-    "@tailwindcss/forms": "latest",
+    "@tailwindcss/forms": "^0.4.0",
     "@types/jest": "27.0.2",
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "~4.33.0",
@@ -73,7 +73,7 @@
     "jest-preset-angular": "11.0.0",
     "postcss": "^8.4.4",
     "prettier": "^2.3.1",
-    "tailwindcss": "^2.2.19",
+    "tailwindcss": "^3.0.0",
     "ts-jest": "27.0.5",
     "typescript": "~4.4.3"
   }
