@@ -10,8 +10,7 @@ export default async function (tree: Tree, schema: any) {
     "name": schema.name,
     "root": schema.root,
     "module": schema.module,
-    "project": schema.project,
-    "directory": "_state"
+    "directory": "+state"
   })
   await formatFiles(tree);
   return () => {

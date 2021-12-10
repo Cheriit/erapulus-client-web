@@ -14,15 +14,6 @@
       },
       "x-prompt": "Service project name:"
     },
-    "module": {
-      "type": "string",
-      "description": "Module name",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": "Service module name:"
-    },
     "name": {
       "type": "string",
       "description": "Service name",
@@ -35,7 +26,6 @@
   },
   "required": [
     "project",
-    "module",
     "name"
   ]
 }

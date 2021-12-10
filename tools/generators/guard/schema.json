@@ -14,15 +14,6 @@
       },
       "x-prompt": "Guard project name:"
     },
-    "module": {
-      "type": "string",
-      "description": "Module name",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": "Guard module name:"
-    },
     "name": {
       "type": "string",
       "description": "Guard name",
@@ -35,7 +26,6 @@
   },
   "required": [
     "project",
-    "module",
     "name"
   ]
 }

@@ -9,6 +9,7 @@ export default async function (tree: Tree, schema: any) {
     "displayBlock": true,
     "skipTests": true,
     "inlineTemplate": true,
+    "prefix": "ep",
     "name": schema.name,
     "module": schema.module,
     "project": schema.project

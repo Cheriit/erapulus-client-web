@@ -6,7 +6,6 @@ export default async function (tree: Tree, schema: any) {
   await schematic(tree, {
     "implements": ["CanActivate", "CanActivateChild", "CanLoad", "CanDeactivate"],
     "name": schema.name,
-    "module": schema.module,
     "project": schema.project
   })
   await formatFiles(tree);

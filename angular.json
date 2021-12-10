@@ -34,39 +34,6 @@
       },
       "tags": ["type:data-access"]
     },
-    "features-auth": {
-      "root": "libs/features/auth",
-      "sourceRoot": "libs/features/auth/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/features/auth",
-            "main": "libs/features/auth/src/index.ts",
-            "tsConfig": "libs/features/auth/tsconfig.lib.json",
-            "assets": ["libs/features/auth/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/features/auth/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/features/auth"],
-          "options": {
-            "jestConfig": "libs/features/auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": ["type:features"]
-    },
     "features-forms": {
       "root": "libs/features/forms",
       "sourceRoot": "libs/features/forms/src",
@@ -95,6 +62,48 @@
           "options": {
             "jestConfig": "libs/features/forms/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["type:features"]
+    },
+    "features-login": {
+      "projectType": "library",
+      "root": "libs/features/login",
+      "sourceRoot": "libs/features/login/src",
+      "prefix": "erapulus",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/features/login"],
+          "options": {
+            "project": "libs/features/login/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/features/login/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/features/login/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/features/login"],
+          "options": {
+            "jestConfig": "libs/features/login/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/features/login/src/**/*.ts",
+              "libs/features/login/src/**/*.html"
+            ]
           }
         }
       },
@@ -397,6 +406,39 @@
       },
       "tags": ["type:ui"]
     },
+    "utils-auth": {
+      "root": "libs/utils/auth",
+      "sourceRoot": "libs/utils/auth/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/utils/auth",
+            "main": "libs/utils/auth/src/index.ts",
+            "tsConfig": "libs/utils/auth/tsconfig.lib.json",
+            "assets": ["libs/utils/auth/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/utils/auth/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils/auth"],
+          "options": {
+            "jestConfig": "libs/utils/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": ["type:features"]
+    },
     "utils-local-storage": {
       "root": "libs/utils/local-storage",
       "sourceRoot": "libs/utils/local-storage/src",
@@ -424,39 +466,6 @@
           "outputs": ["coverage/libs/utils/local-storage"],
           "options": {
             "jestConfig": "libs/utils/local-storage/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": ["type:utils"]
-    },
-    "utils-rest": {
-      "root": "libs/utils/rest",
-      "sourceRoot": "libs/utils/rest/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/utils/rest",
-            "main": "libs/utils/rest/src/index.ts",
-            "tsConfig": "libs/utils/rest/tsconfig.lib.json",
-            "assets": ["libs/utils/rest/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/utils/rest/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/rest"],
-          "options": {
-            "jestConfig": "libs/utils/rest/jest.config.js",
             "passWithNoTests": true
           }
         }
