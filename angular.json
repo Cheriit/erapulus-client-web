@@ -439,6 +439,48 @@
       },
       "tags": ["type:features"]
     },
+    "utils-helpers": {
+      "projectType": "library",
+      "root": "libs/utils/helpers",
+      "sourceRoot": "libs/utils/helpers/src",
+      "prefix": "erapulus",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/utils/helpers"],
+          "options": {
+            "project": "libs/utils/helpers/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/utils/helpers/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/utils/helpers/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils/helpers"],
+          "options": {
+            "jestConfig": "libs/utils/helpers/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils/helpers/src/**/*.ts",
+              "libs/utils/helpers/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["type:utils"]
+    },
     "utils-local-storage": {
       "root": "libs/utils/local-storage",
       "sourceRoot": "libs/utils/local-storage/src",

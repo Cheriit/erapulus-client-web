@@ -120,6 +120,7 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error",
         "@angular-eslint/contextual-decorator": "error",
         "@angular-eslint/contextual-lifecycle": "error",
         "@angular-eslint/no-attribute-decorator": "error",
