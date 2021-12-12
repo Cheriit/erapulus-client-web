@@ -9,7 +9,7 @@ export interface Error {
 @Component({
   selector: 'ep-input-errors',
   template: `
-    <ng-container *ngIf="control.invalid && control.dirty && control.enabled">
+    <ng-container *ngIf="control.invalid && (control.dirty || control.touched) && control.enabled">
       <ng-container *ngFor="let error of getKeys();trackBy: trackByFn">
         <p class="error">{{(prefix + error.key | translate:error.params)}}</p>
       </ng-container>
