@@ -5,9 +5,9 @@ import {FormControl} from '@angular/forms';
   selector: 'ep-form-control',
   template: `
     <label>
-      <p class="label">{{label}}</p>
+      <p class="label">{{label | translate}}</p>
       <ng-content></ng-content>
-      <ep-input-errors [control]="control"></ep-input-errors>
+      <ep-input-errors [control]="control" [prefix]="prefix"></ep-input-errors>
     </label> `,
   styleUrls: ['./form-control.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -15,6 +15,7 @@ import {FormControl} from '@angular/forms';
 export class FormControlComponent {
   @Input() label!: string;
   @Input() control!: FormControl;
+  @Input() prefix = 'common.forms.error.';
 
   public trackByFn (index: number, item: string): string {
     return item;

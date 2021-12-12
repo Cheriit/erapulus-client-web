@@ -13,7 +13,8 @@
       "devDependencies": "*"
     },
     ".eslintrc.json": "*",
-    "assets": "*"
+    "assets": "*",
+    "components": "*"
   },
   "tasksRunnerOptions": {
     "default": {

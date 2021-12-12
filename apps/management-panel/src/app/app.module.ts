@@ -7,18 +7,21 @@ import {StoreModule} from '@ngrx/store';
 import {environment} from '../environments/environment';
 import {LoginModule} from '@erapulus/Login';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import {TranslationsModule} from '@erapulus/translations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     StoreModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
       autoPause: true
     }),
-
+    TranslationsModule,
     AppRoutingModule,
     LoginModule
   ],

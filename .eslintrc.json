@@ -28,47 +28,47 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "e2e",
+                "sourceTag": "type:e2e",
                 "onlyDependOnLibsWithTags": [
-                  "application"
+                  "type:application"
                 ]
               },
               {
-                "sourceTag": "application",
+                "sourceTag": "type:application",
                 "onlyDependOnLibsWithTags": [
-                  "data-access",
-                  "utils",
-                  "ui",
-                  "features"
+                  "type:data-access",
+                  "type:utils",
+                  "type:ui",
+                  "type:features"
                 ]
               },
               {
-                "sourceTag": "features",
+                "sourceTag": "type:features",
                 "onlyDependOnLibsWithTags": [
-                  "data-access",
-                  "utils",
-                  "ui"
+                  "type:data-access",
+                  "type:utils",
+                  "type:ui"
                 ]
               },
               {
-                "sourceTag": "data-access",
+                "sourceTag": "type:data-access",
                 "onlyDependOnLibsWithTags": [
-                  "utils",
-                  "ui"
+                  "type:utils",
+                  "type:ui"
                 ]
               },
               {
-                "sourceTag": "ui",
+                "sourceTag": "type:ui",
                 "onlyDependOnLibsWithTags": [
-                  "data-access",
-                  "utils",
-                  "ui"
+                  "type:data-access",
+                  "type:utils",
+                  "type:ui"
                 ]
               },
               {
-                "sourceTag": "utils",
+                "sourceTag": "type:utils",
                 "onlyDependOnLibsWithTags": [
-                  "utils"
+                  "type:utils"
                 ]
               }
             ]

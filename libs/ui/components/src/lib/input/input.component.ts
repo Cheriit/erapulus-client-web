@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 @Component({
   selector: 'ep-input',
   template: `
-    <ep-form-control [label]="label ? label : ''" [control]="control">
+    <ep-form-control [label]="label ? label : ''" [control]="control" [prefix]="errorPrefix">
       <div class="input" [class.error]="control.errors && control.dirty && control.touched">
         <input [formControl]="control" [placeholder]="placeholder" (blur)="control.markAsTouched()"
                (focus)="control.markAsUntouched()"/>
@@ -21,4 +21,5 @@ export class InputComponent {
   @Input() suffix?: string;
   @Input() placeholder?: string;
   @Input() label?: string;
+  @Input() errorPrefix = 'common.forms.error.';
 }

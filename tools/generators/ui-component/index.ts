@@ -16,7 +16,6 @@ export default async function (tree: Tree, schema: any) {
     "skipTests": true,
     "inlineTemplate": true,
     "name": schema.name,
-    "module": schema.name,
     "project": "ui-components",
     "export": true,
     "prefix": "ep"

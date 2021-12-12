@@ -6,6 +6,8 @@ import {FormControlModule} from './form-control/form-control.module';
 import {InputModule} from './input/input.module';
 import {LogoModule} from './logo/logo.module';
 import {InputErrorsModule} from './input-error/input-errors.module';
+import {LanguageSelectorComponent} from './language-selector/language-selector.component';
+import {LanguageSelectorModule} from './language-selector/language-selector.module';
 
 const modules = [
   ButtonModule,
@@ -13,12 +15,13 @@ const modules = [
   FormControlModule,
   InputModule,
   InputErrorsModule,
+  LanguageSelectorModule,
   LogoModule,
   SnackbarModule
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [LanguageSelectorComponent],
   imports: [...modules],
   exports: [...modules]
 })

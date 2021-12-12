@@ -1,0 +1,3 @@
+{
+  "common.forms.error.minlength": "This field has no required length - {{requiredLength}} characters."
+}
