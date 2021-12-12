@@ -1,0 +1,47 @@
+:host {
+  display: block;
+
+  .button {
+    @apply relative
+    inline-flex
+    items-center
+    px-4
+    py-2
+    border
+    border-transparent
+    rounded-md
+    font-semibold
+    text-sm
+    text-white
+    tracking-widest
+    hover:bg-gray-700
+    active:bg-gray-900
+    focus:outline-none
+    focus:border-gray-900
+    focus:ring
+    focus:ring-gray-300
+    disabled:opacity-25
+    transition
+    cursor-pointer
+    bg-gray-800;
+
+    &.loading {
+      @apply bg-gray-600 hover:bg-gray-600 active:bg-gray-600 cursor-default;
+    }
+  }
+
+  .loader {
+    @apply w-5 h-5 animate-spin;
+  }
+
+  .ping {
+    @apply flex h-3 w-3 absolute top-[-5px] right-[-5px];
+    .animation {
+      @apply animate-ping absolute inline-flex h-3 w-3 rounded-full bg-sky-400 opacity-75;
+    }
+
+    .dot {
+      @apply relative inline-flex rounded-full h-3 w-3 bg-sky-500;
+    }
+  }
+}

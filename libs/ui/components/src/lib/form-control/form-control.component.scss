@@ -1,0 +1,7 @@
+:host {
+  display: block;
+
+  .label {
+    @apply block font-medium text-sm text-gray-700;
+  }
+}

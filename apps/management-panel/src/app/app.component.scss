@@ -4,7 +4,6 @@
 :host {
   display: block;
   font-family: sans-serif;
-  min-width: 300px;
-  max-width: 600px;
-  margin: 50px auto;
+  min-width: 320px;
+  @apply h-screen w-screen overflow-auto flex place-content-center bg-slate-100;
 }

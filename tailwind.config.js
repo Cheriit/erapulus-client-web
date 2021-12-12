@@ -6,8 +6,8 @@ module.exports = {
   prefix: '',
   mode: 'jit',
   content: [
-    './apps/**/*.{html,component.ts,css,scss,sass,less,styl}',
-    './libs/**/*.{html,ts,css,scss,sass,less,styl}',
+    './apps/**/*.{html,ts,scss}',
+    './libs/**/*.{html,ts,scss}',
   ],
   theme: {
     extend: {},

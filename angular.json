@@ -8,31 +8,43 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/data-access/erapulus",
             "main": "libs/data-access/erapulus/src/index.ts",
             "tsConfig": "libs/data-access/erapulus/tsconfig.lib.json",
-            "assets": ["libs/data-access/erapulus/*.md"]
+            "assets": [
+              "libs/data-access/erapulus/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/data-access/erapulus/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/data-access/erapulus/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/data-access/erapulus"],
+          "outputs": [
+            "coverage/libs/data-access/erapulus"
+          ],
           "options": {
             "jestConfig": "libs/data-access/erapulus/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:data-access"]
+      "tags": [
+        "type:data-access"
+      ]
     },
     "features-forms": {
       "root": "libs/features/forms",
@@ -41,41 +53,55 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/features/forms",
             "main": "libs/features/forms/src/index.ts",
             "tsConfig": "libs/features/forms/tsconfig.lib.json",
-            "assets": ["libs/features/forms/*.md"]
+            "assets": [
+              "libs/features/forms/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/features/forms/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/features/forms/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/features/forms"],
+          "outputs": [
+            "coverage/libs/features/forms"
+          ],
           "options": {
             "jestConfig": "libs/features/forms/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:features"]
+      "tags": [
+        "type:features"
+      ]
     },
     "features-login": {
       "projectType": "library",
       "root": "libs/features/login",
       "sourceRoot": "libs/features/login/src",
-      "prefix": "erapulus",
+      "prefix": "ep",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/features/login"],
+          "outputs": [
+            "dist/libs/features/login"
+          ],
           "options": {
             "project": "libs/features/login/ng-package.json"
           },
@@ -91,7 +117,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/features/login"],
+          "outputs": [
+            "coverage/libs/features/login"
+          ],
           "options": {
             "jestConfig": "libs/features/login/jest.config.js",
             "passWithNoTests": true
@@ -107,7 +135,9 @@
           }
         }
       },
-      "tags": ["type:features"]
+      "tags": [
+        "type:features"
+      ]
     },
     "management-panel": {
       "projectType": "application",
@@ -117,7 +147,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/management-panel",
             "index": "apps/management-panel/src/index.html",
@@ -135,7 +167,9 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs/ui/themes/src/lib/styles"]
+              "includePaths": [
+                "libs/ui/themes/src/lib/styles"
+              ]
             },
             "styles": [
               "apps/management-panel/src/styles.scss",
@@ -207,15 +241,22 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/management-panel"],
+          "outputs": [
+            "coverage/apps/management-panel"
+          ],
           "options": {
             "jestConfig": "apps/management-panel/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:application"],
-      "implicitDependencies": ["ui-assets", "ui-themes"]
+      "tags": [
+        "type:application"
+      ],
+      "implicitDependencies": [
+        "ui-assets",
+        "ui-themes"
+      ]
     },
     "management-panel-e2e": {
       "root": "apps/management-panel-e2e",
@@ -236,14 +277,22 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/management-panel-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/management-panel-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
-      "tags": ["type:e2e"],
-      "implicitDependencies": ["management-panel"]
+      "tags": [
+        "type:e2e"
+      ],
+      "implicitDependencies": [
+        "management-panel"
+      ]
     },
     "storybook-e2e-components-e2e": {
       "root": "apps/storybook-e2e/components-e2e",
@@ -264,7 +313,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
             "lintFilePatterns": [
               "apps/storybook-e2e/components-e2e/**/*.{js,ts}"
@@ -272,8 +323,12 @@
           }
         }
       },
-      "tags": [],
-      "implicitDependencies": ["ui-components"]
+      "tags": [
+        "type:e2e"
+      ],
+      "implicitDependencies": [
+        "ui-components"
+      ]
     },
     "ui-assets": {
       "root": "libs/ui/assets",
@@ -282,31 +337,43 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/ui/assets",
             "main": "libs/ui/assets/src/index.ts",
             "tsConfig": "libs/ui/assets/tsconfig.lib.json",
-            "assets": ["libs/ui/assets/*.md"]
+            "assets": [
+              "libs/ui/assets/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/ui/assets/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/ui/assets/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/assets"],
+          "outputs": [
+            "coverage/libs/ui/assets"
+          ],
           "options": {
             "jestConfig": "libs/ui/assets/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:ui"]
+      "tags": [
+        "type:ui"
+      ]
     },
     "ui-components": {
       "root": "libs/ui/components",
@@ -315,25 +382,44 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/ui/components",
             "main": "libs/ui/components/src/index.ts",
             "tsConfig": "libs/ui/components/tsconfig.lib.json",
-            "assets": ["libs/ui/components/*.md"],
-            "styles": ["node_modules/tailwindcss/tailwind.css"]
+            "assets": [
+              "libs/ui/components/*.md"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/ui/themes/src/lib/styles"
+              ]
+            },
+            "styles": [
+              "node_modules/tailwindcss/tailwind.css",
+              "libs/ui/components/src/styles.scss",
+              "libs/ui/themes/src/lib/styles/index.scss"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/ui/components/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/ui/components/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/components"],
+          "outputs": [
+            "coverage/libs/ui/components"
+          ],
           "options": {
             "jestConfig": "libs/ui/components/jest.config.js",
             "passWithNoTests": true
@@ -356,7 +442,9 @@
         },
         "build-storybook": {
           "builder": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/ui-components",
@@ -371,7 +459,12 @@
           }
         }
       },
-      "tags": ["type:ui"]
+      "tags": [
+        "type:ui"
+      ],
+      "implicitDependencies": [
+        "ui-themes"
+      ]
     },
     "ui-themes": {
       "root": "libs/ui/themes",
@@ -380,31 +473,43 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/ui/themes",
             "main": "libs/ui/themes/src/index.ts",
             "tsConfig": "libs/ui/themes/tsconfig.lib.json",
-            "assets": ["libs/ui/themes/*.md"]
+            "assets": [
+              "libs/ui/themes/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/ui/themes/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/ui/themes/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/themes"],
+          "outputs": [
+            "coverage/libs/ui/themes"
+          ],
           "options": {
             "jestConfig": "libs/ui/themes/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:ui"]
+      "tags": [
+        "type:ui"
+      ]
     },
     "utils-auth": {
       "root": "libs/utils/auth",
@@ -413,41 +518,55 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/utils/auth",
             "main": "libs/utils/auth/src/index.ts",
             "tsConfig": "libs/utils/auth/tsconfig.lib.json",
-            "assets": ["libs/utils/auth/*.md"]
+            "assets": [
+              "libs/utils/auth/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/utils/auth/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/auth/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/auth"],
+          "outputs": [
+            "coverage/libs/utils/auth"
+          ],
           "options": {
             "jestConfig": "libs/utils/auth/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:features"]
+      "tags": [
+        "type:features"
+      ]
     },
     "utils-helpers": {
       "projectType": "library",
       "root": "libs/utils/helpers",
       "sourceRoot": "libs/utils/helpers/src",
-      "prefix": "erapulus",
+      "prefix": "ep",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/utils/helpers"],
+          "outputs": [
+            "dist/libs/utils/helpers"
+          ],
           "options": {
             "project": "libs/utils/helpers/ng-package.json"
           },
@@ -463,7 +582,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/helpers"],
+          "outputs": [
+            "coverage/libs/utils/helpers"
+          ],
           "options": {
             "jestConfig": "libs/utils/helpers/jest.config.js",
             "passWithNoTests": true
@@ -479,7 +600,9 @@
           }
         }
       },
-      "tags": ["type:utils"]
+      "tags": [
+        "type:utils"
+      ]
     },
     "utils-local-storage": {
       "root": "libs/utils/local-storage",
@@ -488,31 +611,43 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/utils/local-storage",
             "main": "libs/utils/local-storage/src/index.ts",
             "tsConfig": "libs/utils/local-storage/tsconfig.lib.json",
-            "assets": ["libs/utils/local-storage/*.md"]
+            "assets": [
+              "libs/utils/local-storage/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/utils/local-storage/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/local-storage/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/local-storage"],
+          "outputs": [
+            "coverage/libs/utils/local-storage"
+          ],
           "options": {
             "jestConfig": "libs/utils/local-storage/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:utils"]
+      "tags": [
+        "type:utils"
+      ]
     },
     "utils-translations": {
       "root": "libs/utils/translations",
@@ -521,31 +656,43 @@
       "architect": {
         "build": {
           "builder": "@nrwl/js:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/utils/translations",
             "main": "libs/utils/translations/src/index.ts",
             "tsConfig": "libs/utils/translations/tsconfig.lib.json",
-            "assets": ["libs/utils/translations/*.md"]
+            "assets": [
+              "libs/utils/translations/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/utils/translations/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/translations/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/translations"],
+          "outputs": [
+            "coverage/libs/utils/translations"
+          ],
           "options": {
             "jestConfig": "libs/utils/translations/jest.config.js",
             "passWithNoTests": true
           }
         }
       },
-      "tags": ["type:utils"]
+      "tags": [
+        "type:utils"
+      ]
     }
   }
 }

@@ -17,9 +17,9 @@ export default async function (tree: Tree, schema: any) {
     strict: true,
     testEnvironment: 'node',
     routing: true,
-
+    prefix: 'ep'
   });
-  
+
   await formatFiles(tree);
   return () => {
     installPackagesTask(tree);

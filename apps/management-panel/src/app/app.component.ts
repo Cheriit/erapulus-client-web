@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 @Component({
   selector: 'ep-app',
   template: `
-    <div class="text-5xl">tmp</div> `,
+    <router-outlet></router-outlet>`,
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
