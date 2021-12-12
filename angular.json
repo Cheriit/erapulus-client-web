@@ -164,6 +164,16 @@
                 "input": "libs/ui/assets/src/assets",
                 "glob": "**/*",
                 "output": "assets"
+              },
+              {
+                "input": "libs/ui/components/src",
+                "glob": "**/*",
+                "output": "assets"
+              },
+              {
+                "input": "libs/features/",
+                "glob": "**/*",
+                "output": "assets"
               }
             ],
             "stylePreprocessorOptions": {
@@ -390,6 +400,9 @@
             "main": "libs/ui/components/src/index.ts",
             "tsConfig": "libs/ui/components/tsconfig.lib.json",
             "assets": [
+              "node_modules/tailwindcss/tailwind.css",
+              "libs/ui/components/src/styles.scss",
+              "libs/ui/themes/src/lib/styles/index.scss",
               "libs/ui/components/*.md"
             ],
             "stylePreprocessorOptions": {
