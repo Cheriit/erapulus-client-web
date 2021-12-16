@@ -10,54 +10,27 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@erapulus/Login": [
-        "libs/features/login/src/index.ts"
-      ],
-      "@erapulus/assets": [
-        "libs/ui/assets/src/index.ts"
-      ],
-      "@erapulus/components": [
-        "libs/ui/components/src/index.ts"
-      ],
-      "@erapulus/erapulus": [
+      "@erapulus/data-access/erapulus": [
         "libs/data-access/erapulus/src/index.ts"
       ],
-      "@erapulus/forms": [
-        "libs/features/forms/src/index.ts"
-      ],
-      "@erapulus/helpers": [
-        "libs/utils/helpers/src/index.ts"
-      ],
-      "@erapulus/local-storage": [
+      "@erapulus/features/login": ["libs/features/login/src/index.ts"],
+      "@erapulus/ui/assets": ["libs/ui/assets/src/index.ts"],
+      "@erapulus/ui/components": ["libs/ui/components/src/index.ts"],
+      "@erapulus/ui/themes": ["libs/ui/themes/src/index.ts"],
+      "@erapulus/utils/auth": ["libs/utils/auth/src/index.ts"],
+      "@erapulus/utils/forms": ["libs/utils/forms/src/index.ts"],
+      "@erapulus/utils/helpers": ["libs/utils/helpers/src/index.ts"],
+      "@erapulus/utils/local-storage": [
         "libs/utils/local-storage/src/index.ts"
       ],
-      "@erapulus/rest": [
-        "libs/utils/rest/src/index.ts"
-      ],
-      "@erapulus/snackbar": [
-        "libs/ui/components/snackbar/src/index.ts"
-      ],
-      "@erapulus/themes": [
-        "libs/ui/themes/src/index.ts"
-      ],
-      "@erapulus/translations": [
-        "libs/utils/translations/src/index.ts"
-      ],
-      "@erapulus/utils-auth": [
-        "libs/utils/auth/src/index.ts"
-      ]
+      "@erapulus/utils/rest": ["libs/utils/rest/src/index.ts"],
+      "@erapulus/utils/translations": ["libs/utils/translations/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

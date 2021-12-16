@@ -7,7 +7,8 @@ import {FormControl} from '@angular/forms';
     <ep-form-control [label]="label ? label : ''" [control]="control" [prefix]="errorPrefix">
       <div class="input" [class.error]="control.errors && control.dirty && control.touched">
         <input [formControl]="control" [placeholder]="placeholder" (blur)="control.markAsTouched()"
-               (focus)="control.markAsUntouched()"/>
+               (focus)="control.markAsUntouched()" [type]="type"
+               [attr.disabled]="control.disabled ? '' : null"/>
       </div>
     </ep-form-control>
   `,
@@ -22,4 +23,5 @@ export class InputComponent {
   @Input() placeholder?: string;
   @Input() label?: string;
   @Input() errorPrefix = 'common.forms.error.';
+  @Input() type = 'text';
 }

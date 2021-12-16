@@ -1,3 +1,7 @@
 :host {
   display: block;
+  @apply flex m-auto;
+  .container {
+    min-width: 384px;
+  }
 }

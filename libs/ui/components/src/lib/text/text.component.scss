@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  @apply font-medium mb-2;
+  .lg {
+    @apply text-lg md:text-xl;
+  }
+
+  .md {
+    @apply text-base md:text-lg;
+  }
+
+  .sm {
+    @apply text-sm md:text-base;
+  }
+
+  .xs {
+    @apply text-xs md:text-sm;
+  }
+}

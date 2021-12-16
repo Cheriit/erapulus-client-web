@@ -1,6 +1,6 @@
 :host {
   display: block;
-
+  @apply mt-4 mb-4;
   .label {
     @apply block font-medium text-sm text-gray-700;
   }

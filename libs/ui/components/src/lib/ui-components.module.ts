@@ -8,16 +8,20 @@ import {LogoModule} from './logo/logo.module';
 import {InputErrorsModule} from './input-error/input-errors.module';
 import {LanguageSelectorComponent} from './language-selector/language-selector.component';
 import {LanguageSelectorModule} from './language-selector/language-selector.module';
+import {HeaderModule} from './header/header.module';
+import {TextModule} from './text/text.module';
 
 const modules = [
   ButtonModule,
   ContainerModule,
   FormControlModule,
+  HeaderModule,
   InputModule,
   InputErrorsModule,
   LanguageSelectorModule,
   LogoModule,
-  SnackbarModule
+  SnackbarModule,
+  TextModule
 ];
 
 @NgModule({

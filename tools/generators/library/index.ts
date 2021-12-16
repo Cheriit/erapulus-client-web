@@ -9,7 +9,7 @@ export default async function (tree: Tree, schema: any) {
     skipFormat: false,
     buildable: true,
     directory: `${schema.type}`,
-    importPath: `@erapulus/${schema.name}`,
+    importPath: `@erapulus/${schema.type}/${schema.name}`,
     linter: 'eslint',
     simpleModuleName: true,
     tags: `type:${schema.type}`,
