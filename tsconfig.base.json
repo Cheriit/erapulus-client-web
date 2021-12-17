@@ -29,6 +29,9 @@
         "libs/utils/local-storage/src/index.ts"
       ],
       "@erapulus/utils/rest": ["libs/utils/rest/src/index.ts"],
+      "@erapulus/utils/subscription-manager": [
+        "libs/utils/subscription-manager/src/index.ts"
+      ],
       "@erapulus/utils/translations": ["libs/utils/translations/src/index.ts"]
     }
   },

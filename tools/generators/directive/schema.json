@@ -14,15 +14,6 @@
       },
       "x-prompt": "Directive project name:"
     },
-    "module": {
-      "type": "string",
-      "description": "Module name",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": "Directive module name:"
-    },
     "name": {
       "type": "string",
       "description": "Directive name",
@@ -35,7 +26,6 @@
   },
   "required": [
     "project",
-    "module",
     "name"
   ]
 }

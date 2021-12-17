@@ -15,7 +15,6 @@ export default async function (tree: Tree, schema: any) {
     tags: `type:${schema.type}`,
     unitTestRunner: 'jest',
     strict: true,
-    testEnvironment: 'node',
     routing: true,
     prefix: 'ep'
   });

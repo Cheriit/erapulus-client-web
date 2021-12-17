@@ -6,7 +6,6 @@ export default async function (tree: Tree, schema: any) {
   await schematic(tree, {
     "export": true,
     "name": schema.name,
-    "module": schema.module,
     "project": schema.project
   })
   await formatFiles(tree);

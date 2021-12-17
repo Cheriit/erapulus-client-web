@@ -546,6 +546,48 @@
       },
       "tags": ["type:utils"]
     },
+    "utils-subscription-manager": {
+      "projectType": "library",
+      "root": "libs/utils/subscription-manager",
+      "sourceRoot": "libs/utils/subscription-manager/src",
+      "prefix": "ep",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/utils/subscription-manager"],
+          "options": {
+            "project": "libs/utils/subscription-manager/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/utils/subscription-manager/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/utils/subscription-manager/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils/subscription-manager"],
+          "options": {
+            "jestConfig": "libs/utils/subscription-manager/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils/subscription-manager/src/**/*.ts",
+              "libs/utils/subscription-manager/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["type:utils"]
+    },
     "utils-translations": {
       "root": "libs/utils/translations",
       "sourceRoot": "libs/utils/translations/src",

@@ -1,0 +1,14 @@
+@import "animations";
+
+:host {
+  display: block;
+
+  .fadeIn {
+    animation: fadeIn 200ms ease, slideIn 200ms ease-in-out;
+  }
+
+  .fadeOut {
+    animation: fadeOut 200ms ease, slideOut 200ms ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
