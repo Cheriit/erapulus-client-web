@@ -23,7 +23,8 @@
     disabled:opacity-25
     transition
     cursor-pointer
-    bg-gray-800;
+    bg-gray-800
+    duration-300;
 
     &.loading {
       @apply bg-gray-600 hover:bg-gray-600 active:bg-gray-600 cursor-default;

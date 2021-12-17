@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {AnimationType, HeaderType, MessageService} from '@erapulus/ui/components';
+import {AnimationType, HeaderType, MessageService, MessageType} from '@erapulus/ui/components';
 import {LoginFormService} from './login-form.service';
 import {FormGroup} from '@angular/forms';
+import {TitleService} from '@erapulus/utils/title';
 
 @Component({
   selector: 'ep-login',
@@ -39,14 +40,24 @@ export class LoginComponent implements OnInit {
   public loading: AnimationType = AnimationType.LOADING;
   public headerType = HeaderType.H3;
 
-  constructor (public loginFormService: LoginFormService, private messageService: MessageService, private changeDetectorRef: ChangeDetectorRef) {
+  constructor (
+    public loginFormService: LoginFormService,
+    private messageService: MessageService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private titleService: TitleService) {
   }
 
   ngOnInit (): void {
+    this.titleService.setTitle('common.title.login');
     this.form = this.loginFormService.createForm();
   }
 
   submit (): void {
+    this.messageService.renderMessage({
+      type: MessageType.SUCCESS,
+      content: ['test'],
+      title: 'test'
+    });
     this.loginFormService.submitForm();
     this.changeDetectorRef.markForCheck();
   }

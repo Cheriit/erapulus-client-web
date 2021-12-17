@@ -588,6 +588,48 @@
       },
       "tags": ["type:utils"]
     },
+    "utils-title": {
+      "projectType": "library",
+      "root": "libs/utils/title",
+      "sourceRoot": "libs/utils/title/src",
+      "prefix": "ep",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/utils/title"],
+          "options": {
+            "project": "libs/utils/title/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/utils/title/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/utils/title/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils/title"],
+          "options": {
+            "jestConfig": "libs/utils/title/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils/title/src/**/*.ts",
+              "libs/utils/title/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": ["type:utils"]
+    },
     "utils-translations": {
       "root": "libs/utils/translations",
       "sourceRoot": "libs/utils/translations/src",

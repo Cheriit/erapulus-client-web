@@ -9,6 +9,8 @@ import {LoginModule} from '@erapulus/features/login';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {TranslationsModule} from '@erapulus/utils/translations';
+import {UiComponentsModule} from '@erapulus/ui/components';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,9 +23,11 @@ import {TranslationsModule} from '@erapulus/utils/translations';
       logOnly: environment.production,
       autoPause: true
     }),
+    EffectsModule.forRoot([]),
     TranslationsModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    UiComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 {
-  "/api": {
-    "target": "http://localhost:8080",
+  "/api/erapulus": {
+    "target": "https://erapulus-server.azurewebsites.net/",
     "secure": false,
     "changeOrigin": true
   }

@@ -9,6 +9,7 @@ import {InputErrorsModule} from './input-error/input-errors.module';
 import {LanguageSelectorModule} from './language-selector/language-selector.module';
 import {HeaderModule} from './header/header.module';
 import {TextModule} from './text/text.module';
+import {SidebarLayoutModule} from './sidebar-layout/sidebar-layout.module';
 
 const modules = [
   ButtonModule,
@@ -20,6 +21,7 @@ const modules = [
   LanguageSelectorModule,
   LogoModule,
   MessageModule,
+  SidebarLayoutModule,
   TextModule
 ];
 

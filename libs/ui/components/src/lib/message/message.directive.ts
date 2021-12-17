@@ -22,7 +22,7 @@ export class MessageDirective implements OnInit, OnDestroy {
       const component = this.viewContainerRef.createComponent(MessageComponent);
       component.instance.title = message.title;
       component.instance.content = message.content;
-      if (message.type) {
+      if (message.type !== undefined) {
         component.instance.type = message.type;
       }
       component.instance.close.pipe(tap(() => component.destroy())).subscribe();

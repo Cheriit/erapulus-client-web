@@ -32,6 +32,7 @@
       "@erapulus/utils/subscription-manager": [
         "libs/utils/subscription-manager/src/index.ts"
       ],
+      "@erapulus/utils/title": ["libs/utils/title/src/index.ts"],
       "@erapulus/utils/translations": ["libs/utils/translations/src/index.ts"]
     }
   },
