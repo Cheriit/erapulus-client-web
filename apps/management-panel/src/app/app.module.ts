@@ -11,12 +11,18 @@ import {HttpClientModule} from '@angular/common/http';
 import {TranslationsModule} from '@erapulus/utils/translations';
 import {UiComponentsModule} from '@erapulus/ui/components';
 import {EffectsModule} from '@ngrx/effects';
+import {RouterModule} from '@angular/router';
+import {AppMainComponent} from './app-main.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    AppMainComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot([{path: '**', component: AppMainComponent}]),
     StoreModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
