@@ -10,6 +10,7 @@ import {LanguageSelectorModule} from './language-selector/language-selector.modu
 import {HeaderModule} from './header/header.module';
 import {TextModule} from './text/text.module';
 import {SidebarLayoutModule} from './sidebar-layout/sidebar-layout.module';
+import {SpinnerModule} from './spinner/spinner.module';
 
 const modules = [
   ButtonModule,
@@ -22,6 +23,7 @@ const modules = [
   LogoModule,
   MessageModule,
   SidebarLayoutModule,
+  SpinnerModule,
   TextModule
 ];
 

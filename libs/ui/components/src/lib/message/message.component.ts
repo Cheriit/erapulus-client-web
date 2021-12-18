@@ -15,9 +15,10 @@ import {MessageType} from './message.model';
 @Component({
   selector: 'ep-message',
   template: `
-    <div class="absolute top-0 left-0 w-full p-4 fadeIn origin-top-left" [class.fadeOut]="exiting">
+    <div class="absolute top-0 left-0 w-full p-4 overflow-x-hidden z-50">
       <div
-        class="bg-white rounded-lg border-gray-300 border p-4 shadow-lg w-full max-w-5xl m-auto">
+        class="bg-white rounded-lg border-gray-300 border p-4 shadow-lg w-full max-w-5xl m-auto fadeIn origin-top-left"
+        [class.fadeOut]="exiting">
         <div class="flex flex-row">
           <ep-message-icon [type]="type" class="flex items-center"></ep-message-icon>
           <div class="grow mx-4">

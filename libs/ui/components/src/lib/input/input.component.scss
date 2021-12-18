@@ -1,6 +1,6 @@
 :host {
   display: block;
-
+  @apply border-0 p-0;
   .input {
     @apply mt-1 relative rounded-md shadow-sm border border-gray-200 p-2;
     &.error {

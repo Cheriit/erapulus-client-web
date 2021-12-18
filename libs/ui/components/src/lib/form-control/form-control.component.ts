@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 @Component({
@@ -9,8 +9,7 @@ import {FormControl} from '@angular/forms';
       <ng-content></ng-content>
       <ep-input-errors [control]="control" [prefix]="prefix"></ep-input-errors>
     </label> `,
-  styleUrls: ['./form-control.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent {
   @Input() label!: string;
@@ -20,4 +19,5 @@ export class FormControlComponent {
   public trackByFn (index: number, item: string): string {
     return item;
   }
+
 }

@@ -5,9 +5,11 @@ import {LoginComponent} from './login/login.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {UiComponentsModule} from '@erapulus/ui/components';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ErapulusDataAccessModule} from '@erapulus/data-access/erapulus';
 
 @NgModule({
   imports: [
+    ErapulusDataAccessModule,
     CommonModule,
     LoginRoutingModuleModule,
     UiComponentsModule,

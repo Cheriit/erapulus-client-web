@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {AnimationType, HeaderType, MessageService, MessageType} from '@erapulus/ui/components';
+import {HeaderType, MessageService} from '@erapulus/ui/components';
 import {LoginFormService} from './login-form.service';
 import {FormGroup} from '@angular/forms';
 import {TitleService} from '@erapulus/utils/title';
@@ -20,24 +20,21 @@ import {TitleService} from '@erapulus/utils/title';
           [label]="'common.login.password.label' | translate"
           [control]="loginFormService.getControl('password')"
           [placeholder]="'common.login.email.placeholder' | translate"
+          type="password"
         ></ep-input>
         <ep-button
-          class="float-right"
-          [disabled]="
-            form.disabled || form.pending || form.errors !== null
-          "
-          [animationType]="form.pending ? loading : undefined"
-        >Log in
+          class="float-right">
+          Log in
         </ep-button>
       </form>
     </ep-container>
   `,
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class LoginComponent implements OnInit {
   public form!: FormGroup;
-  public loading: AnimationType = AnimationType.LOADING;
   public headerType = HeaderType.H3;
 
   constructor (
@@ -53,12 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit (): void {
-    this.messageService.generateMessage({
-      type: MessageType.SUCCESS,
-      content: ['testujemy'],
-      title: 'test'
-    });
     this.loginFormService.submitForm();
-    this.changeDetectorRef.markForCheck();
+    this.changeDetectorRef.detectChanges();
   }
 }

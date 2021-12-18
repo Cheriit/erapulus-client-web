@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 export interface Error {
   key: string,
@@ -9,26 +10,20 @@ export interface Error {
 @Component({
   selector: 'ep-input-errors',
   template: `
-    <ng-container *ngIf="control.invalid && (control.dirty || control.touched) && control.enabled">
+    <ng-container *ngIf="control.enabled && control.touched">
       <ng-container *ngFor="let error of getKeys();trackBy: trackByFn">
         <p class="error">{{(prefix + error.key | translate:error.params)}}</p>
       </ng-container>
     </ng-container>
   `,
-  styleUrls: ['./input-errors.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./input-errors.component.scss']
 })
-export class InputErrorsComponent implements OnInit {
+export class InputErrorsComponent {
   @Input() control!: FormControl;
   @Input() prefix!: string;
+  public errors: Observable<string[]> = new Observable<string[]>();
 
   constructor (private changeDetectorRef: ChangeDetectorRef) {
-  }
-
-  ngOnInit (): void {
-    this.control.statusChanges.subscribe(() => {
-      this.changeDetectorRef.markForCheck();
-    });
   }
 
   trackByFn (index: number, errorMsg: Error): Error {
