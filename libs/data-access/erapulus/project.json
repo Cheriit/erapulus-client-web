@@ -1,0 +1,22 @@
+{
+  "root": "libs/data-access/erapulus",
+  "sourceRoot": "libs/data-access/erapulus/src",
+  "projectType": "library",
+  "prefix": "ep",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/data-access/erapulus/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/data-access/erapulus/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:data-access"]
+}

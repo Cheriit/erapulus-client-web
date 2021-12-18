@@ -1,0 +1,22 @@
+{
+  "root": "libs/utils/translations",
+  "sourceRoot": "libs/utils/translations/src",
+  "projectType": "library",
+  "prefix": "ep",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/utils/translations/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/utils/translations/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:utils"]
+}

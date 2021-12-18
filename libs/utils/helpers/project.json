@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "root": "libs/utils/helpers",
+  "sourceRoot": "libs/utils/helpers/src",
+  "prefix": "ep",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/utils/helpers/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/utils/helpers/src/**/*.ts",
+          "libs/utils/helpers/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:utils"]
+}

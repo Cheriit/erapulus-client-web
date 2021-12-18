@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "root": "libs/utils/forms",
+  "sourceRoot": "libs/utils/forms/src",
+  "prefix": "ep",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/utils/forms/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/utils/forms/src/**/*.ts",
+          "libs/utils/forms/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:utils"]
+}

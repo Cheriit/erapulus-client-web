@@ -1,0 +1,22 @@
+{
+  "root": "libs/utils/auth",
+  "sourceRoot": "libs/utils/auth/src",
+  "projectType": "library",
+  "prefix": "ep",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/utils/auth/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/utils/auth/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:features"]
+}

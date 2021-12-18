@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "root": "libs/features/login",
+  "sourceRoot": "libs/features/login/src",
+  "prefix": "ep",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/features/login/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/features/login/src/**/*.ts",
+          "libs/features/login/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:features"]
+}

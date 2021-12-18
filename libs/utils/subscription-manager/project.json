@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "root": "libs/utils/subscription-manager",
+  "sourceRoot": "libs/utils/subscription-manager/src",
+  "prefix": "ep",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/utils/subscription-manager/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/utils/subscription-manager/src/**/*.ts",
+          "libs/utils/subscription-manager/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:utils"]
+}

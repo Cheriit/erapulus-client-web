@@ -1,0 +1,21 @@
+{
+  "root": "libs/utils/local-storage",
+  "sourceRoot": "libs/utils/local-storage/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/utils/local-storage/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/utils/local-storage/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:utils"]
+}

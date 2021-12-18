@@ -1,0 +1,22 @@
+{
+  "root": "libs/ui/assets",
+  "sourceRoot": "libs/ui/assets/src",
+  "projectType": "library",
+  "prefix": "ep",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/ui/assets/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/ui/assets/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:ui"]
+}

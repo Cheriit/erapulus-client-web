@@ -1,0 +1,27 @@
+{
+  "root": "apps/management-panel-e2e",
+  "sourceRoot": "apps/management-panel-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/management-panel-e2e/cypress.json",
+        "devServerTarget": "management-panel:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "management-panel:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/management-panel-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": ["type:e2e"],
+  "implicitDependencies": ["management-panel"]
+}
