@@ -8,7 +8,7 @@ import {MessageComponent} from './message.component';
 })
 export class MessageDirective implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  private lastComponent?: ComponentRef<MessageComponent>;
+  private lastComponent?: ComponentRef<MessageComponent<unknown>>;
 
   constructor (private viewContainerRef: ViewContainerRef, private messageService: MessageService) {
   }
@@ -18,15 +18,10 @@ export class MessageDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit (): void {
-    this.subscriptions.push(this.messageService.messages.subscribe((message) => {
-      const component = this.viewContainerRef.createComponent(MessageComponent);
-      component.instance.title = message.title;
-      component.instance.content = message.content;
-      if (message.type !== undefined) {
-        component.instance.type = message.type;
-      }
-      component.instance.close.pipe(tap(() => component.destroy())).subscribe();
-      this.subscriptions.push();
+    this.subscriptions.push(this.messageService.messages.subscribe((component) => {
+      this.viewContainerRef.insert(component.hostView);
+      this.lastComponent?.instance.closeMessage();
+      this.subscriptions.push(component.instance.close.pipe(tap(() => component.destroy())).subscribe());
       this.lastComponent = component;
       component.changeDetectorRef.markForCheck();
     }));

@@ -53,9 +53,9 @@ export class LoginComponent implements OnInit {
   }
 
   submit (): void {
-    this.messageService.renderMessage({
+    this.messageService.generateMessage({
       type: MessageType.SUCCESS,
-      content: ['test'],
+      content: ['testujemy'],
       title: 'test'
     });
     this.loginFormService.submitForm();
