@@ -5,21 +5,8 @@
       "root": "libs/data-access/erapulus",
       "sourceRoot": "libs/data-access/erapulus/src",
       "projectType": "library",
+      "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/data-access/erapulus",
-            "main": "libs/data-access/erapulus/src/index.ts",
-            "tsConfig": "libs/data-access/erapulus/tsconfig.lib.json",
-            "assets": [
-              "libs/data-access/erapulus/*.md"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [
@@ -52,24 +39,6 @@
       "sourceRoot": "libs/features/login/src",
       "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/features/login"
-          ],
-          "options": {
-            "project": "libs/features/login/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/features/login/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/features/login/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
@@ -126,7 +95,7 @@
                 "output": "assets"
               },
               {
-                "input": "libs/features/",
+                "input": "libs/features/login/src",
                 "glob": "**/*",
                 "output": "assets"
               }
@@ -298,21 +267,8 @@
       "root": "libs/ui/assets",
       "sourceRoot": "libs/ui/assets/src",
       "projectType": "library",
+      "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/ui/assets",
-            "main": "libs/ui/assets/src/index.ts",
-            "tsConfig": "libs/ui/assets/tsconfig.lib.json",
-            "assets": [
-              "libs/ui/assets/*.md"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [
@@ -343,34 +299,8 @@
       "root": "libs/ui/components",
       "sourceRoot": "libs/ui/components/src",
       "projectType": "library",
+      "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/ui/components",
-            "main": "libs/ui/components/src/index.ts",
-            "tsConfig": "libs/ui/components/tsconfig.lib.json",
-            "assets": [
-              "node_modules/tailwindcss/tailwind.css",
-              "libs/ui/components/src/styles.scss",
-              "libs/ui/themes/src/lib/styles/index.scss",
-              "libs/ui/components/*.md"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/ui/themes/src/lib/styles"
-              ]
-            },
-            "styles": [
-              "node_modules/tailwindcss/tailwind.css",
-              "libs/ui/components/src/styles.scss",
-              "libs/ui/themes/src/lib/styles/index.scss"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [
@@ -437,21 +367,8 @@
       "root": "libs/ui/themes",
       "sourceRoot": "libs/ui/themes/src",
       "projectType": "library",
+      "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/ui/themes",
-            "main": "libs/ui/themes/src/index.ts",
-            "tsConfig": "libs/ui/themes/tsconfig.lib.json",
-            "assets": [
-              "libs/ui/themes/*.md"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [
@@ -482,21 +399,8 @@
       "root": "libs/utils/auth",
       "sourceRoot": "libs/utils/auth/src",
       "projectType": "library",
+      "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/utils/auth",
-            "main": "libs/utils/auth/src/index.ts",
-            "tsConfig": "libs/utils/auth/tsconfig.lib.json",
-            "assets": [
-              "libs/utils/auth/*.md"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [
@@ -529,24 +433,6 @@
       "sourceRoot": "libs/utils/forms/src",
       "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/utils/forms"
-          ],
-          "options": {
-            "project": "libs/utils/forms/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/utils/forms/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/utils/forms/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
@@ -577,24 +463,6 @@
       "sourceRoot": "libs/utils/helpers/src",
       "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/utils/helpers"
-          ],
-          "options": {
-            "project": "libs/utils/helpers/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/utils/helpers/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/utils/helpers/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
@@ -624,20 +492,6 @@
       "sourceRoot": "libs/utils/local-storage/src",
       "projectType": "library",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/utils/local-storage",
-            "main": "libs/utils/local-storage/src/index.ts",
-            "tsConfig": "libs/utils/local-storage/tsconfig.lib.json",
-            "assets": [
-              "libs/utils/local-storage/*.md"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [
@@ -670,24 +524,6 @@
       "sourceRoot": "libs/utils/subscription-manager/src",
       "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/utils/subscription-manager"
-          ],
-          "options": {
-            "project": "libs/utils/subscription-manager/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/utils/subscription-manager/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/utils/subscription-manager/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
@@ -718,24 +554,6 @@
       "sourceRoot": "libs/utils/title/src",
       "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/utils/title"
-          ],
-          "options": {
-            "project": "libs/utils/title/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/utils/title/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/utils/title/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
@@ -764,21 +582,8 @@
       "root": "libs/utils/translations",
       "sourceRoot": "libs/utils/translations/src",
       "projectType": "library",
+      "prefix": "ep",
       "architect": {
-        "build": {
-          "builder": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/libs/utils/translations",
-            "main": "libs/utils/translations/src/index.ts",
-            "tsConfig": "libs/utils/translations/tsconfig.lib.json",
-            "assets": [
-              "libs/utils/translations/*.md"
-            ]
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": [

@@ -27,7 +27,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "erapulus",
+            "prefix": "ep",
             "style": "kebab-case"
           }
         ]

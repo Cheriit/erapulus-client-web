@@ -7,7 +7,6 @@ export default async function (tree: Tree, schema: any) {
   await schematic(tree, {
     name: schema.name,
     skipFormat: false,
-    buildable: true,
     directory: `${schema.type}`,
     importPath: `@erapulus/${schema.type}/${schema.name}`,
     linter: 'eslint',

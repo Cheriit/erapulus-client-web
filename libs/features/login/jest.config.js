@@ -5,7 +5,7 @@ module.exports = {
   globals: {
     "ts-jest": {
       tsconfig: "<rootDir>/tsconfig.spec.json",
-      stringifyContentPathRegex: "/.(html|svg)$",
+      stringifyContentPathRegex: "\\.(html|svg)$",
     },
   },
   coverageDirectory: "../../../coverage/libs/features/login",
