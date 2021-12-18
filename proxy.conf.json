@@ -1,8 +1,11 @@
 {
-  "/api/*": {
-    "target": "https://erapulus-server.azurewebsites.net/api/",
+  "/api/erapulus/*": {
+    "target": "https://erapulus-server.azurewebsites.net/",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/erapulus": "/api"
+    }
   }
 }

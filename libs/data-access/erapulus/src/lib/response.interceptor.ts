@@ -19,7 +19,7 @@ export class ResponseInterceptor implements HttpInterceptor {
   }
 
   intercept (req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (req.url.startsWith('https://erapulus-server.azurewebsites.net/api')) {
+    if (req.url.startsWith('/api')) {
       return next.handle(req).pipe(
         map((event) => {
           if (isDevMode()) {

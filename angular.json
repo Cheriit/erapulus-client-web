@@ -182,7 +182,8 @@
               "browserTarget": "management-panel:build:production"
             },
             "development": {
-              "browserTarget": "management-panel:build:development"
+              "browserTarget": "management-panel:build:development",
+              "proxyConfig": "./proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
