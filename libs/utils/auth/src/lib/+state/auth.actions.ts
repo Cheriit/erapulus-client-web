@@ -1,14 +1,21 @@
 import {createAction, props} from '@ngrx/store';
-import {AuthEntity} from './auth.models';
+import {SignInResponse} from './auth.models';
 
-export const init = createAction('[Auth Page] Init');
+export const AUTH_FEATURE_KEY = '[Auth]';
 
-export const loadAuthSuccess = createAction(
-  '[Auth/API] Load Auth Success',
-  props<{ auth: AuthEntity[] }>()
+export const AuthActions = {
+  INIT: `${AUTH_FEATURE_KEY} Init`,
+  SIGN_IN: `${AUTH_FEATURE_KEY} Sign in to app`,
+  SIGN_OUT: `${AUTH_FEATURE_KEY} Sign out from app`
+};
+
+export const init = createAction(AuthActions.INIT);
+
+export const signIn = createAction(
+  AuthActions.SIGN_IN,
+  props<{ authData: SignInResponse }>()
 );
 
-export const loadAuthFailure = createAction(
-  '[Auth/API] Load Auth Failure',
-  props<{ error: any }>()
+export const signOut = createAction(
+  AuthActions.SIGN_OUT
 );

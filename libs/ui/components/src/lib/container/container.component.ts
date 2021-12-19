@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
   selector: 'ep-container',
   template: `
     <section
-      class="w-full mt-6 px-6 py-4 bg-white shadow-md overflow-auto sm:rounded-lg border-gray-300 border relative">
+      class="w-full mt-6 px-6 py-4 bg-white shadow-md overflow-auto rounded-lg border-gray-300 border relative">
       <ng-content></ng-content>
       <div class="mask" *ngIf="loading">
         <div>
@@ -17,5 +17,5 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContainerComponent {
-  @Input() loading = false;
+  @Input() loading: boolean | null = false;
 }

@@ -1,7 +1,16 @@
-/**
- * Interface for the 'Auth' data
- */
-export interface AuthEntity {
-  id: string | number; // Primary ID
-  name: string;
+export enum UserRole {
+  ADMINISTRATOR = 'ADMINISTRATOR',
+  UNIVERSITY_ADMINISTRATOR = 'UNIVERSITY_ADMINISTRATOR',
+  EMPLOYEE = 'EMPLOYEE'
+}
+
+export interface SignInResponse {
+  token: string,
+  universityId: number,
+  userId: number
+}
+
+export interface AuthUserData extends SignInResponse {
+  email: string,
+  role: UserRole
 }

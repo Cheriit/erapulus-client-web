@@ -7,9 +7,8 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {StoreModule} from '@ngrx/store';
 import * as fromSidebarStore from './+state/sidebar.reducer';
 import {SidebarFacade} from './+state/sidebar.facade';
-import {LogoModule} from '../logo/logo.module';
-import {TextModule} from '../text/text.module';
 import {SIDEBAR_FEATURE_KEY} from './+state/sidebar.actions';
+import {UiComponentsModule} from '@erapulus/ui/components';
 
 const components = [
   NavbarComponent,
@@ -26,8 +25,7 @@ const components = [
       SIDEBAR_FEATURE_KEY,
       fromSidebarStore.reducer
     ),
-    LogoModule,
-    TextModule
+    UiComponentsModule
   ],
   exports: [...components],
   providers: [SidebarFacade]

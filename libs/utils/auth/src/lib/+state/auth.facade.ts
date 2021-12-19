@@ -10,9 +10,8 @@ export class AuthFacade {
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
    */
-  loaded$ = this.store.pipe(select(AuthSelectors.getAuthLoaded));
-  allAuth$ = this.store.pipe(select(AuthSelectors.getAllAuth));
-  selectedAuth$ = this.store.pipe(select(AuthSelectors.getSelected));
+  authUser$ = this.store.pipe(select(AuthSelectors.getAuthUser));
+  token$ = this.store.pipe(select(AuthSelectors.getAuthToken));
 
   constructor (private readonly store: Store) {
   }
@@ -21,7 +20,7 @@ export class AuthFacade {
    * Use the initialization action to perform one
    * or more tasks in your Effects.
    */
-  init () {
+  init (): void {
     this.store.dispatch(AuthActions.init());
   }
 }

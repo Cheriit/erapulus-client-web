@@ -1,38 +1,43 @@
-import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {Action, createReducer, on} from '@ngrx/store';
 
 import * as AuthActions from './auth.actions';
-import {AuthEntity} from './auth.models';
+import {AUTH_FEATURE_KEY} from './auth.actions';
+import jwtDecode from 'jwt-decode';
+import {AuthUserData, UserRole} from './auth.models';
 
-export const AUTH_FEATURE_KEY = 'auth';
 
-export interface State extends EntityState<AuthEntity> {
-  selectedId?: string | number; // Which Auth record has been selected
-  loaded: boolean; // Has the Auth list been loaded
-  error?: string | null; // Last known error (if any)
+export interface State {
+  user?: AuthUserData
 }
 
 export interface AuthPartialState {
   readonly [AUTH_FEATURE_KEY]: State;
 }
 
-export const authAdapter: EntityAdapter<AuthEntity> =
-  createEntityAdapter<AuthEntity>();
-
-export const initialState: State = authAdapter.getInitialState({
-  // Set initial required properties
-  loaded: false
-});
+export const initialState: State = {
+  user: undefined
+};
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.init, (state) => ({...state, loaded: false, error: null})),
-  on(AuthActions.loadAuthSuccess, (state, {auth}) =>
-    authAdapter.setAll(auth, {...state, loaded: true})
-  ),
-  on(AuthActions.loadAuthFailure, (state, {error}) => ({...state, error}))
+  on(AuthActions.signIn, (state, {authData}) => {
+    const tokenData: { sub: string, ROLE: UserRole } = jwtDecode(authData.token);
+    return {
+      ...state,
+      user: {
+        token: authData.token,
+        email: tokenData.sub,
+        userId: authData.userId,
+        role: tokenData.ROLE,
+        universityId: authData.universityId
+      }
+    };
+  }),
+  on(AuthActions.signOut, () => ({
+    user: undefined
+  }))
 );
 
-export function reducer (state: State | undefined, action: Action) {
+export function reducer (state: State | undefined, action: Action): State {
   return authReducer(state, action);
 }

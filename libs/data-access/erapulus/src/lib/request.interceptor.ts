@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 import {LocalStorageService} from '@erapulus/utils/local-storage';
 import {StringUtils} from '@erapulus/utils/helpers';
+import {DataAccessService} from './data-access.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -11,7 +12,7 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept (req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (req.url.startsWith('https://erapulus-server.azurewebsites.net/api')) {
+    if (req.url.startsWith(DataAccessService.API_URL)) {
       const token = this.localStorageService.get('token');
       if (StringUtils.isNotEmpty(token)) {
         req = req.clone({headers: req.headers.set('Authorization', `Bearer ${token}`)});

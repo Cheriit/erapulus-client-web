@@ -10,8 +10,15 @@ module.exports = {
     './libs/**/*.{html,ts,scss}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'base-from': '#3d68b0',
+        'base-to': '#523e91'
+      }
+    },
   },
   plugins: [require('@tailwindcss/forms')],
-  ...(guessProductionMode() ? {cssnano: {}} : {})
-};
+  ...
+    (guessProductionMode() ? {cssnano: {}} : {})
+}
+;

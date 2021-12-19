@@ -8,6 +8,7 @@
     "storybook-e2e-components-e2e": "apps/storybook-e2e/components-e2e",
     "ui-assets": "libs/ui/assets",
     "ui-components": "libs/ui/components",
+    "ui-sidebar-layout": "libs/ui/sidebar-layout",
     "ui-themes": "libs/ui/themes",
     "utils-auth": "libs/utils/auth",
     "utils-forms": "libs/utils/forms",

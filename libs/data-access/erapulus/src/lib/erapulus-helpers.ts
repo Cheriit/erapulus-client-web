@@ -1,10 +1,9 @@
-import {ErapulusResponse} from './erapulus-response.model';
-
 export class ErapulusHelpers {
-  public static getErrors<T> (response: ErapulusResponse<T>): string[] {
-    if (response.message !== undefined) {
-      return response.message.split(';').map((error) => `common.erapulus.server.${error}`);
+  public static getErrors (response: string): string[] {
+    const errors = response.split(';').map((error) => `common.erapulus.server.${error}`);
+    if (errors.length > 1) {
+      errors.shift();
     }
-    return [];
+    return errors;
   }
 }

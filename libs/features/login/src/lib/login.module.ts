@@ -6,6 +6,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {UiComponentsModule} from '@erapulus/ui/components';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ErapulusDataAccessModule} from '@erapulus/data-access/erapulus';
+import {AuthModule} from '@erapulus/utils/auth';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {ErapulusDataAccessModule} from '@erapulus/data-access/erapulus';
     UiComponentsModule,
     TranslateModule,
     UiComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule
   ],
   declarations: [LoginComponent]
 })

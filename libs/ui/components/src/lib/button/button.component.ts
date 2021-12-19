@@ -15,8 +15,8 @@ export enum AnimationType {
 @Component({
   selector: 'ep-button',
   template: `
-    <button class="button hover:-translate-y-1 hover:scale-105" [class.loading]="isLoading() || disabled"
-            [disabled]="isLoading() || disabled">
+    <button class="button hover:-translate-y-0.5 hover:scale-105" [class.loading]="isLoading() || disabled"
+            [disabled]="isLoading() || disabled" [class]="type">
       <ng-container *ngIf="!isLoading()">
         <ng-content select="[icon]"></ng-content>
       </ng-container>

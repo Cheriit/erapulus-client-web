@@ -11,7 +11,8 @@ export interface LoginRequestParams {
 
 export interface LoginResponseParams {
   userId: number,
-  token: string
+  token: string,
+  universityId: number
 }
 
 @Injectable({
@@ -24,24 +25,7 @@ export class LoginDataAccessService extends DataAccessService {
   }
 
   makeRequest<Req, Res> (request: Req): Observable<ErapulusResponse<Res>> {
-    fetch('https://erapulus-server.azurewebsites.net/api/user/login/employee', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: 'erapulus@gmail.com',
-        password: 'LubiePlacki'
-      })
-    }).then((x) => console.log(x))
-      .catch((x) => console.log(x));
-    // return of();
-    // this.http.post('', {
-    //   email: 'erapulus@gmail.com',
-    //   password: 'LubiePlacki'
-    // }).subscribe((x) => console.log(x));
-    return this.http.post<ErapulusResponse<Res>>(`${this.API_URL}/user/login/employee`, request);
+    return this.http.post<ErapulusResponse<Res>>(`${DataAccessService.API_URL}/user/login/employee`, request);
   }
 
 }

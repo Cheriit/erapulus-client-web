@@ -19,29 +19,26 @@ import {MessageType} from './message.model';
       <div
         class="bg-white rounded-lg border-gray-300 border p-4 shadow-lg w-full max-w-5xl m-auto fadeIn origin-top-left"
         [class.fadeOut]="exiting">
-        <div class="flex flex-row">
+        <div class="flex flex-row items-center">
           <ep-message-icon [type]="type" class="flex items-center"></ep-message-icon>
-          <div class="grow mx-4">
-            <p class="font-semibold mb-2">{{title | translate}}</p>
+          <div class="grow mx-4 min-w-0">
+            <p class="font-semibold mb-2 truncate">{{title | translate}}</p>
             <ng-container *ngIf="component !== undefined; else content">
               <ng-template #contentPlaceholder></ng-template>
             </ng-container>
             <ng-template #content>
-              <p class="text-gray-500" *ngIf="getSingleContent(); else contentList">{{getSingleContent()}}</p>
+              <p class="text-gray-500 truncate" *ngIf="getSingleContent(); else contentList">{{getSingleContent()}}</p>
               <ng-template #contentList>
                 <ul class="list-disc text-gray-500 list-inside">
-                  <li *ngFor="let message of getContentList()">{{message}}</li>
+                  <li *ngFor="let message of getContentList()" class="truncate">{{message}}</li>
                 </ul>
               </ng-template>
             </ng-template>
           </div>
-          <div (click)="closeMessage()" class="flex items-center cursor-pointer" *ngIf="hasClose">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                fill="black" fill-opacity="0.54"/>
-            </svg>
-          </div>
+          <img (click)="closeMessage()"
+               alt="Close"
+               class="cursor-pointer w-5 h-5 hover:scale-125 transition-transform"
+               src="/assets/icons/crossbar.svg" *ngIf="hasClose"/>
         </div>
       </div>
     </div>

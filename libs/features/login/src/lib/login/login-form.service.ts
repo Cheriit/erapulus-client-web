@@ -1,13 +1,19 @@
 import {Injectable} from '@angular/core';
 import {FormService} from '@erapulus/utils/forms';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoginDataAccessService, LoginRequestParams, LoginResponseParams} from '@erapulus/data-access/erapulus';
+import {
+  ErapulusResponse,
+  LoginDataAccessService,
+  LoginRequestParams,
+  LoginResponseParams
+} from '@erapulus/data-access/erapulus';
+import {catchError, Observable, of, take, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
 })
 export class LoginFormService extends FormService {
-  protected form?: FormGroup;
+  protected override form?: FormGroup;
 
   constructor (private formBuilder: FormBuilder, private loginDataAccessService: LoginDataAccessService) {
     super();
@@ -29,18 +35,30 @@ export class LoginFormService extends FormService {
     return this.form;
   }
 
-  submitForm (): void {
+  submitForm (): Observable<ErapulusResponse<LoginResponseParams>> | null {
     if (this.form) {
       this.form.markAllAsTouched();
       this.form.updateValueAndValidity();
       if (this.form.valid) {
-        this.form?.markAsPending();
         this.form?.disable();
-        this.loginDataAccessService.makeRequest<LoginRequestParams, LoginResponseParams>({
+        this.form?.markAsPending();
+        return this.loginDataAccessService.makeRequest<LoginRequestParams, LoginResponseParams>({
           email: this.form.get('email')?.value,
           password: this.form.get('password')?.value
-        }).subscribe((res) => console.log(res));
+        }).pipe(
+          take(1),
+          tap(() => {
+            this.form?.enable();
+            this.form?.markAsTouched();
+          }),
+          catchError((error) => {
+            this.form?.enable();
+            this.form?.markAsTouched();
+            return of(error as ErapulusResponse<LoginResponseParams>);
+          })
+        );
       }
     }
+    return null;
   }
 }

@@ -1,11 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {SidebarFacade} from '../+state/sidebar.facade';
+import {Store} from '@ngrx/store';
+import {toggleSidebarOpenedState} from '../+state/sidebar.actions';
 
 @Component({
   selector: 'ep-sidebar',
   template: `
     <aside *ngIf="(sidebarState$ | async) as sidebarState"
-           class="h-screen w-16 bg-red-400 shadow-lg overflow-hidden flex justify-between"
+           class="h-screen w-16 bg-gradient-to-br from-base-from to-base-to shadow-2xl overflow-hidden flex flex-col justify-between absolute top-0 left-0 transition-all"
            [class.opened]="sidebarState.opened">
       <div class="overflow-y-auto flex-grow">
         <ep-logo></ep-logo>
@@ -13,12 +15,12 @@ import {SidebarFacade} from '../+state/sidebar.facade';
                          [selected]="item === sidebarState.selectedItem"
                          [opened]="sidebarState.opened"></ep-sidebar-item>
       </div>
-      <div [class.opened]="sidebarState.opened" class="w-100">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M7.2928 13.7071L8.70701 12.2929L3.41412 7.00001L8.70701 1.70712L7.2928 0.292908L0.585693 7.00001L7.2928 13.7071ZM13.707 12.2929L8.41412 7.00001L13.707 1.70712L12.2928 0.292908L5.58569 7.00001L12.2928 13.7071L13.707 12.2929Z"
-                fill="black"/>
-        </svg>
+      <div class="block h-11 mx-3 mb-3">
+        <div [class.scale-x-[-1]]="!sidebarState.opened"
+             class=" cursor-pointer drop-shadow-lg transition-all">
+          <img alt="Expand" src="/assets/icons/arrows.svg" (click)="toggleOpen()"
+               class="w-18 h-11 p-2 arrows float-right"/>
+        </div>
       </div>
     </aside> `,
   styleUrls: ['./sidebar.component.scss'],
@@ -27,7 +29,11 @@ import {SidebarFacade} from '../+state/sidebar.facade';
 export class SidebarComponent {
   public sidebarState$ = this.sidebarFacade.allSidebarStore$;
 
-  constructor (private sidebarFacade: SidebarFacade) {
+  constructor (private sidebarFacade: SidebarFacade, private store: Store) {
+  }
+
+  public toggleOpen (): void {
+    this.store.dispatch(toggleSidebarOpenedState());
   }
 
 }

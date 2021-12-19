@@ -13,6 +13,7 @@ import {UiComponentsModule} from '@erapulus/ui/components';
 import {EffectsModule} from '@ngrx/effects';
 import {RouterModule} from '@angular/router';
 import {AppMainComponent} from './app-main.component';
+import {SidebarLayoutModule} from '@erapulus/ui/sidebar-layout';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {AppMainComponent} from './app-main.component';
     TranslationsModule,
     AppRoutingModule,
     LoginModule,
-    UiComponentsModule
+    UiComponentsModule,
+    SidebarLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
