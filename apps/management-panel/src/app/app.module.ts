@@ -14,6 +14,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {RouterModule} from '@angular/router';
 import {AppMainComponent} from './app-main.component';
 import {SidebarLayoutModule} from '@erapulus/ui/sidebar-layout';
+import {LoggedInUserGuard} from '@erapulus/utils/auth';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {SidebarLayoutModule} from '@erapulus/ui/sidebar-layout';
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([{path: '**', component: AppMainComponent}]),
+    RouterModule.forRoot([{path: '**', component: AppMainComponent, canActivate: [LoggedInUserGuard]}]),
     StoreModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

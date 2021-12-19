@@ -14,6 +14,7 @@ export class AuthFacade {
   token$ = this.store.pipe(select(AuthSelectors.getAuthToken));
 
   constructor (private readonly store: Store) {
+    this.init();
   }
 
   /**

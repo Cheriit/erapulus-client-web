@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '@erapulus/utils/local-storage';
 import {AuthActions, signIn, signOut} from './auth.actions';
-import {map} from 'rxjs';
+import {map, tap} from 'rxjs';
 import {StringUtils} from '@erapulus/utils/helpers';
 
 @Injectable({providedIn: 'root'})
@@ -19,6 +19,13 @@ export class AuthEffects {
       return signIn({authData: JSON.parse(userData)});
     }))
   );
+
+  signIn$ = createEffect(() => this.actions$.pipe(
+    ofType(signIn),
+    tap((val) => {
+      this.localStorageService.set('user', val.authData);
+    })
+  ), {dispatch: false});
 
   signOut$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.SIGN_OUT),

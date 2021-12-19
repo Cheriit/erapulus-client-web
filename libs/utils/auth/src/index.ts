@@ -11,3 +11,5 @@ export * from './lib/+state/auth.models';
 export {AuthActions, AuthFeature, AuthSelectors};
 
 export * from './lib/auth.module';
+
+export {LoggedInUserGuard} from './lib/guards/logged-in-user.guard';
