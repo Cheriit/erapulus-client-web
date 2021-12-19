@@ -1,6 +1,6 @@
-import {SidebarStoreEntity} from './sidebar-store.models';
-import {initialState, sidebarStoreAdapter, SidebarStorePartialState} from './sidebar-store.reducer';
-import * as SidebarStoreSelectors from './sidebar-store.selectors';
+import {SidebarStoreEntity} from './sidebar.models';
+import {initialState, SidebarPartialState, sidebarStoreAdapter} from './sidebar.reducer';
+import * as SidebarStoreSelectors from './sidebar.selectors';
 
 describe('SidebarStore Selectors', (): void => {
   const ERROR_MSG = 'No Error Available';
@@ -11,7 +11,7 @@ describe('SidebarStore Selectors', (): void => {
       name: name || `name-${id}`
     } as SidebarStoreEntity);
 
-  let state: SidebarStorePartialState;
+  let state: SidebarPartialState;
 
   beforeEach(() => {
     state = {

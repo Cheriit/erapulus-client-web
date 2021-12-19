@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {SidebarItem} from '../+state/sidebar.models';
 
 @Component({
   selector: 'ep-sidebar-item',
@@ -7,4 +8,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarItemComponent {
+  @Input() item!: SidebarItem;
+  @Input() selected!: boolean;
+  @Input() opened!: boolean;
 }

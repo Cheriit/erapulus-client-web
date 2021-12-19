@@ -20,9 +20,9 @@ const modules = [
   InputErrorsModule,
   LogoModule,
   MessageModule,
-  SidebarLayoutModule,
   SpinnerModule,
-  TextModule
+  TextModule,
+  SidebarLayoutModule
 ];
 
 @NgModule({

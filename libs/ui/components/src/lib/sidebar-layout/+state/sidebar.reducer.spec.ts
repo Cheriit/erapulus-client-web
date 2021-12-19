@@ -1,8 +1,8 @@
 import {Action} from '@ngrx/store';
 
-import * as SidebarStoreActions from './sidebar-store.actions';
-import {SidebarStoreEntity} from './sidebar-store.models';
-import {initialState, reducer, State} from './sidebar-store.reducer';
+import * as SidebarStoreActions from './sidebar.actions';
+import {SidebarStoreEntity} from './sidebar.models';
+import {initialState, reducer, State} from './sidebar.reducer';
 
 describe('SidebarStore Reducer', () => {
   const createSidebarStoreEntity = (

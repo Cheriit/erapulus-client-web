@@ -5,12 +5,11 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {SidebarItemComponent} from './sidebar-item/sidebar-item.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {StoreModule} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
-import * as fromSidebarStore from './+state/sidebar-store.reducer';
-import {SidebarStoreEffects} from './+state/sidebar-store.effects';
-import {SidebarStoreFacade} from './+state/sidebar-store.facade';
+import * as fromSidebarStore from './+state/sidebar.reducer';
+import {SidebarFacade} from './+state/sidebar.facade';
 import {LogoModule} from '../logo/logo.module';
 import {TextModule} from '../text/text.module';
+import {SIDEBAR_FEATURE_KEY} from './+state/sidebar.actions';
 
 const components = [
   NavbarComponent,
@@ -24,15 +23,14 @@ const components = [
   imports: [
     CommonModule,
     StoreModule.forFeature(
-      fromSidebarStore.SIDEBARSTORE_FEATURE_KEY,
+      SIDEBAR_FEATURE_KEY,
       fromSidebarStore.reducer
     ),
-    EffectsModule.forFeature([SidebarStoreEffects]),
     LogoModule,
     TextModule
   ],
   exports: [...components],
-  providers: [SidebarStoreFacade]
+  providers: [SidebarFacade]
 })
 export class SidebarLayoutModule {
 }
