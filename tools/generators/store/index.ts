@@ -6,6 +6,7 @@ export default async function (tree: Tree, schema: any) {
   await schematic(tree, {
     "barrels": true,
     "facade": true,
+    "minimal": true,
     "useDataPersistence": true,
     "name": schema.name,
     "root": schema.root,

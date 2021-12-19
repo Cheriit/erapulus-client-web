@@ -6,7 +6,6 @@ import {FormControlModule} from './form-control/form-control.module';
 import {InputModule} from './input/input.module';
 import {LogoModule} from './logo/logo.module';
 import {InputErrorsModule} from './input-error/input-errors.module';
-import {LanguageSelectorModule} from './language-selector/language-selector.module';
 import {HeaderModule} from './header/header.module';
 import {TextModule} from './text/text.module';
 import {SidebarLayoutModule} from './sidebar-layout/sidebar-layout.module';
@@ -19,7 +18,6 @@ const modules = [
   HeaderModule,
   InputModule,
   InputErrorsModule,
-  LanguageSelectorModule,
   LogoModule,
   MessageModule,
   SidebarLayoutModule,
