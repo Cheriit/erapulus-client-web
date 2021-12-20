@@ -8,7 +8,7 @@ import {ObjectUtils, StringUtils} from '@erapulus/utils/helpers';
 import {HttpStatusCode} from '@angular/common/http';
 import {Store} from '@ngrx/store';
 import {AuthActions, AuthFacade} from '@erapulus/utils/auth';
-import {Router} from '@angular/router';
+import {NavigationService} from '@erapulus/utils/navigation';
 
 @Component({
   selector: 'ep-login',
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
     private titleService: TitleService,
     private store: Store,
-    private router: Router,
+    private navigationService: NavigationService,
     private authFacade: AuthFacade) {
   }
 
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.form = this.loginFormService.createForm();
     this.authFacade.token$.subscribe((value) => {
       if (StringUtils.isNotEmpty(value)) {
-        this.router.navigate(['/']).then();
+        this.navigationService.back();
       }
     });
   }

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {Router} from '@angular/router';
 import {LocalStorageService} from '@erapulus/utils/local-storage';
 import {AuthActions, signIn, signOut} from './auth.actions';
 import {map, tap} from 'rxjs';
 import {StringUtils} from '@erapulus/utils/helpers';
+import {NavigationService} from '@erapulus/utils/navigation';
 
 @Injectable({providedIn: 'root'})
 export class AuthEffects {
@@ -31,16 +31,13 @@ export class AuthEffects {
     ofType(AuthActions.SIGN_OUT),
     map(() => {
       this.localStorageService.remove('user');
-      this.router.navigate([
-        '/',
-        'login'
-      ]).then();
+      this.navigationService.redirectToLogin().then();
     })
   ), {dispatch: false});
 
   constructor (
     private readonly actions$: Actions,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly localStorageService: LocalStorageService
   ) {
   }

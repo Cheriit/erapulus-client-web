@@ -9,6 +9,7 @@ import * as fromSidebarStore from './+state/sidebar.reducer';
 import {SidebarFacade} from './+state/sidebar.facade';
 import {SIDEBAR_FEATURE_KEY} from './+state/sidebar.actions';
 import {UiComponentsModule} from '@erapulus/ui/components';
+import {TranslateModule} from '@ngx-translate/core';
 
 const components = [
   NavbarComponent,
@@ -25,7 +26,8 @@ const components = [
       SIDEBAR_FEATURE_KEY,
       fromSidebarStore.reducer
     ),
-    UiComponentsModule
+    UiComponentsModule,
+    TranslateModule
   ],
   exports: [...components],
   providers: [SidebarFacade]

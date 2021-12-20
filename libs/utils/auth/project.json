@@ -7,9 +7,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/utils/auth/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/utils/auth/**/*.ts"]
       }
     },
     "test": {
@@ -20,7 +18,5 @@
       }
     }
   },
-  "tags": [
-    "type:utils"
-  ]
+  "tags": ["type:utils"]
 }

@@ -14,6 +14,7 @@
     "utils-forms": "libs/utils/forms",
     "utils-helpers": "libs/utils/helpers",
     "utils-local-storage": "libs/utils/local-storage",
+    "utils-navigation": "libs/utils/navigation",
     "utils-subscription-manager": "libs/utils/subscription-manager",
     "utils-title": "libs/utils/title",
     "utils-translations": "libs/utils/translations"

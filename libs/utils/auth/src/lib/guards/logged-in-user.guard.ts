@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import {AuthFacade} from '../+state/auth.facade';
 import {StringUtils} from '@erapulus/utils/helpers';
 import {TitleService} from '@erapulus/utils/title';
+import {NavigationRoutes} from '@erapulus/utils/navigation';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ implements CanActivate {
         if (StringUtils.isEmpty(token)) {
           this.titleService.setTitle('common.title.login');
           return this.router.createUrlTree([
-            '/',
-            'login'
+            NavigationRoutes.ROOT,
+            NavigationRoutes.LOGIN
           ]);
         }
         return true;

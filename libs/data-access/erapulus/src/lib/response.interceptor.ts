@@ -7,7 +7,7 @@ import {
   HttpRequest,
   HttpStatusCode
 } from '@angular/common/http';
-import {catchError, map, Observable, throwError} from 'rxjs';
+import {catchError, map, Observable, throwError, timeout} from 'rxjs';
 import {MessageService} from '@erapulus/ui/components';
 import {ErapulusHelpers} from './erapulus-helpers';
 import {Router} from '@angular/router';
@@ -22,6 +22,7 @@ export class ResponseInterceptor implements HttpInterceptor {
   intercept (req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (req.url.startsWith(DataAccessService.API_URL)) {
       return next.handle(req).pipe(
+        timeout(10000),
         map((event) => {
           if (isDevMode() && event.type !== 0) {
             // eslint-disable-next-line no-console
@@ -58,7 +59,7 @@ export class ResponseInterceptor implements HttpInterceptor {
         })
       );
     }
-    return next.handle(req);
+    return next.handle(req).pipe(timeout(10000));
 
   }
 }

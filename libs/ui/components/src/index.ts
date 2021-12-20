@@ -3,3 +3,4 @@ export {AnimationType, ButtonType} from './lib/button/button.component';
 export {HeaderType} from './lib/header/header.component';
 export {MessageService} from './lib/message/message.service';
 export * from './lib/message/message.model';
+export {TextSize} from './lib/text/text.component';

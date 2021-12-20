@@ -1,3 +1,23 @@
 :host {
   display: block;
+
+  .item {
+    &-image {
+      &--closed {
+        @apply w-full h-full m-3 relative;
+      }
+
+      &--opened {
+        @apply w-10 mr-3 h-14;
+      }
+    }
+
+    &--closed {
+      @apply w-14 h-14 rounded-lg flex items-center hover:shadow-lg hover:shadow-inner m-auto;
+    }
+
+    &--opened {
+      @apply h-14 flex items-center overflow-hidden px-5 w-64
+    }
+  }
 }
