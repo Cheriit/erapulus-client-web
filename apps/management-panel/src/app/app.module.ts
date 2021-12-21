@@ -4,7 +4,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
 import {environment} from '../environments/environment';
-import {LoginModule} from '@erapulus/features/login';
 import {EffectsModule} from '@ngrx/effects';
 import {AppRoutingModule} from './app-routing.module';
 import {UiComponentsModule} from '@erapulus/ui/components';
@@ -14,6 +13,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {TranslationsModule} from '@erapulus/utils/translations';
 import {HttpClientModule} from '@angular/common/http';
 import {NotFoundModule} from '@erapulus/features/NotFound';
+import {LoginModule} from '@erapulus/features/login';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,8 +29,8 @@ import {NotFoundModule} from '@erapulus/features/NotFound';
       autoPause: true
     }),
     EffectsModule.forRoot([]),
-    AppRoutingModule,
     LoginModule,
+    AppRoutingModule,
     NotFoundModule,
     UiComponentsModule
   ],
