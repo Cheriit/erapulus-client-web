@@ -1,6 +1,10 @@
 :host {
   display: block;
 
+  .reverse {
+    transform: scaleX(-1);
+  }
+
   aside.opened {
     @apply w-64;
   }

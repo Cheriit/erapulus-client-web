@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
         ></ep-sidebar-item>
       </div>
       <div class="block h-10 mx-5 mb-3">
-        <div [class.scale-x-[-1]]="!sidebarState.opened"
+        <div [class.reverse]="!sidebarState.opened"
              class="cursor-pointer drop-shadow-lg transition-all">
           <img alt="Expand" src="/assets/icons/arrows.svg" (click)="toggleOpen()"
                class="w-18 h-11 p-2 arrows float-right"/>
