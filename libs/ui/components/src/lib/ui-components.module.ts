@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {MessageModule} from './message/message.module';
 import {ButtonModule} from './button/button.module';
 import {ContainerModule} from './container/container.module';
 import {FormControlModule} from './form-control/form-control.module';
@@ -18,7 +17,6 @@ const modules = [
   InputModule,
   InputErrorsModule,
   LogoModule,
-  MessageModule,
   SpinnerModule,
   TextModule
 ];

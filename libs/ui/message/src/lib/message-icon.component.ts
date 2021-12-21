@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {MessageType} from '@erapulus/ui/components';
+import {MessageType} from '@erapulus/ui/message';
 
 @Component({
   selector: 'ep-message-icon',

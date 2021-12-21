@@ -1,0 +1,33 @@
+{
+  "projectType": "library",
+  "root": "libs/ui/message",
+  "sourceRoot": "libs/ui/message/src",
+  "prefix": "ep",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ui/message"
+      ],
+      "options": {
+        "jestConfig": "libs/ui/message/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ui/message/src/**/*.ts",
+          "libs/ui/message/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "type:ui"
+  ],
+  "implicitDependencies": [
+    "ui-themes"
+  ]
+}

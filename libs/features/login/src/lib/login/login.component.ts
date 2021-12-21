@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {HeaderType, MessageService} from '@erapulus/ui/components';
+import {HeaderType} from '@erapulus/ui/components';
 import {LoginFormService} from './login-form.service';
 import {FormGroup} from '@angular/forms';
 import {TitleService} from '@erapulus/utils/title';
@@ -9,6 +9,7 @@ import {HttpStatusCode} from '@angular/common/http';
 import {Store} from '@ngrx/store';
 import {AuthActions, AuthFacade} from '@erapulus/utils/auth';
 import {NavigationService} from '@erapulus/utils/navigation';
+import {MessageService} from '@erapulus/ui/message';
 
 @Component({
   selector: 'ep-login',

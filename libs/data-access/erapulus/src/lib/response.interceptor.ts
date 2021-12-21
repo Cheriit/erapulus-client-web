@@ -8,10 +8,10 @@ import {
   HttpStatusCode
 } from '@angular/common/http';
 import {catchError, map, Observable, throwError, timeout} from 'rxjs';
-import {MessageService} from '@erapulus/ui/components';
 import {ErapulusHelpers} from './erapulus-helpers';
 import {Router} from '@angular/router';
 import {DataAccessService} from './data-access.service';
+import {MessageService} from '@erapulus/ui/message';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
