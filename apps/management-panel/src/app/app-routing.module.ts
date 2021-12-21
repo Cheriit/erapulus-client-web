@@ -1,17 +1,33 @@
-import {NgModule} from '@angular/core';
+import {NgModule, Type} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {SidebarItem} from '@erapulus/ui/sidebar-layout';
+import {LoggedInUserGuard} from '@erapulus/utils/auth';
+import {UserModule} from './user/user.module';
+import {NavigationRoutes} from '@erapulus/utils/navigation';
+import {WelcomeModule} from './welcome/welcome.module';
+import {NotFoundComponent} from '@erapulus/features/NotFound';
 
-export enum AppRoutes {
-  DASHBOARD = ''
-}
-
-export const navItems: SidebarItem[] = [];
-
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    canActivate: [LoggedInUserGuard],
+    pathMatch: 'full',
+    loadChildren: (): Promise<Type<WelcomeModule>> =>
+      import('./welcome/welcome.module').then((m) => m.WelcomeModule)
+  },
+  {
+    path: NavigationRoutes.USER,
+    canActivate: [LoggedInUserGuard],
+    loadChildren: (): Promise<Type<UserModule>> =>
+      import('./user/user.module').then((m) => m.UserModule)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

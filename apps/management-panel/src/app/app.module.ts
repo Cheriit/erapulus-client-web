@@ -1,30 +1,27 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
 import {environment} from '../environments/environment';
 import {LoginModule} from '@erapulus/features/login';
-import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
-import {TranslationsModule} from '@erapulus/utils/translations';
-import {UiComponentsModule} from '@erapulus/ui/components';
 import {EffectsModule} from '@ngrx/effects';
-import {RouterModule} from '@angular/router';
-import {AppMainComponent} from './app-main.component';
-import {SidebarLayoutModule} from '@erapulus/ui/sidebar-layout';
-import {LoggedInUserGuard} from '@erapulus/utils/auth';
+import {AppRoutingModule} from './app-routing.module';
+import {UiComponentsModule} from '@erapulus/ui/components';
+import {AppSidebarService} from './app-sidebar.service';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {TranslationsModule} from '@erapulus/utils/translations';
+import {HttpClientModule} from '@angular/common/http';
+import {NotFoundModule} from '@erapulus/features/NotFound';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppMainComponent
-  ],
+  declarations: [AppComponent],
   imports: [
+    CommonModule,
     BrowserModule,
+    TranslationsModule,
     HttpClientModule,
-    RouterModule.forRoot([{path: '**', component: AppMainComponent, canActivate: [LoggedInUserGuard]}]),
     StoreModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -32,13 +29,17 @@ import {LoggedInUserGuard} from '@erapulus/utils/auth';
       autoPause: true
     }),
     EffectsModule.forRoot([]),
-    TranslationsModule,
     AppRoutingModule,
     LoginModule,
-    UiComponentsModule,
-    SidebarLayoutModule
+    NotFoundModule,
+    UiComponentsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SIDEBAR_SERVICE',
+      useClass: AppSidebarService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -18,6 +18,7 @@
       "@erapulus/data-access/erapulus": [
         "libs/data-access/erapulus/src/index.ts"
       ],
+      "@erapulus/features/NotFound": ["libs/features/not-found/src/index.ts"],
       "@erapulus/features/login": ["libs/features/login/src/index.ts"],
       "@erapulus/ui/assets": ["libs/ui/assets/src/index.ts"],
       "@erapulus/ui/components": ["libs/ui/components/src/index.ts"],

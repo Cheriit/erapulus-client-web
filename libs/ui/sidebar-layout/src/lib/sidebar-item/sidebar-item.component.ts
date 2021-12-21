@@ -9,7 +9,7 @@ import {NavigationRoutes} from '@erapulus/utils/navigation';
     <div [class.enabled]="item.enabled"
          [class.item--closed]="!opened"
          [class.item--opened]="opened"
-         class="group hover:bg-gray-800/30 cursor-pointer transition-transform transition-opacity transition-colors hover:scale-110">
+         class="group hover:bg-gray-800/30 cursor-pointer transition hover:scale-110">
       <div
         [class.item-image--closed]="!opened"
         [class.item-image--opened]="opened"

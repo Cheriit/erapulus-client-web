@@ -1,11 +1,12 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {SidebarService} from './sidebar.service';
 
 @Component({
   selector: 'ep-sidebar-layout',
   template: `
     <div class="w-screen h-screen flex overflow-hidden relative">
       <ep-sidebar></ep-sidebar>
-      <div class="flex-grow ml-16">
+      <div class="content">
         <ep-navbar></ep-navbar>
         <main class="overflow-y-auto">
           <ng-content></ng-content>
@@ -16,5 +17,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   styleUrls: ['./sidebar-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidebarLayoutComponent {
+export class SidebarLayoutComponent implements OnInit {
+  constructor (@Inject('SIDEBAR_SERVICE') private sidebarService: SidebarService) {
+  }
+
+  ngOnInit (): void {
+    this.sidebarService.calculatePermissions();
+  }
 }

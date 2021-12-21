@@ -7,7 +7,8 @@ export default async function (tree: Tree, schema: any) {
     "routing": schema.routing,
     "route": schema.routing ? schema.route : undefined,
     "name": schema.name,
-    "project": schema.project
+    "project": schema.project,
+    "module": schema.module
   })
   await formatFiles(tree);
   return () => {

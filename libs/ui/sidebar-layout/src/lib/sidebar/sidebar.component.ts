@@ -2,6 +2,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {SidebarFacade} from '../+state/sidebar.facade';
 import {Store} from '@ngrx/store';
 import {toggleSidebarOpenedState} from '../+state/sidebar.actions';
+import {NavigationRoutes} from '@erapulus/utils/navigation';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ep-sidebar',
@@ -10,8 +12,7 @@ import {toggleSidebarOpenedState} from '../+state/sidebar.actions';
            class="h-screen w-20 bg-gradient-to-br from-base-from to-base-to shadow-2xl overflow-hidden flex justify-start flex-col absolute top-0 left-0 transition-all"
            [class.opened]="sidebarState.opened">
       <div class="overflow-y-auto overflow-x-hidden flex flex-wrap content-start flex-grow  flex-col">
-        <ep-logo class="mb-16 w-full"
-        ></ep-logo>
+        <ep-logo class="mb-16 w-full cursor-pointer" (click)="redirectToRoot()"></ep-logo>
         <ep-sidebar-item *ngFor="let item of sidebarState.items" [item]="item"
                          [opened]="sidebarState.opened"
                          class="mb-10 w-full"
@@ -31,11 +32,16 @@ import {toggleSidebarOpenedState} from '../+state/sidebar.actions';
 export class SidebarComponent {
   public sidebarState$ = this.sidebarFacade.allSidebarStore$;
 
-  constructor (private sidebarFacade: SidebarFacade, private store: Store) {
+  constructor (private sidebarFacade: SidebarFacade, private store: Store, private router: Router) {
   }
 
   public toggleOpen (): void {
     this.store.dispatch(toggleSidebarOpenedState());
   }
+
+  redirectToRoot (): void {
+    this.router.navigate([NavigationRoutes.ROOT]).then();
+  }
+
 
 }

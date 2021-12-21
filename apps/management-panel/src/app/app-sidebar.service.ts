@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AuthFacade, UserRole} from '@erapulus/utils/auth';
-import {registerSidebarItems, SidebarItem} from '@erapulus/ui/sidebar-layout';
+import {registerSidebarItems, SidebarItem, SidebarService} from '@erapulus/ui/sidebar-layout';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
-export class AppSidebarService {
+export class AppSidebarService extends SidebarService {
   private readonly sidebarItems: { [key: string]: SidebarItem } = {
     'users': {
       title: 'management-panel.sidebar.users',
-      path: NavigationRoutes.USERS,
+      path: NavigationRoutes.USER,
       iconPath: '/assets/icons/user.svg',
       enabled: false
     },
@@ -33,6 +33,7 @@ export class AppSidebarService {
     private readonly store: Store,
     private readonly authFacade: AuthFacade
   ) {
+    super();
   }
 
   public calculatePermissions (): void {

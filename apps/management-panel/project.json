@@ -38,9 +38,7 @@
           }
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "libs/ui/themes/src/lib/styles"
-          ]
+          "includePaths": ["libs/ui/themes/src/lib/styles"]
         },
         "styles": [
           "apps/management-panel/src/styles.scss",
@@ -117,11 +115,6 @@
       }
     }
   },
-  "tags": [
-    "type:application"
-  ],
-  "implicitDependencies": [
-    "ui-assets",
-    "ui-themes"
-  ]
+  "tags": ["type:application"],
+  "implicitDependencies": ["ui-assets", "ui-themes"]
 }
