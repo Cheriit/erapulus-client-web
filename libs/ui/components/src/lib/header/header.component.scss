@@ -1,6 +1,9 @@
 :host {
   display: block;
-  @apply mb-2 font-medium;
+
+  h1 {
+    @apply mb-2 font-medium break-all;
+  }
 
   .h1 {
     @apply text-3xl md:text-4xl;
