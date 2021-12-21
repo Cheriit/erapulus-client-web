@@ -14,6 +14,7 @@ import {TranslationsModule} from '@erapulus/utils/translations';
 import {HttpClientModule} from '@angular/common/http';
 import {NotFoundModule} from '@erapulus/features/NotFound';
 import {LoginModule} from '@erapulus/features/login';
+import {MessageModule} from '@erapulus/ui/message';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import {LoginModule} from '@erapulus/features/login';
       autoPause: true
     }),
     EffectsModule.forRoot([]),
+    MessageModule,
     LoginModule,
     AppRoutingModule,
     NotFoundModule,
