@@ -1,10 +1,12 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {TableColumn, TableConfiguration} from '../table.models';
 
 @Component({
   selector: 'ep-table-row',
   template: `
-    <div class="flex w-full" [class.withActions]="configuration.actions"
+    <div class="flex w-full border-b-2 "
+         [class.cursor-pointer]="!isHeader"
+         [class.withActions]="configuration.actions"
          (click)="selectElement.emit(element['id'])">
       <div class="cell w-16 text-right">
         {{rowNumber}}.
@@ -21,20 +23,16 @@ import {TableColumn, TableConfiguration} from '../table.models';
   styleUrls: ['./table-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableRowComponent implements OnInit {
+export class TableRowComponent {
   @Input() rowNumber!: number;
   @Input() configuration!: TableConfiguration;
-  @Input() element!: { [key: string]: any };
+  @Input() element!: { [key: string]: string };
   @Input() isHeader = false;
-  @Output() readonly selectElement: EventEmitter<number> = new EventEmitter<number>();
-  @Output() readonly editElement: EventEmitter<number> = new EventEmitter<number>();
-  @Output() readonly deleteElement: EventEmitter<number> = new EventEmitter<number>();
+  @Output() readonly selectElement: EventEmitter<string> = new EventEmitter<string>();
+  @Output() readonly editElement: EventEmitter<string> = new EventEmitter<string>();
+  @Output() readonly deleteElement: EventEmitter<string> = new EventEmitter<string>();
 
   public trackByFn (index: number, element: TableColumn): string {
     return element.key;
-  }
-
-  ngOnInit (): void {
-    console.log(this.element);
   }
 }

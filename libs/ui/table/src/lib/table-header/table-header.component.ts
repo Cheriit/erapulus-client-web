@@ -7,7 +7,8 @@ import {Subject} from 'rxjs';
   selector: 'ep-table-header',
   template: `
     <div *ngIf="headerElement$ | async as headerElement">
-      <ep-table-row [configuration]="configuration" [isHeader]="true" [element]="headerElement">
+      <ep-table-row [configuration]="configuration" [isHeader]="true" [element]="headerElement"
+                    class="bg-gray-200 border-gray-300 border-b-2">
       </ep-table-row>
     </div>
   `,

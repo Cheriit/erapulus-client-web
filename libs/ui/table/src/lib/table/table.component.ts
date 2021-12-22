@@ -22,11 +22,14 @@ import {TableDataAccessService} from '../table.data-access.service';
       <ep-table-header [configuration]="configuration"></ep-table-header>
       <ng-container *ngIf="content && content.length; else noContent">
         <ep-table-row *ngFor="let element of content; let index = index" [configuration]="configuration"
-                      [element]="element" [rowNumber]="offset + index"></ep-table-row>
+                      class="last:border-2 border-gray-300 odd:bg-gray-100 hover:bg-gray-200 transition"
+                      [element]="element" [rowNumber]="offset + index"
+                      (click)="selectElement.emit(element['id'])"
+                      (deleteElement)="deleteElement.emit($event)"
+                      (editElement)="editElement.emit($event)"></ep-table-row>
         <ep-table-pagination (pageChange)="pageChanged($event)"
                              [canGoNext]="(currentPage + 1) * configuration.pageSize < totalCount"
                              [canGoBack]="currentPage !== 0"></ep-table-pagination>
-
       </ng-container>
       <ng-template #noContent>
         <ng-container *ngIf="loading === true; else notFound">
@@ -49,9 +52,9 @@ import {TableDataAccessService} from '../table.data-access.service';
 export class TableComponent implements OnInit, OnDestroy {
   @Input() configuration!: TableConfiguration;
   @Input() tableDataAccessService!: TableDataAccessService;
-  @Output() readonly selectElement: EventEmitter<number> = new EventEmitter<number>();
-  @Output() readonly editElement: EventEmitter<number> = new EventEmitter<number>();
-  @Output() readonly deleteElement: EventEmitter<number> = new EventEmitter<number>();
+  @Output() readonly selectElement: EventEmitter<string> = new EventEmitter<string>();
+  @Output() readonly editElement: EventEmitter<string> = new EventEmitter<string>();
+  @Output() readonly deleteElement: EventEmitter<string> = new EventEmitter<string>();
   @Output() readonly currentPageChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() readonly filterUpdated: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 

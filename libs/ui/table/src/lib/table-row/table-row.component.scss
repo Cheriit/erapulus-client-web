@@ -2,7 +2,18 @@
   display: block;
   @apply w-full overflow-hidden;
   .cell {
-    @apply truncate p-3 border border-gray-500 whitespace-normal;
+    @apply truncate p-3 border-x border-gray-300 whitespace-normal border-collapse;
+    &:first-child {
+      @apply border-l-0;
+    }
+
+    &:nth-last-child(-n+2) {
+      @apply border-r-0;
+    }
+
+    &:last-child {
+      @apply border-l-0;
+    }
   }
 
   td {
