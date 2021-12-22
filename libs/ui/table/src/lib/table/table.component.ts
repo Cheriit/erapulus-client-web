@@ -17,7 +17,7 @@ import {TableDataAccessService} from '../table.data-access.service';
 @Component({
   selector: 'ep-table',
   template: `
-    <!--    <ep-table-filters></ep-table-filters>-->
+    <ep-table-filters [form]="configuration.filters" [prefix]="configuration.prefix"></ep-table-filters>
     <div class="w-full">
       <ep-table-header [configuration]="configuration"></ep-table-header>
       <ng-container *ngIf="content && content.length; else noContent">

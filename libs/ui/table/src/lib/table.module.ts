@@ -9,6 +9,7 @@ import {TableHeaderComponent} from './table-header/table-header.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {UiComponentsModule} from '@erapulus/ui/components';
 import {TableActionsComponent} from './table-actions/table-actions.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 export const tableRoutes: Route[] = [];
 
@@ -17,7 +18,8 @@ export const tableRoutes: Route[] = [];
     CommonModule,
     RouterModule,
     TranslateModule,
-    UiComponentsModule
+    UiComponentsModule,
+    ReactiveFormsModule
   ],
   exports: [TableComponent],
   declarations: [
