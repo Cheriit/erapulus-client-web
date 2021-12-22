@@ -1,20 +1,20 @@
-import {Type} from '@angular/core';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface MessageContentComponent {
-
-}
-
 export enum MessageType {
   NONE,
   SUCCESS,
-  ERROR
+  ERROR,
+  WARNING
 }
 
-export interface Message<T> {
+export interface Message {
   type?: MessageType,
   title: string,
   content?: string | string[],
-  component?: Type<T>,
-  hasClose?: boolean
+  hasClose?: boolean,
+  hasButtons?: boolean
+}
+
+export enum MessageAction {
+  ACCEPT,
+  CANCEL,
+  CLOSE
 }

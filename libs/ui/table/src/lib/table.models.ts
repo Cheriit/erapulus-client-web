@@ -21,7 +21,13 @@ export interface TableResponse<T> {
 
 export enum TableAction {
   EDIT = 'edit',
-  DELETE = 'delete'
+  DELETE = 'delete',
+  SELECT = 'select'
+}
+
+export interface TableActionEvent {
+  type: TableAction,
+  id: string
 }
 
 export interface TableColumn {

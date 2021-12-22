@@ -8,10 +8,9 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {FormGroup} from '@angular/forms';
 import {debounce, interval, take} from 'rxjs';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
-import {TableConfiguration} from '../table.models';
+import {TableAction, TableActionEvent, TableConfiguration} from '../table.models';
 import {TableDataAccessService} from '../table.data-access.service';
 
 @Component({
@@ -23,10 +22,9 @@ import {TableDataAccessService} from '../table.data-access.service';
       <ng-container *ngIf="content && content.length; else noContent">
         <ep-table-row *ngFor="let element of content; let index = index" [configuration]="configuration"
                       class="last:border-2 border-gray-300 odd:bg-gray-100 hover:bg-gray-200 transition"
-                      [element]="element" [rowNumber]="offset + index"
-                      (click)="selectElement.emit(element['id'])"
-                      (deleteElement)="deleteElement.emit($event)"
-                      (editElement)="editElement.emit($event)"></ep-table-row>
+                      [element]="element" [rowNumber]="offset + index + 1"
+                      (click)="rowClick(element['id'])"
+                      (tableElementEvent)="tableElementEvent.emit($event)"></ep-table-row>
         <ep-table-pagination (pageChange)="pageChanged($event)"
                              [canGoNext]="(currentPage + 1) * configuration.pageSize < totalCount"
                              [canGoBack]="currentPage !== 0"></ep-table-pagination>
@@ -52,11 +50,8 @@ import {TableDataAccessService} from '../table.data-access.service';
 export class TableComponent implements OnInit, OnDestroy {
   @Input() configuration!: TableConfiguration;
   @Input() tableDataAccessService!: TableDataAccessService;
-  @Output() readonly selectElement: EventEmitter<string> = new EventEmitter<string>();
-  @Output() readonly editElement: EventEmitter<string> = new EventEmitter<string>();
-  @Output() readonly deleteElement: EventEmitter<string> = new EventEmitter<string>();
+  @Output() readonly tableElementEvent: EventEmitter<TableActionEvent> = new EventEmitter<TableActionEvent>();
   @Output() readonly currentPageChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() readonly filterUpdated: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   public currentPage!: number;
   public totalCount!: number;
@@ -64,6 +59,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public content!: { [key: string]: string }[];
   public loading = false;
   public elements = [];
+  public tableActionEvent = TableAction;
 
   constructor (
     private readonly changeDetectorRef: ChangeDetectorRef,
@@ -115,5 +111,12 @@ export class TableComponent implements OnInit, OnDestroy {
     this.currentPage += pageChange;
     this.makeRequest();
     this.currentPageChange.emit(this.currentPage);
+  }
+
+  rowClick (id: string): void {
+    this.tableElementEvent.next({
+      id,
+      type: TableAction.SELECT
+    });
   }
 }

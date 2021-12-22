@@ -4,6 +4,7 @@ import {MessageComponent} from './message.component';
 import {MessageDirective} from './message.directive';
 import {MessageIconComponent} from './message-icon.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {UiComponentsModule} from '@erapulus/ui/components';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {TranslateModule} from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    UiComponentsModule
   ],
   exports: [
     MessageComponent,

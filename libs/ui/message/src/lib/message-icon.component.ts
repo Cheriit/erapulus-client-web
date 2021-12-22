@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {MessageType} from '@erapulus/ui/message';
+import {MessageType} from './message.model';
 
 @Component({
   selector: 'ep-message-icon',
@@ -19,6 +19,14 @@ import {MessageType} from '@erapulus/ui/message';
               d="M11 22C4.92487 22 0 17.0751 0 11C0 4.92487 4.92487 0 11 0C17.0751 0 22 4.92487 22 11C22 17.0751 17.0751 22 11 22ZM11 20C15.9706 20 20 15.9706 20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20ZM14.2929 7.29289L9 12.5858L6.70711 10.2929L5.29289 11.7071L9 15.4142L15.7071 8.70711L14.2929 7.29289Z"
         />
       </svg>
+      <svg *ngSwitchCase="messageType.WARNING" class="stroke-orange-500 fill-orange-500" width="31" height="31"
+           viewBox="0 0 22 20"
+           xmlns="http://www.w3.org/2000/svg">
+        <path clip-rule="evenodd"
+              d="M0 19.5L11 0.5L22 19.5H0ZM18.53 17.5L11 4.48999L3.46997 17.5H18.53ZM10 14.5V16.5H12V14.5H10ZM10 8.5H12V12.5H10V8.5Z"
+              fill-rule="evenodd"/>
+      </svg>
+
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
