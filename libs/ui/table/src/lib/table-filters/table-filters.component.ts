@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {TableColumn} from '@erapulus/ui/table';
+import {TableColumn} from '../table.models';
 import {FormGroup} from '@angular/forms';
 
 @Component({

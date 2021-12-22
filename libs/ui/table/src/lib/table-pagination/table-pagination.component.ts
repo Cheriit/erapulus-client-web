@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {TableColumn} from '@erapulus/ui/table';
+import {TableColumn} from '../table.models';
 
 @Component({
   selector: 'ep-table-pagination',

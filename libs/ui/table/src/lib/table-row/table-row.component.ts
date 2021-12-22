@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {TableAction, TableColumn} from '@erapulus/ui/table';
+import {TableAction, TableColumn} from '../table.models';
 
 @Component({
   selector: 'ep-table-row',

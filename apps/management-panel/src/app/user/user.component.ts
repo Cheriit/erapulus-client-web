@@ -6,7 +6,9 @@ import {AppSidebarService} from '../app-sidebar.service';
   selector: 'ep-user',
   template: `
     <ep-sidebar-layout>
-      <router-outlet></router-outlet>
+      <div class="px-10">
+        <router-outlet></router-outlet>
+      </div>
     </ep-sidebar-layout>
   `,
   styleUrls: ['./user.component.scss'],

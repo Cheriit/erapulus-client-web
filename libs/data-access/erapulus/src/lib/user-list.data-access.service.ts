@@ -3,8 +3,8 @@ import {DataAccessService} from './data-access.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ErapulusResponse} from './erapulus-response.model';
+import {ErapulusUser} from './erapulus.models';
 import {TableDataAccessService, TableRequest} from '@erapulus/ui/table';
-import {ErapulusUser} from '@erapulus/data-access/erapulus';
 
 export type UserListRequestParams = TableRequest
 
@@ -21,8 +21,11 @@ export class UserListDataAccessService extends TableDataAccessService {
     super();
   }
 
-  makeRequest<Req extends TableRequest, Res> (request: Req): Observable<ErapulusResponse<Res>> {
-    return this.http.post<ErapulusResponse<Res>>(`${DataAccessService.API_URL}/${request.url}`, request);
+  makeRequest<Res> (request: TableRequest): Observable<ErapulusResponse<Res>> {
+    return this.http.get<ErapulusResponse<Res>>(`${DataAccessService.API_URL}/${request.url}`, {
+      withCredentials: true,
+      params: {...request.parameters, page: request.page, pageSize: request.pageSize}
+    });
   }
 
 }

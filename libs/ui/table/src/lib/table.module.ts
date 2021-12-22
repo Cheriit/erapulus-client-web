@@ -13,6 +13,7 @@ export const tableRoutes: Route[] = [];
     CommonModule,
     RouterModule
   ],
+  exports: [TableComponent],
   declarations: [
     TableComponent,
     TableRowComponent,

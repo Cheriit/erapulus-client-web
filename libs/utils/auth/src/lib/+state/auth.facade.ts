@@ -12,6 +12,7 @@ export class AuthFacade {
    */
   authUser$ = this.store.pipe(select(AuthSelectors.getAuthUser));
   token$ = this.store.pipe(select(AuthSelectors.getAuthToken));
+  role$ = this.store.pipe(select(AuthSelectors.getAuthRole));
 
   constructor (private readonly store: Store) {
     this.init();
