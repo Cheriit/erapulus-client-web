@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   selector: 'ep-sidebar',
   template: `
     <aside *ngIf="(sidebarState$ | async) as sidebarState"
-           class="h-screen w-20 bg-gradient-to-br from-base-from to-base-to shadow-2xl overflow-hidden flex justify-start flex-col absolute top-0 left-0 transition-all"
+           class="h-screen w-20 bg-gradient-to-br from-base-from to-base-to shadow-2xl overflow-hidden flex justify-start flex-col absolute top-0 left-0 transition-all z-50"
            [class.opened]="sidebarState.opened">
       <div class="overflow-y-auto overflow-x-hidden flex flex-wrap content-start flex-grow  flex-col">
         <ep-logo class="mb-16 w-full cursor-pointer" (click)="redirectToRoot()"></ep-logo>

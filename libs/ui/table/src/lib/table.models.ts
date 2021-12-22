@@ -26,7 +26,7 @@ export enum TableAction {
 
 export interface TableColumn {
   key: string,
-  width?: string,
+  widthPercentage: number,
   numeric?: boolean,
   bold?: boolean
 }

@@ -12,7 +12,8 @@ import {HeaderType} from '@erapulus/ui/components';
   template: `
     <ep-container>
       <ep-header [headerType]="headerSize.H3">{{'management-panel.user.list.admin.header' | translate}}</ep-header>
-      <div *ngIf="adminTableConfiguration$ | async as adminTableConfiguration">
+      <div *ngIf="adminTableConfiguration$ | async as adminTableConfiguration"
+           class="min-h-[200px] min-w-[600px] mx-[-24px]">
         <ep-table
           [configuration]="adminTableConfiguration"
           [tableDataAccessService]="userTableDataAccessService"></ep-table>

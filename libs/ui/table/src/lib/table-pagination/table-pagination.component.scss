@@ -1,3 +1,7 @@
 :host {
   display: block;
+
+  img {
+    @apply hover:bg-gray-400 w-20 h-10 opacity-50 hover:opacity-100 transition cursor-pointer p-2 rounded-lg hover:scale-110;
+  }
 }

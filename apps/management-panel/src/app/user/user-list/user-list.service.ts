@@ -34,10 +34,9 @@ export class UserListService {
         TableAction.DELETE
       ],
       columns: [
-        {key: 'id'},
-        {key: 'firstName'},
-        {key: 'lastName'},
-        {key: 'email'}
+        {key: 'firstName', widthPercentage: 30},
+        {key: 'lastName', widthPercentage: 30},
+        {key: 'email', widthPercentage: 40}
       ],
       url: 'user',
       prefix: 'management-panel.user-list.table.',

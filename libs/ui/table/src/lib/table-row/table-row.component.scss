@@ -1,3 +1,11 @@
 :host {
   display: block;
+  @apply w-full overflow-hidden;
+  .cell {
+    @apply truncate p-3 border border-gray-500 whitespace-normal;
+  }
+
+  td {
+    @apply text-gray-800;
+  }
 }

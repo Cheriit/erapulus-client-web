@@ -15,7 +15,7 @@ import {MessageType} from './message.model';
 @Component({
   selector: 'ep-message',
   template: `
-    <div class="absolute top-0 left-0 w-full p-4 overflow-x-hidden z-50">
+    <div class="absolute top-0 left-0 w-full p-4 overflow-x-hidden z-40">
       <div
         class="bg-white rounded-lg border-gray-300 border p-4 shadow-lg w-full max-w-5xl m-auto fadeIn origin-top-left"
         [class.fadeOut]="exiting">
@@ -52,6 +52,7 @@ export class MessageComponent<T> implements OnInit, OnDestroy {
   @Input() content?: string | string[];
   @Input() component?: ComponentRef<T>;
   @Input() hasClose = true;
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() readonly close: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild('contentPlaceholder', {read: ViewContainerRef, static: true}) contentPlaceholderRef!: ViewContainerRef;
   public exiting = false;

@@ -4,7 +4,7 @@ import {SidebarService} from './sidebar.service';
 @Component({
   selector: 'ep-sidebar-layout',
   template: `
-    <div class="w-screen h-screen flex overflow-hidden relative">
+    <div class="w-screen h-screen overflow-hidden relative">
       <ep-sidebar></ep-sidebar>
       <div class="content">
         <ep-navbar></ep-navbar>

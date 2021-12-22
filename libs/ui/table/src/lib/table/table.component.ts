@@ -18,22 +18,38 @@ import {TableDataAccessService} from '../table.data-access.service';
   selector: 'ep-table',
   template: `
     <!--    <ep-table-filters></ep-table-filters>-->
-    <table>
-      <thead>
+    <div class="w-full">
+      <ep-table-header [configuration]="configuration"></ep-table-header>
+      <ng-container *ngIf="content && content.length; else noContent">
+        <ep-table-row *ngFor="let element of content; let index = index" [configuration]="configuration"
+                      [element]="element" [rowNumber]="offset + index"></ep-table-row>
+        <ep-table-pagination (pageChange)="pageChanged($event)"
+                             [canGoNext]="(currentPage + 1) * configuration.pageSize < totalCount"
+                             [canGoBack]="currentPage !== 0"></ep-table-pagination>
 
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
-    <!--    <ep-table-pagination (pageChange)="pageChanged($event)"></ep-table-pagination>-->
+      </ng-container>
+      <ng-template #noContent>
+        <ng-container *ngIf="loading === true; else notFound">
+          <div>
+            <ep-spinner class="m-auto w-14 py-10"></ep-spinner>
+          </div>
+        </ng-container>
+        <ng-template #notFound>
+          <div>
+            <ep-text
+              class="text-center py-10 text-gray-500 w-full">{{configuration.prefix + 'not-found' | translate}}</ep-text>
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
   `,
   styleUrls: ['./table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent<T> implements OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy {
   @Input() configuration!: TableConfiguration;
   @Input() tableDataAccessService!: TableDataAccessService;
+  @Output() readonly selectElement: EventEmitter<number> = new EventEmitter<number>();
   @Output() readonly editElement: EventEmitter<number> = new EventEmitter<number>();
   @Output() readonly deleteElement: EventEmitter<number> = new EventEmitter<number>();
   @Output() readonly currentPageChange: EventEmitter<number> = new EventEmitter<number>();
@@ -42,7 +58,7 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   public currentPage!: number;
   public totalCount!: number;
   public offset!: number;
-  public content!: T[];
+  public content!: { [key: string]: string }[];
   public loading = false;
   public elements = [];
 
@@ -70,7 +86,7 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   }
 
   makeRequest (): void {
-    this.tableDataAccessService.makeRequest<T>({
+    this.tableDataAccessService.makeRequest<{ [key: string]: string }>({
       url: this.configuration.url,
       page: this.currentPage,
       pageSize: this.configuration.pageSize,
@@ -79,15 +95,22 @@ export class TableComponent<T> implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((result) => {
         this.loading = false;
-        this.currentPage = result.payload.currentPage;
-        this.totalCount = result.payload.totalCount;
-        this.offset = result.payload.offset;
-        this.content = result.payload.content;
-        this.changeDetectorRef.markForCheck();
+        if (result.payload.content?.length === 0 && result.payload.currentPage !== 0) {
+          this.currentPage = 0;
+          this.makeRequest();
+        } else {
+          this.currentPage = result.payload.currentPage;
+          this.totalCount = result.payload.totalCount;
+          this.offset = result.payload.offset;
+          this.content = result.payload.content;
+          this.changeDetectorRef.markForCheck();
+        }
       });
   }
 
-  pageChanged (newPageNumber: number): void {
-    return;
+  pageChanged (pageChange: number): void {
+    this.currentPage += pageChange;
+    this.makeRequest();
+    this.currentPageChange.emit(this.currentPage);
   }
 }
