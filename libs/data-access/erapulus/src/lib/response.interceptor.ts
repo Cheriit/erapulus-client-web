@@ -10,7 +10,7 @@ import {
 import {catchError, map, Observable, throwError, timeout} from 'rxjs';
 import {ErapulusHelpers} from './erapulus-helpers';
 import {Router} from '@angular/router';
-import {DataAccessService} from './data-access.service';
+import {ErapulusDataAccessService} from './erapulus-data-access.service';
 import {MessageService} from '@erapulus/ui/message';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class ResponseInterceptor implements HttpInterceptor {
   }
 
   intercept (req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (req.url.startsWith(DataAccessService.API_URL)) {
+    if (req.url.startsWith(ErapulusDataAccessService.API_URL)) {
       return next.handle(req).pipe(
         timeout(10000),
         map((event) => {

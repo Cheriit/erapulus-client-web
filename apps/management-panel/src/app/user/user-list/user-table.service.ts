@@ -33,6 +33,7 @@ export class UserTableService {
       filters: this.formBuilder.group({
         name: this.formBuilder.control(parameters.name ?? '', [Validators.maxLength(64)])
       }),
+      hasPagination: true,
       actions: parameters.actions,
       columns: [
         {key: 'firstName', widthPercentage: 30},

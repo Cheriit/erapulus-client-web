@@ -4,7 +4,7 @@ import {mergeMap, Observable, take} from 'rxjs';
 import {LocalStorageService} from '@erapulus/utils/local-storage';
 import {StringUtils} from '@erapulus/utils/helpers';
 import {AuthFacade} from '@erapulus/utils/auth';
-import {DataAccessService} from './data-access.service';
+import {ErapulusDataAccessService} from './erapulus-data-access.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -14,7 +14,7 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept (req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (req.url.startsWith(DataAccessService.API_URL)) {
+    if (req.url.startsWith(ErapulusDataAccessService.API_URL)) {
       return this.token$.pipe(
         take(1),
         mergeMap((token) => {

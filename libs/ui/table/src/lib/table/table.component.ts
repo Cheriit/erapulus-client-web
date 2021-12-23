@@ -29,9 +29,11 @@ import {TableDataAccessService} from '../table.data-access.service';
                       [element]="element" [rowNumber]="offset + index + 1"
                       (click)="rowClick(element['id'])"
                       (tableElementEvent)="tableElementEvent.emit($event)"></ep-table-row>
-        <ep-table-pagination (pageChange)="pageChanged($event)"
-                             [canGoNext]="(currentPage + 1) * configuration.pageSize < totalCount"
-                             [canGoBack]="currentPage !== 0"></ep-table-pagination>
+        <ep-table-pagination
+          *ngIf="configuration.hasPagination"
+          (pageChange)="pageChanged($event)"
+          [canGoNext]="(currentPage + 1) * configuration.pageSize < totalCount"
+          [canGoBack]="currentPage !== 0"></ep-table-pagination>
       </ng-container>
       <ng-template #noContent>
         <ng-container *ngIf="loading === true; else notFound">
@@ -77,7 +79,7 @@ export class TableComponent implements OnInit, OnDestroy {
     :
     void {
     this.loading = true;
-    this.currentPage = this.configuration.currentPage;
+    this.currentPage = this.configuration?.currentPage ?? 0;
     this.makeRequest();
     this.subscriptionManagerService.subscribe(
       this.configuration.filters.valueChanges
@@ -96,7 +98,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.tableDataAccessService.makeRequest<{ [key: string]: string }>({
       url: this.configuration.url,
       page: this.currentPage,
-      pageSize: this.configuration.pageSize,
+      pageSize: this.configuration.pageSize ?? 10,
       parameters: {...this.configuration.parameters, ...this.configuration.filters.value}
     })
       .pipe(take(1))

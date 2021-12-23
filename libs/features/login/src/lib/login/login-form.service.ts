@@ -42,7 +42,7 @@ export class LoginFormService extends FormService {
       if (this.form.valid) {
         this.form?.disable();
         this.form?.markAsPending();
-        return this.loginDataAccessService.makeRequest<LoginRequestParams, LoginResponseParams>({
+        return this.loginDataAccessService.loginRequest<LoginRequestParams, LoginResponseParams>({
           email: this.form.get('email')?.value,
           password: this.form.get('password')?.value
         }).pipe(

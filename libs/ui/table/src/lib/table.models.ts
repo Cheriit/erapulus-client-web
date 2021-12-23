@@ -41,10 +41,11 @@ export interface TableColumn {
 export interface TableConfiguration {
   url: string,
   prefix: string,
-  currentPage: number,
-  pageSize: number,
+  currentPage?: number,
+  pageSize?: number,
   filters: FormGroup,
   actions: TableAction[],
   columns: TableColumn[],
-  parameters: { [key: string]: string | undefined }
+  parameters: { [key: string]: string | undefined },
+  hasPagination: boolean
 }
