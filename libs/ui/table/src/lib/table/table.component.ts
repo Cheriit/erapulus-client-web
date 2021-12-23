@@ -97,6 +97,7 @@ export class TableComponent implements OnInit, OnDestroy {
   makeRequest (): void {
     this.loading = true;
     this.content = [];
+    this.changeDetectorRef.markForCheck();
     this.tableDataAccessService.makeRequest<{ [key: string]: string }>({
       url: this.configuration.url,
       page: this.currentPage,
