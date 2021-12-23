@@ -37,7 +37,6 @@ export class UserCreateFormService extends FormService<ErapulusResponse<unknown>
       this.form.markAllAsTouched();
       this.form.updateValueAndValidity();
       if (this.form.valid) {
-        this.form?.disable();
         this.form?.markAsPending();
         let request: Observable<ErapulusResponse<unknown>> | null;
         const values = this.form.value;

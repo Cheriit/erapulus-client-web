@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {UserCreateFormService} from './user-create-form.service';
-import {NavigationService} from '@erapulus/utils/navigation';
+import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ep-user-create-form',
@@ -78,11 +79,19 @@ export class UserCreateFormComponent {
   public readonly buttonType = ButtonType;
 
 
-  constructor (public readonly formService: UserCreateFormService, private readonly navigationService: NavigationService) {
+  constructor (public readonly formService: UserCreateFormService, private readonly navigationService: NavigationService, private readonly router: Router) {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe();
+    this.formService.submitForm()?.subscribe(() => {
+      this.form.enable();
+      this.form.markAsTouched();
+      this.form.markAsDirty();
+      this.router.navigate([
+        NavigationRoutes.ROOT,
+        NavigationRoutes.USER
+      ]).then();
+    });
   }
 
   public cancel (): void {

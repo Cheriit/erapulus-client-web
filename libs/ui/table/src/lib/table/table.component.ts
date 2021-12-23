@@ -8,7 +8,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {debounce, interval, take} from 'rxjs';
+import {debounce, interval, Observable, take} from 'rxjs';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 import {TableAction, TableActionEvent, TableConfiguration} from '../table.models';
 import {TableDataAccessService} from '../table.data-access.service';
@@ -55,6 +55,7 @@ import {TableDataAccessService} from '../table.data-access.service';
 })
 export class TableComponent implements OnInit, OnDestroy {
   @Input() configuration!: TableConfiguration;
+  @Input() reload$!: Observable<void>;
   @Output() readonly tableElementEvent: EventEmitter<TableActionEvent> = new EventEmitter<TableActionEvent>();
   @Output() readonly currentPageChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -75,17 +76,16 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
 
-  ngOnInit ()
-    :
-    void {
+  ngOnInit (): void {
     this.loading = true;
     this.currentPage = this.configuration?.currentPage ?? 0;
+    this.subscriptionManagerService.subscribe(
+      this.reload$.subscribe(() => this.makeRequest()));
     this.makeRequest();
     this.subscriptionManagerService.subscribe(
       this.configuration.filters.valueChanges
         .pipe(debounce(() => interval(1000)))
         .subscribe(() => {
-          this.loading = true;
           this.makeRequest();
         }));
   }
@@ -95,6 +95,8 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   makeRequest (): void {
+    this.loading = true;
+    this.content = [];
     this.tableDataAccessService.makeRequest<{ [key: string]: string }>({
       url: this.configuration.url,
       page: this.currentPage,

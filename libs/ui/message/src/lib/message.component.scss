@@ -3,6 +3,10 @@
 :host {
   display: block;
 
+  .cont {
+    @apply pl-24;
+  }
+
   .fadeIn {
     animation: fadeIn 200ms ease, slideIn 200ms ease-in-out;
   }

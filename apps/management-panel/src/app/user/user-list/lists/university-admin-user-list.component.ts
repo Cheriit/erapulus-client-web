@@ -19,17 +19,19 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
         <ep-table
           [configuration]="tableConfiguration"
           (tableElementEvent)="handleTableEvent($event)"
-          (currentPageChange)="paginationChanged($event)"></ep-table>
+          (currentPageChange)="paginationChanged($event)"
+          [reload$]="reload$"></ep-table>
       </div>
     </ep-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
+  public reload$: Subject<void> = new Subject();
   public tableConfiguration$: Subject<TableConfiguration> = this.userTableService.getListConfigurationObservable(this.getBaseParameters());
   public headerType = HeaderType;
   public userRole: Observable<UserRole | undefined> = this.authFacade.role$;
-  public tableConfiguration!: TableConfiguration;
+  public _tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;
   @Input() universityId!: number | null;
 
@@ -56,7 +58,7 @@ export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptionManager.subscribe(
-      this.tableConfiguration.filters.valueChanges
+      this._tableConfiguration.filters.valueChanges
         .pipe(debounce(() => interval(1000)))
         .subscribe(() => {
           this.updateRoute();
@@ -68,7 +70,7 @@ export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   }
 
   public paginationChanged (page: number): void {
-    this.tableConfiguration.currentPage = page;
+    this._tableConfiguration.currentPage = page;
     this.updateRoute();
   }
 
@@ -77,12 +79,13 @@ export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   }
 
   private updateRoute (): void {
-    this.location.go(`${this.router.url.split('?')[0]}?university_admin_page=${this.tableConfiguration.currentPage}&university_admin_name=${this.tableConfiguration.filters.value['name']}`);
+    this.location.go(`${this.router.url.split('?')[0]}?university_admin_page=${this._tableConfiguration.currentPage}&university_admin_name=${this._tableConfiguration.filters.value['name']}`);
   }
 
   private reloadList (): void {
-    this.tableConfiguration = this.userTableService.getListConfiguration(this.getBaseParameters());
-    this.tableConfiguration$.next(this.tableConfiguration);
+    this._tableConfiguration = this.userTableService.getListConfiguration(this.getBaseParameters());
+    this.tableConfiguration$.next(this._tableConfiguration);
+    this.reload$.next();
     this.changeDetectorRef.markForCheck();
   }
 

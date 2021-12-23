@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuthFacade, UserRole} from '@erapulus/utils/auth';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs';
@@ -7,11 +7,12 @@ import {HeaderType} from '@erapulus/ui/components';
 import {FormGroup} from '@angular/forms';
 import {UserCreateFormService} from './user-create-form.service';
 import {TitleService} from '@erapulus/utils/title';
+import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 
 @Component({
   selector: 'ep-user-create',
   template: `
-    <ep-container>
+    <ep-container [loading]="form.pending">
       <ep-header [headerType]="headerType.H3">{{'management-panel.create.user.title' | translate:({type})}}</ep-header>
       <ep-user-create-form [form]="form"></ep-user-create-form>
     </ep-container>
@@ -30,13 +31,18 @@ export class UserCreateComponent implements OnInit {
     private readonly authFacade: AuthFacade,
     private readonly router: Router,
     private readonly userCreateFormService: UserCreateFormService,
-    private readonly titleService: TitleService) {
+    private readonly titleService: TitleService,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly subscriptionManagerService: SubscriptionManagerService) {
   }
 
   ngOnInit (): void {
     this.titleService.setTitle('management-panel.user.create');
     this.type = (this.route.snapshot.paramMap.get('type')?.toUpperCase() ?? UserRole.UNAUTHORIZED) as UserRole;
     this.form = this.userCreateFormService.createForm(this.type);
+    this.subscriptionManagerService.subscribe(this.form.statusChanges.subscribe(() => {
+      this.changeDetectorRef.markForCheck();
+    }));
     this.userRole$.pipe(take(1)).subscribe((role) => {
       switch (this.type) {
       case UserRole.ADMINISTRATOR:

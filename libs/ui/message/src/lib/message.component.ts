@@ -5,7 +5,7 @@ import {ButtonType} from '@erapulus/ui/components';
 @Component({
   selector: 'ep-message',
   template: `
-    <div class="absolute top-0 left-0 w-full p-4 overflow-x-hidden z-40 ml-20 lg:ml-0">
+    <div class="absolute top-0 left-0 w-full p-4 overflow-x-hidden z-40 cont">
       <div
         class="bg-white rounded-lg border-gray-300 border p-4 shadow-lg w-full max-w-5xl m-auto fadeIn origin-top-left"
         [class.fadeOut]="exiting">
