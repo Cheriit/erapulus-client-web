@@ -3,8 +3,11 @@ import {TableAction, TableActionEvent, TableConfiguration} from '@erapulus/ui/ta
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserRole} from '@erapulus/utils/auth';
 import {ObjectUtils} from '@erapulus/utils/helpers';
-import {BehaviorSubject, Subject, take} from 'rxjs';
+import {BehaviorSubject, of, Subject, switchMap, take} from 'rxjs';
 import {MessageAction, MessageService, MessageType} from '@erapulus/ui/message';
+import {Router} from '@angular/router';
+import {NavigationRoutes} from '@erapulus/utils/navigation';
+import {UserDataAccessService} from '@erapulus/data-access/erapulus';
 
 export interface UserListParameters {
   type: UserRole,
@@ -21,7 +24,11 @@ export interface UserListParameters {
 export class UserTableService {
   public reloadList$: Subject<void> = new Subject<void>();
 
-  constructor (private readonly formBuilder: FormBuilder, private messageService: MessageService) {
+  constructor (
+    private readonly formBuilder: FormBuilder,
+    private readonly messageService: MessageService,
+    private readonly router: Router,
+    private readonly userDataAccessService: UserDataAccessService) {
   }
 
   getListConfigurationObservable (parameters: UserListParameters): Subject<TableConfiguration> {
@@ -51,11 +58,23 @@ export class UserTableService {
     };
   }
 
-  handleTableEvent (event: TableActionEvent): void {
+  handleTableEvent (event: TableActionEvent, role: UserRole): void {
     switch (event.type) {
     case TableAction.NEW:
+      this.router.navigate([
+        NavigationRoutes.ROOT,
+        NavigationRoutes.USER,
+        NavigationRoutes.CREATE,
+        role.toLowerCase()
+      ]).then();
       break;
     case TableAction.EDIT:
+      this.router.navigate([
+        NavigationRoutes.ROOT,
+        NavigationRoutes.USER,
+        event.content,
+        NavigationRoutes.EDIT
+      ]).then();
       break;
     case TableAction.DELETE:
       this.messageService.generateMessage({
@@ -64,14 +83,33 @@ export class UserTableService {
         content: 'management-panel.user.delete.content',
         hasButtons: true,
         hasClose: false
-      }).instance.action.pipe(take(1)).subscribe((action) => {
-        if (action === MessageAction.ACCEPT) {
+      }).instance.action.pipe(
+        take(1),
+        switchMap((action) => {
+          if (action === MessageAction.ACCEPT) {
+            return this.userDataAccessService.deleteUser({id: event.content});
+          }
+          return of(false);
+        }
+        ),
+        switchMap((x) => {
+          if (typeof x === 'boolean') {
+            return of(x);
+          }
+          return of(true);
+        })).subscribe((reload) => {
+        if (reload) {
           this.reloadList$.next();
         }
       });
       break;
     case TableAction.SELECT:
     default:
+      this.router.navigate([
+        NavigationRoutes.ROOT,
+        NavigationRoutes.USER,
+        event.content
+      ]).then();
       break;
 
     }

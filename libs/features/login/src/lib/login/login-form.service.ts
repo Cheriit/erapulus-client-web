@@ -1,12 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FormService} from '@erapulus/utils/forms';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {
-  ErapulusResponse,
-  LoginDataAccessService,
-  LoginRequestParams,
-  LoginResponseParams
-} from '@erapulus/data-access/erapulus';
+import {ErapulusResponse, LoginDataAccessService, LoginResponseParams} from '@erapulus/data-access/erapulus';
 import {catchError, Observable, of, take, tap} from 'rxjs';
 
 @Injectable({
@@ -42,7 +37,7 @@ export class LoginFormService extends FormService {
       if (this.form.valid) {
         this.form?.disable();
         this.form?.markAsPending();
-        return this.loginDataAccessService.loginRequest<LoginRequestParams, LoginResponseParams>({
+        return this.loginDataAccessService.loginRequest({
           email: this.form.get('email')?.value,
           password: this.form.get('password')?.value
         }).pipe(

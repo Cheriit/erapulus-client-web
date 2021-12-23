@@ -32,7 +32,7 @@ import {TableDataAccessService} from '../table.data-access.service';
         <ep-table-pagination
           *ngIf="configuration.hasPagination"
           (pageChange)="pageChanged($event)"
-          [canGoNext]="(currentPage + 1) * configuration.pageSize < totalCount"
+          [canGoNext]="(currentPage + 1) * (configuration.pageSize ?? 0) < totalCount"
           [canGoBack]="currentPage !== 0"></ep-table-pagination>
       </ng-container>
       <ng-template #noContent>

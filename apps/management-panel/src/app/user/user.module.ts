@@ -12,6 +12,9 @@ import {AdminUserListComponent} from './user-list/lists/admin-user-list.componen
 import {UniversityAdminUserListComponent} from './user-list/lists/university-admin-user-list.component';
 import {EmployeeUserListComponent} from './user-list/lists/employee-user-list.component';
 import {StudentUserListComponent} from './user-list/lists/student-user-list.component';
+import {UserCreateComponent} from './user-create/user-create.component';
+import {UserEditComponent} from './user-edit/user-edit.component';
+import {UserShowComponent} from './user-show/user-show.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import {StudentUserListComponent} from './user-list/lists/student-user-list.comp
     EmployeeUserListComponent,
     StudentUserListComponent,
     UserComponent,
-    UserListComponent
+    UserListComponent,
+    UserCreateComponent,
+    UserEditComponent,
+    UserShowComponent
   ],
   imports: [
     CommonModule,

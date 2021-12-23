@@ -9,7 +9,7 @@ import {Location} from '@angular/common';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 
 @Component({
-  selector: 'ep-admin-users-list',
+  selector: 'ep-admin-user-list',
   template: `
     <ep-container>
       <ep-header [headerType]="headerSize.H3">{{'management-panel.user.list.admin.header' | translate}}</ep-header>
@@ -71,7 +71,7 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
   }
 
   public handleTableEvent (event: TableActionEvent): void {
-    this.userTableService.handleTableEvent(event);
+    this.userTableService.handleTableEvent(event, UserRole.ADMINISTRATOR);
   }
 
   private updateRoute (): void {

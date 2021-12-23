@@ -9,7 +9,7 @@ import {Location} from '@angular/common';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 
 @Component({
-  selector: 'ep-university-admin-users-list',
+  selector: 'ep-university-admin-user-list',
   template: `
     <ep-container>
       <ep-header
@@ -73,7 +73,7 @@ export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   }
 
   public handleTableEvent (event: TableActionEvent): void {
-    this.userTableService.handleTableEvent(event);
+    this.userTableService.handleTableEvent(event, UserRole.UNIVERSITY_ADMINISTRATOR);
   }
 
   private updateRoute (): void {
