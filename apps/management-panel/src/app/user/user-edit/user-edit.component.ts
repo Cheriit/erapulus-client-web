@@ -3,8 +3,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 @Component({
   selector: 'ep-user-edit',
   template: `
-    <ng-container>
-    </ng-container>
+    <div>User edit</div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

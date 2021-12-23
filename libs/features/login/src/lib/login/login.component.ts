@@ -21,6 +21,7 @@ import {MessageService} from '@erapulus/ui/message';
           [label]="'common.login.email.label' | translate"
           [control]="loginFormService.getControl('email')"
           [placeholder]="'common.login.email.placeholder' | translate"
+          type="email"
         ></ep-input>
         <ep-input
           [label]="'common.login.password.label' | translate"

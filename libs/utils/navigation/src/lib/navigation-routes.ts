@@ -1,4 +1,5 @@
 export enum NavigationRoutes {
+  WELCOME = 'welcome',
   LOGIN = 'login',
   ROOT = '/',
   UNIVERSITIES = 'universities',

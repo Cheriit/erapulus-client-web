@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {Location} from '@angular/common';
 import {NavigationRoutes} from './navigation-routes';
 
 @Injectable({
@@ -9,7 +8,7 @@ import {NavigationRoutes} from './navigation-routes';
 export class NavigationService {
   private history: string[] = [];
 
-  constructor (private router: Router, private location: Location) {
+  constructor (private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.history.length === 0) {
@@ -28,10 +27,10 @@ export class NavigationService {
   }
 
   public back (number = 1): void {
-    this.history = this.history.splice(0, -number);
+    this.history.splice(-1, number);
     if (this.history.length > 0
     ) {
-      this.location.go(this.history[this.history.length - 1]);
+      this.router.navigateByUrl(this.history[this.history.length - 1]).then();
     } else {
       this.router.navigateByUrl(NavigationRoutes.ROOT).then();
     }

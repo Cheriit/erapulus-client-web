@@ -14,7 +14,7 @@ import {TableAction, TableActionEvent} from '../table.models';
             [placeholder]="prefix + 'filter.' + control[0] + '.placeholder'| translate"
           ></ep-input>
         </div>
-        <div class="w-1/2 md:w-1/3 px-4 relative">
+        <div class="new-button">
           <ep-button (click)="goToNew()"
                      class="absolute bottom-[33px]"
                      style="bottom: 33px" *ngIf="displayNew()">

@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
-import {Event} from '@angular/router';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 export enum ButtonType {
   PRIMARY = 'primary',
@@ -16,7 +15,7 @@ export enum AnimationType {
   selector: 'ep-button',
   template: `
     <button class="button hover:-translate-y-0.5 hover:scale-105" [class.loading]="isLoading() || disabled"
-            [disabled]="isLoading() || disabled" [class]="type">
+            [disabled]="isLoading() || disabled" [class]="type" (click)="onClickEvent($event)">
       <ng-container *ngIf="!isLoading()">
         <ng-content select="[icon]"></ng-content>
       </ng-container>
@@ -33,14 +32,17 @@ export enum AnimationType {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() public readonly click: EventEmitter<void> = new EventEmitter<void>();
   @Input() public type: ButtonType = ButtonType.PRIMARY;
   @Input() public animationType?: AnimationType = undefined;
   @Input() public disabled = false;
 
-  @HostListener('click', ['$event']) onClickEvent (event: Event): void {
-    if (event && !this.isLoading())
+  onClickEvent (event: MouseEvent): void {
+    if (event && !this.isLoading()) {
+      event.stopPropagation();
       this.click.emit();
+    }
   }
 
   public isPinging (): boolean {

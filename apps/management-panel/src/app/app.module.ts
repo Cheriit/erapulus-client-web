@@ -17,9 +17,14 @@ import {LoginModule} from '@erapulus/features/login';
 import {MessageModule} from '@erapulus/ui/message';
 import {TableDataAccessService} from '@erapulus/ui/table';
 import {ErapulusListDataAccessService} from '@erapulus/data-access/erapulus';
+import {AppMainComponent} from './app-main.component';
+import {SidebarLayoutModule} from '@erapulus/ui/sidebar-layout';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    AppMainComponent
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -36,7 +41,8 @@ import {ErapulusListDataAccessService} from '@erapulus/data-access/erapulus';
     LoginModule,
     AppRoutingModule,
     NotFoundModule,
-    UiComponentsModule
+    UiComponentsModule,
+    SidebarLayoutModule
   ],
   providers: [
     {

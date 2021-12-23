@@ -7,7 +7,7 @@ import {catchError, Observable, of, take, tap} from 'rxjs';
 @Injectable({
   providedIn: 'any'
 })
-export class LoginFormService extends FormService {
+export class LoginFormService extends FormService<ErapulusResponse<LoginResponseParams>> {
   protected override form?: FormGroup;
 
   constructor (private formBuilder: FormBuilder, private loginDataAccessService: LoginDataAccessService) {

@@ -13,7 +13,7 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
   template: `
     <ep-container>
       <ep-header
-        [headerType]="headerSize.H3">{{'management-panel.user.list.university-admin.header' | translate}}</ep-header>
+        [headerType]="headerType.H3">{{'management-panel.user.list.university-admin.header' | translate}}</ep-header>
       <div *ngIf="tableConfiguration$ | async as tableConfiguration"
            class="min-h-[200px] min-w-[600px] mx-[-24px]">
         <ep-table
@@ -27,7 +27,7 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 })
 export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   public tableConfiguration$: Subject<TableConfiguration> = this.userTableService.getListConfigurationObservable(this.getBaseParameters());
-  public headerSize = HeaderType;
+  public headerType = HeaderType;
   public userRole: Observable<UserRole | undefined> = this.authFacade.role$;
   public tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;

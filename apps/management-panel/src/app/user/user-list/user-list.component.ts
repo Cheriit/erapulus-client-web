@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AuthFacade, AuthUserData, UserRole} from '@erapulus/utils/auth';
+import {TitleService} from '@erapulus/utils/title';
 
 @Component({
   selector: 'ep-user-list',
@@ -17,7 +18,7 @@ import {AuthFacade, AuthUserData, UserRole} from '@erapulus/utils/auth';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
   public user$: Observable<AuthUserData | undefined> = this.authFacade.authUser$;
   public readonly adminListPermitted = [UserRole.ADMINISTRATOR];
   public readonly universityListPermitted = [
@@ -29,8 +30,13 @@ export class UserListComponent {
   public readonly userRoles = UserRole;
 
   constructor (
-    private readonly authFacade: AuthFacade
+    private readonly authFacade: AuthFacade,
+    private readonly titleService: TitleService
   ) {
+  }
+
+  ngOnInit (): void {
+    this.titleService.setTitle('management-panel.title.user-list');
   }
 
 }

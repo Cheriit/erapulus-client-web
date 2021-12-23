@@ -1,10 +1,9 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-  selector: 'ep-user-create',
+  selector: 'ep-user-show',
   template: `
-    <ng-container>
-    </ng-container>
+    <div>User show</div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

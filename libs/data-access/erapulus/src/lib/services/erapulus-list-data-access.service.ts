@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {ErapulusDataAccessService} from './erapulus-data-access.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ErapulusResponse} from './erapulus-response.model';
-import {ErapulusUser} from './erapulus.models';
+import {ErapulusResponse} from '../erapulus-response.model';
+import {ErapulusUser} from '../erapulus.models';
 import {TableDataAccessService, TableRequest} from '@erapulus/ui/table';
 
 export type UserListRequestParams = TableRequest

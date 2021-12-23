@@ -109,7 +109,7 @@ export class UserTableService {
         NavigationRoutes.ROOT,
         NavigationRoutes.USER,
         event.content
-      ]).then();
+      ], {preserveFragment: false}).then();
       break;
 
     }

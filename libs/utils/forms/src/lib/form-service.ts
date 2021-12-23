@@ -1,6 +1,7 @@
 import {FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
 
-export abstract class FormService {
+export abstract class FormService<T> {
 
   protected form?: FormGroup;
 
@@ -10,5 +11,5 @@ export abstract class FormService {
 
   abstract createForm(...args: unknown[]): FormGroup
 
-  abstract submitForm(): void
+  abstract submitForm(): Observable<T> | null
 }
