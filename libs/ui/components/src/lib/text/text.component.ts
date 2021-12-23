@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-export enum TextSize {
+export enum TextType {
   LARGE = 'lg',
   MEDIUM = 'md',
   SMALL = 'sm',
@@ -10,12 +10,12 @@ export enum TextSize {
 @Component({
   selector: 'ep-text',
   template: `
-    <p [class]="textSize">
+    <p [class]="textType">
       <ng-content></ng-content>
     </p> `,
   styleUrls: ['./text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextComponent {
-  @Input() textSize = TextSize.MEDIUM;
+  @Input() textType = TextType.MEDIUM;
 }

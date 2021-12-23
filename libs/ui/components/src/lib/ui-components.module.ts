@@ -8,6 +8,7 @@ import {InputErrorsModule} from './input-error/input-errors.module';
 import {HeaderModule} from './header/header.module';
 import {TextModule} from './text/text.module';
 import {SpinnerModule} from './spinner/spinner.module';
+import {SelectModule} from './select/select.module';
 
 const modules = [
   ButtonModule,
@@ -18,7 +19,8 @@ const modules = [
   InputErrorsModule,
   LogoModule,
   SpinnerModule,
-  TextModule
+  TextModule,
+  SelectModule
 ];
 
 @NgModule({

@@ -4,12 +4,13 @@ import {UserCreateFormService} from './user-create-form.service';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {Router} from '@angular/router';
+import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
 
 @Component({
   selector: 'ep-user-create-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
-      <div class="flex flex-wrap overflow-hidden">
+      <div class="flex flex-wrap">
         <div class="w-1/2 md:w-1/3 px-4 pb-3">
           <ep-input
             [label]="'management-panel.user.firstName.label'| translate"
@@ -41,7 +42,15 @@ import {Router} from '@angular/router';
             type="tel"
           ></ep-input>
         </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3"></div>
+        <div class="w-1/2 md:w-1/3 px-4 pb-3">
+          <ep-select
+            *ngIf="form.get('university')"
+            [placeholder]="'management-panel.user.university.label'| translate"
+            [label]="'management-panel.user.university.label'| translate"
+            [control]="formService.getControl('university')"
+            [accessor]="universityDataAccessService"
+          ></ep-select>
+        </div>
         <div class="w-1/2 md:w-1/3 px-4 pb-3">
           <ep-input
             [label]="'management-panel.user.password.label'| translate"
@@ -79,7 +88,12 @@ export class UserCreateFormComponent {
   public readonly buttonType = ButtonType;
 
 
-  constructor (public readonly formService: UserCreateFormService, private readonly navigationService: NavigationService, private readonly router: Router) {
+  constructor (
+    public readonly formService: UserCreateFormService,
+    private readonly navigationService: NavigationService,
+    private readonly router: Router,
+    public readonly universityDataAccessService: UniversityDataAccessService
+  ) {
   }
 
   public submit (): void {
