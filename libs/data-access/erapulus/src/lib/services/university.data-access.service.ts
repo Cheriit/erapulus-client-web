@@ -1,11 +1,15 @@
 import {Injectable} from '@angular/core';
 import {ErapulusDataAccessService} from './erapulus-data-access.service';
 import {SelectAccessor, SelectItem} from '@erapulus/ui/components';
-import {ErapulusResponse} from '@erapulus/data-access/erapulus';
+import {ErapulusResponse, ErapulusUniversity} from '@erapulus/data-access/erapulus';
 import {map, Observable, take} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
-export interface University {
+export interface UniversityGetRequest {
+  id: string
+}
+
+export interface UniversityGetListResponse {
   id: string,
   name: string,
   logoUrl: string
@@ -20,13 +24,18 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
     super();
   }
 
+
   get (): Observable<SelectItem[]> {
-    return this.http.get<ErapulusResponse<University[]>>(`${ErapulusDataAccessService.API_URL}/university`, {
+    return this.http.get<ErapulusResponse<UniversityGetListResponse[]>>(`${ErapulusDataAccessService.API_URL}/university`, {
       withCredentials: true
     }).pipe(
       take(1),
       map((response) => response.payload.map((university): SelectItem => ({id: university.id, name: university.name})))
     );
+  }
+
+  getUniversity (request: UniversityGetRequest): Observable<ErapulusResponse<ErapulusUniversity>> {
+    return this.http.get<ErapulusResponse<ErapulusUniversity>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
   }
 
 }

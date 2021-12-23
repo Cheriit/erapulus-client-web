@@ -16,6 +16,8 @@ import {UserEditComponent} from './user-edit/user-edit.component';
 import {UserShowComponent} from './user-show/user-show.component';
 import {UserCreateFormComponent} from './user-create/user-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {UserEditFormComponent} from './user-edit/user-edit-form.component';
+import {UserShowDetailsComponent} from './user-show/user-show-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     UserCreateComponent,
     UserEditComponent,
     UserShowComponent,
-    UserCreateFormComponent
+    UserCreateFormComponent,
+    UserEditFormComponent,
+    UserShowDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -6,7 +6,7 @@ import {FormControl} from '@angular/forms';
   template: `
     <ep-form-control [label]="label ? label : ''" [control]="control" [prefix]="errorPrefix">
       <div class="input" [class.error]="control.errors && control.touched">
-        <input [formControl]="control" [placeholder]="placeholder" (blur)="control.markAsTouched()"
+        <input [formControl]="control" [placeholder]="placeholder ?? ''" (blur)="control.markAsTouched()"
                (focus)="control.markAsUntouched()" [type]="type"
                [attr.value]="control.value"
                [attr.disabled]=" control.disabled ? '' : null"/>

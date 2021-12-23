@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthFacade, UserRole} from '@erapulus/utils/auth';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs';
@@ -8,6 +8,7 @@ import {FormGroup} from '@angular/forms';
 import {UserCreateFormService} from './user-create-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
+import {UserAccessService} from '../user-access.service';
 
 @Component({
   selector: 'ep-user-create',
@@ -17,10 +18,9 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
       <ep-user-create-form [form]="form"></ep-user-create-form>
     </ep-container>
   `,
-  styleUrls: ['./user-create.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserCreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit, OnDestroy {
   public type!: UserRole;
   public readonly headerType = HeaderType;
   public form!: FormGroup;
@@ -33,47 +33,28 @@ export class UserCreateComponent implements OnInit {
     private readonly userCreateFormService: UserCreateFormService,
     private readonly titleService: TitleService,
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly subscriptionManagerService: SubscriptionManagerService) {
+    private readonly subscriptionManager: SubscriptionManagerService) {
   }
 
   ngOnInit (): void {
     this.titleService.setTitle('management-panel.user.create');
     this.type = (this.route.snapshot.paramMap.get('type')?.toUpperCase() ?? UserRole.UNAUTHORIZED) as UserRole;
     this.form = this.userCreateFormService.createForm(this.type);
-    this.subscriptionManagerService.subscribe(this.form.statusChanges.subscribe(() => {
+    this.subscriptionManager.subscribe(this.form.statusChanges.subscribe(() => {
       this.changeDetectorRef.markForCheck();
     }));
     this.userRole$.pipe(take(1)).subscribe((role) => {
-      switch (this.type) {
-      case UserRole.ADMINISTRATOR:
-        if (role !== UserRole.ADMINISTRATOR) {
-          this.navigateToRoot();
-        }
-        break;
-      case UserRole.UNIVERSITY_ADMINISTRATOR:
-        if (![
-          UserRole.ADMINISTRATOR,
-          UserRole.UNIVERSITY_ADMINISTRATOR
-        ].includes(role ?? UserRole.UNAUTHORIZED)) {
-          this.navigateToRoot();
-        }
-        break;
-      case UserRole.EMPLOYEE:
-        if (role !== UserRole.UNIVERSITY_ADMINISTRATOR) {
-          this.navigateToRoot();
-        }
-        break;
-      default:
-        this.navigateToRoot();
-        break;
+      if (!role || !UserAccessService.canAccess(role, this.type)) {
+        this.router.navigate([
+          NavigationRoutes.ROOT,
+          NavigationRoutes.USER
+        ]).then();
       }
     });
   }
 
-  private navigateToRoot (): void {
-    this.router.navigate([
-      NavigationRoutes.ROOT,
-      NavigationRoutes.USER
-    ]).then();
+  ngOnDestroy (): void {
+    this.subscriptionManager.unsubscribeAll();
   }
+
 }
