@@ -5,7 +5,6 @@ import {TableActionEvent, TableColumn, TableConfiguration} from '../table.models
   selector: 'ep-table-row',
   template: `
     <div class="flex w-full border-b-2 "
-         [class.cursor-pointer]="!isHeader"
          [class.withActions]="configuration.actions">
       <div class="cell w-16 text-right">
         {{rowNumber}}.

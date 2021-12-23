@@ -4,4 +4,8 @@
   .content {
     @apply flex-grow ml-20;
   }
+
+  main {
+    height: calc(100vh - 64px);
+  }
 }

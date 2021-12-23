@@ -1,16 +1,13 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {TableConfiguration} from '../table.models';
 import {TranslateService} from '@ngx-translate/core';
-import {Subject} from 'rxjs';
 
 @Component({
   selector: 'ep-table-header',
   template: `
-    <div *ngIf="headerElement$ | async as headerElement">
-      <ep-table-row [configuration]="configuration" [isHeader]="true" [element]="headerElement"
-                    class="bg-gray-200 border-gray-300 border-b-2">
-      </ep-table-row>
-    </div>
+    <ep-table-row [configuration]="configuration" [isHeader]="true" [element]="headerElement ?? {}"
+                  class="bg-gray-200 border-gray-300 border-b-2">
+    </ep-table-row>
   `,
   styleUrls: ['./table-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,9 +15,9 @@ import {Subject} from 'rxjs';
 export class TableHeaderComponent implements OnInit {
   @Input() configuration!: TableConfiguration;
 
-  public headerElement$: Subject<{ [key: string]: string }> = new Subject<{ [key: string]: string }>();
+  public headerElement?: { [key: string]: string };
 
-  constructor (private translateService: TranslateService) {
+  constructor (private translateService: TranslateService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   public getHeaderElement (): void {
@@ -31,7 +28,8 @@ export class TableHeaderComponent implements OnInit {
         headerElements[key] = translations[i] ?? headerElements[key];
         i++;
       }
-      this.headerElement$.next(headerElements);
+      this.headerElement = headerElements;
+      this.changeDetectorRef.markForCheck();
     });
   }
 

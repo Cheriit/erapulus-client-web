@@ -15,7 +15,7 @@ export interface UserListResponseParams {
 @Injectable({
   providedIn: 'root'
 })
-export class UserListDataAccessService extends TableDataAccessService {
+export class ErapulusListDataAccessService extends TableDataAccessService {
 
   constructor (protected http: HttpClient) {
     super();

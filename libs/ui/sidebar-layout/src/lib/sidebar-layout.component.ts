@@ -8,7 +8,7 @@ import {SidebarService} from './sidebar.service';
       <ep-sidebar></ep-sidebar>
       <div class="content">
         <ep-navbar></ep-navbar>
-        <main class="overflow-y-auto w-full h-full">
+        <main class="overflow-y-auto w-full pb-4">
           <ng-content></ng-content>
         </main>
       </div>

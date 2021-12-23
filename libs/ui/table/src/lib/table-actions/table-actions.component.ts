@@ -6,10 +6,11 @@ import {TableAction, TableActionEvent} from '../table.models';
   template: `
     <div class="w-full h-full relative flex justify-between">
       <img src="/assets/icons/edit.svg" [alt]="'common.table.action.edit' | translate"
-           [title]="'common.table.action.edit' | translate" class="h-6 block transition hover:scale-150"
+           [title]="'common.table.action.edit' | translate" class="h-6 block transition hover:scale-150 cursor-pointer"
            *ngIf="actions.includes(tableActions.EDIT)" (click)="clickEdit($event)">
       <img src="/assets/icons/delete.svg" [alt]="'common.table.action.delete' | translate"
-           [title]="'common.table.action.delete' | translate" class="h-6 block transition hover:scale-150"
+           [title]="'common.table.action.delete' | translate"
+           class="h-6 block transition hover:scale-150 cursor-pointer"
            *ngIf="actions.includes(tableActions.DELETE)" (click)="clickDelete($event)">
     </div>
   `,
@@ -27,7 +28,7 @@ export class TableActionsComponent {
     event.stopPropagation();
     this.tableElementEvent.next({
       type: TableAction.EDIT,
-      id: this.id
+      content: this.id
     });
   }
 
@@ -35,7 +36,7 @@ export class TableActionsComponent {
     event.stopPropagation();
     this.tableElementEvent.next({
       type: TableAction.DELETE,
-      id: this.id
+      content: this.id
     });
   }
 

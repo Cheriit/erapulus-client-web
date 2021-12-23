@@ -16,12 +16,16 @@ import {TableDataAccessService} from '../table.data-access.service';
 @Component({
   selector: 'ep-table',
   template: `
-    <ep-table-filters [form]="configuration.filters" [prefix]="configuration.prefix"></ep-table-filters>
+    <ep-table-filters [form]="configuration.filters" [prefix]="configuration.prefix"
+                      [actions]="configuration.actions"
+                      (newEvent)="tableElementEvent.emit($event)"></ep-table-filters>
     <div class="w-full">
       <ep-table-header [configuration]="configuration"></ep-table-header>
-      <ng-container *ngIf="content && content.length; else noContent">
+      <ng-container *ngIf="content && content.length > 0; else noContent">
         <ep-table-row *ngFor="let element of content; let index = index" [configuration]="configuration"
-                      class="last:border-2 border-gray-300 odd:bg-gray-100 hover:bg-gray-200 transition"
+                      class="last:border-2 border-gray-300 odd:bg-gray-100 transition"
+                      [class.hover:bg-gray-200]="canSelect()"
+                      [class.cursor-pointer]="canSelect()"
                       [element]="element" [rowNumber]="offset + index + 1"
                       (click)="rowClick(element['id'])"
                       (tableElementEvent)="tableElementEvent.emit($event)"></ep-table-row>
@@ -49,7 +53,6 @@ import {TableDataAccessService} from '../table.data-access.service';
 })
 export class TableComponent implements OnInit, OnDestroy {
   @Input() configuration!: TableConfiguration;
-  @Input() tableDataAccessService!: TableDataAccessService;
   @Output() readonly tableElementEvent: EventEmitter<TableActionEvent> = new EventEmitter<TableActionEvent>();
   @Output() readonly currentPageChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -61,13 +64,18 @@ export class TableComponent implements OnInit, OnDestroy {
   public elements = [];
   public tableActionEvent = TableAction;
 
+
   constructor (
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly subscriptionManagerService: SubscriptionManagerService) {
+    private readonly subscriptionManagerService: SubscriptionManagerService,
+    private readonly tableDataAccessService: TableDataAccessService
+  ) {
   }
 
 
-  ngOnInit (): void {
+  ngOnInit ()
+    :
+    void {
     this.loading = true;
     this.currentPage = this.configuration.currentPage;
     this.makeRequest();
@@ -113,10 +121,16 @@ export class TableComponent implements OnInit, OnDestroy {
     this.currentPageChange.emit(this.currentPage);
   }
 
+  public canSelect (): boolean {
+    return this.configuration.actions.includes(TableAction.SELECT);
+  }
+
   rowClick (id: string): void {
-    this.tableElementEvent.next({
-      id,
-      type: TableAction.SELECT
-    });
+    if (this.canSelect()) {
+      this.tableElementEvent.next({
+        content: id,
+        type: TableAction.SELECT
+      });
+    }
   }
 }

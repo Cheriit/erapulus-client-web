@@ -1,23 +1,27 @@
 import {Injectable} from '@angular/core';
-import {TableAction, TableConfiguration} from '@erapulus/ui/table';
+import {TableAction, TableActionEvent, TableConfiguration} from '@erapulus/ui/table';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserRole} from '@erapulus/utils/auth';
 import {ObjectUtils} from '@erapulus/utils/helpers';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {BehaviorSubject, Subject, take} from 'rxjs';
+import {MessageAction, MessageService, MessageType} from '@erapulus/ui/message';
 
 export interface UserListParameters {
   type: UserRole,
   universityId?: number,
   name?: string,
   page: number
-  pageSize: number
+  pageSize: number,
+  actions: TableAction[]
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
-export class UserListService {
-  constructor (private readonly formBuilder: FormBuilder) {
+export class UserTableService {
+  public reloadList$: Subject<void> = new Subject<void>();
+
+  constructor (private readonly formBuilder: FormBuilder, private messageService: MessageService) {
   }
 
   getListConfigurationObservable (parameters: UserListParameters): Subject<TableConfiguration> {
@@ -29,10 +33,7 @@ export class UserListService {
       filters: this.formBuilder.group({
         name: this.formBuilder.control(parameters.name ?? '', [Validators.maxLength(64)])
       }),
-      actions: [
-        TableAction.EDIT,
-        TableAction.DELETE
-      ],
+      actions: parameters.actions,
       columns: [
         {key: 'firstName', widthPercentage: 30},
         {key: 'lastName', widthPercentage: 30},
@@ -47,5 +48,31 @@ export class UserListService {
         ...(ObjectUtils.isNotEmpty(parameters.universityId) ? {'university': parameters.universityId?.toString()} : {})
       }
     };
+  }
+
+  handleTableEvent (event: TableActionEvent): void {
+    switch (event.type) {
+    case TableAction.NEW:
+      break;
+    case TableAction.EDIT:
+      break;
+    case TableAction.DELETE:
+      this.messageService.generateMessage({
+        title: 'management-panel.user.delete.title',
+        type: MessageType.WARNING,
+        content: 'management-panel.user.delete.content',
+        hasButtons: true,
+        hasClose: false
+      }).instance.action.pipe(take(1)).subscribe((action) => {
+        if (action === MessageAction.ACCEPT) {
+          this.reloadList$.next();
+        }
+      });
+      break;
+    case TableAction.SELECT:
+    default:
+      break;
+
+    }
   }
 }

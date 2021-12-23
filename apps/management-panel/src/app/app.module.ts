@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {NotFoundModule} from '@erapulus/features/NotFound';
 import {LoginModule} from '@erapulus/features/login';
 import {MessageModule} from '@erapulus/ui/message';
+import {TableDataAccessService} from '@erapulus/ui/table';
+import {ErapulusListDataAccessService} from '@erapulus/data-access/erapulus';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +42,10 @@ import {MessageModule} from '@erapulus/ui/message';
     {
       provide: 'SIDEBAR_SERVICE',
       useClass: AppSidebarService
+    },
+    {
+      provide: TableDataAccessService,
+      useClass: ErapulusListDataAccessService
     }
   ],
   bootstrap: [AppComponent]

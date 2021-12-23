@@ -10,7 +10,10 @@ import {ButtonType} from '@erapulus/ui/components';
         class="bg-white rounded-lg border-gray-300 border p-4 shadow-lg w-full max-w-5xl m-auto fadeIn origin-top-left"
         [class.fadeOut]="exiting">
         <div class="flex flex-row items-center">
-          <ep-message-icon [type]="type" class="flex items-center"></ep-message-icon>
+          <div class="h-full">
+            <ep-message-icon [type]="type" class="flex items-center"></ep-message-icon>
+
+          </div>
           <div class="grow mx-4 min-w-0">
             <p class="font-semibold mb-2 truncate">{{title | translate}}</p>
             <p class="text-gray-500 truncate" *ngIf="getSingleContent(); else contentList">{{getSingleContent()}}</p>
@@ -19,7 +22,7 @@ import {ButtonType} from '@erapulus/ui/components';
                 <li *ngFor="let message of getContentList()" class="truncate">{{message}}</li>
               </ul>
             </ng-template>
-            <div class="flex justify-around w-100 m-10" *ngIf="hasButtons">
+            <div class="flex justify-around w-100 m-5" *ngIf="hasButtons">
               <ep-button (click)="emitAction(messageAction.CANCEL)"
                          [type]="buttonType.SECONDARY">{{'common.message.action.cancel' | translate}}</ep-button>
               <ep-button
