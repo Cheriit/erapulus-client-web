@@ -5,6 +5,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SelectComponent} from './select.component';
 import {FormControlModule} from '../form-control/form-control.module';
 import {TextModule} from '../text/text.module';
+import {TranslateModule} from '@ngx-translate/core';
+import {SpinnerModule} from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {TextModule} from '../text/text.module';
     CommonModule,
     ReactiveFormsModule,
     FormControlModule,
-    TextModule
+    TextModule,
+    TranslateModule,
+    SpinnerModule
   ],
   exports: [
     SelectInputComponent,

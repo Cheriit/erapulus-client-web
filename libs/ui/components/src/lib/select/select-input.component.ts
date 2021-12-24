@@ -17,10 +17,17 @@ const SELECT_CONTROL_VALUE_ACCESSOR: Provider = {
     <div (click)="toggleVisibility()">
       <div><input type="text" [placeholder]="placeholder" name="value" [formControl]="control"/>
       </div>
-      <div class="relative" *ngIf="visible && displayedItems.length > 0">
+      <div class="relative" *ngIf="visible">
         <div class="window">
           <div *ngFor="let item of displayedItems; trackBy: trackByFn" (click)="selectItem(item)">
             <ep-text [textType]="textType.SMALL">{{item.name}}</ep-text>
+          </div>
+          <div *ngIf="displayedItems.length === 0 && !loading" class="hover:bg-white">
+            <ep-text [textType]="textType.SMALL"
+                     class="text-gray-500">{{'common.select.no-items' | translate}}</ep-text>
+          </div>
+          <div *ngIf="loading">
+            <ep-spinner></ep-spinner>
           </div>
         </div>
       </div>
@@ -36,6 +43,7 @@ export class SelectInputComponent implements OnInit, OnDestroy, ControlValueAcce
   @Input() label?: string;
   @Input() errorPrefix = 'common.forms.error.';
   @Input() placeholder!: string;
+  public loading = true;
   public select?: string | null;
   public disabled = false;
   public items: SelectItem[] = this.staticItems ?? [];
@@ -59,7 +67,10 @@ export class SelectInputComponent implements OnInit, OnDestroy, ControlValueAcce
           ...items
         ];
         this.recalculateVisibleItems();
+        this.loading = false;
       });
+    } else {
+      this.loading = false;
     }
 
     this.subscriptionManager.subscribe(this.control.valueChanges.subscribe((value) => {
