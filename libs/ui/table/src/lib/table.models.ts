@@ -1,4 +1,5 @@
 import {FormGroup} from '@angular/forms';
+import {SelectAccessor} from '@erapulus/ui/components';
 
 export interface TableRequest {
   url: string,
@@ -38,12 +39,24 @@ export interface TableColumn {
   bold?: boolean
 }
 
+export enum FilterElementType {
+  TEXT,
+  DATE,
+  SELECT
+}
+
+export interface FilterConfiguration {
+  type: FilterElementType,
+  accessor?: SelectAccessor
+}
+
 export interface TableConfiguration {
   url: string,
   prefix: string,
   currentPage?: number,
   pageSize?: number,
   filters: FormGroup,
+  filterConfiguration: { [key: string]: FilterConfiguration },
   actions: TableAction[],
   columns: TableColumn[],
   parameters: { [key: string]: string | undefined },

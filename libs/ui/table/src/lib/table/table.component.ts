@@ -16,7 +16,8 @@ import {TableDataAccessService} from '../table.data-access.service';
 @Component({
   selector: 'ep-table',
   template: `
-    <ep-table-filters [form]="configuration.filters" [prefix]="configuration.prefix"
+    <ep-table-filters [form]="configuration.filters" [filterConfiguration]="configuration.filterConfiguration"
+                      [prefix]="configuration.prefix"
                       [actions]="configuration.actions"
                       (newEvent)="tableElementEvent.emit($event)"></ep-table-filters>
     <div class="w-full">

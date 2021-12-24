@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {debounce, interval, Observable, Subject, take} from 'rxjs';
+import {debounce, interval, Subject, take} from 'rxjs';
 import {TableAction, TableActionEvent, TableConfiguration} from '@erapulus/ui/table';
 import {UserListParameters, UserTableService} from '../user-table.service';
 import {AuthFacade, UserRole} from '@erapulus/utils/auth';
 import {HeaderType} from '@erapulus/ui/components';
 import {Location} from '@angular/common';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
+import {ObjectUtils} from '@erapulus/utils/helpers';
 
 @Component({
   selector: 'ep-university-admin-user-list',
@@ -28,12 +29,11 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 })
 export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   public reload$: Subject<void> = new Subject();
-  public tableConfiguration$: Subject<TableConfiguration> = this.userTableService.getListConfigurationObservable(this.getBaseParameters());
   public headerType = HeaderType;
-  public userRole: Observable<UserRole | undefined> = this.authFacade.role$;
   public _tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;
   @Input() universityId!: number | null;
+  public tableConfiguration$: Subject<TableConfiguration> = this.userTableService.getListConfigurationObservable(this.getBaseParameters(), ObjectUtils.isEmpty(this.universityId));
 
   constructor (
     private readonly activatedRoute: ActivatedRoute,
@@ -83,7 +83,7 @@ export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   }
 
   private reloadList (): void {
-    this._tableConfiguration = this.userTableService.getListConfiguration(this.getBaseParameters());
+    this._tableConfiguration = this.userTableService.getListConfiguration(this.getBaseParameters(), ObjectUtils.isEmpty(this.universityId));
     this.tableConfiguration$.next(this._tableConfiguration);
     this.reload$.next();
     this.changeDetectorRef.markForCheck();

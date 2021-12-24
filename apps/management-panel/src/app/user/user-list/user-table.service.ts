@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TableAction, TableActionEvent, TableConfiguration} from '@erapulus/ui/table';
+import {FilterElementType, TableAction, TableActionEvent, TableConfiguration} from '@erapulus/ui/table';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserRole} from '@erapulus/utils/auth';
 import {ObjectUtils} from '@erapulus/utils/helpers';
@@ -7,7 +7,7 @@ import {BehaviorSubject, of, Subject, switchMap, take} from 'rxjs';
 import {MessageAction, MessageService, MessageType} from '@erapulus/ui/message';
 import {Router} from '@angular/router';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
-import {UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {UniversityDataAccessService, UserDataAccessService} from '@erapulus/data-access/erapulus';
 
 export interface UserListParameters {
   type: UserRole,
@@ -28,18 +28,29 @@ export class UserTableService {
     private readonly formBuilder: FormBuilder,
     private readonly messageService: MessageService,
     private readonly router: Router,
-    private readonly userDataAccessService: UserDataAccessService) {
+    private readonly userDataAccessService: UserDataAccessService,
+    private readonly universityDataAccessService: UniversityDataAccessService) {
   }
 
-  getListConfigurationObservable (parameters: UserListParameters): Subject<TableConfiguration> {
-    return new BehaviorSubject(this.getListConfiguration(parameters));
+  getListConfigurationObservable (parameters: UserListParameters, hasUniversity = false): Subject<TableConfiguration> {
+    return new BehaviorSubject(this.getListConfiguration(parameters, hasUniversity));
   }
 
-  getListConfiguration (parameters: UserListParameters): TableConfiguration {
+  getListConfiguration (parameters: UserListParameters, hasUniversity = false): TableConfiguration {
     return {
       filters: this.formBuilder.group({
-        name: this.formBuilder.control(parameters.name ?? '', [Validators.maxLength(64)])
+        name: this.formBuilder.control(parameters.name ?? '', [Validators.maxLength(64)]),
+        ...(hasUniversity ? {universityId: this.formBuilder.control(parameters.universityId ?? null)} : {})
       }),
+      filterConfiguration: {
+        name: {type: FilterElementType.TEXT},
+        ...(hasUniversity ? {
+          universityId: {
+            type: FilterElementType.SELECT,
+            accessor: this.universityDataAccessService
+          }
+        } : {})
+      },
       hasPagination: true,
       actions: parameters.actions,
       columns: [
