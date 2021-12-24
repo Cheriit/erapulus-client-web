@@ -24,16 +24,17 @@ import {FilterConfiguration, FilterElementType, TableAction, TableActionEvent} f
             ></ep-select>
           </ng-container>
         </div>
-        <div class="new-button">
-          <ep-button (click)="goToNew()"
-                     class="absolute bottom-[33px]"
-                     style="bottom: 33px" *ngIf="displayNew()">
-            {{prefix + 'new-button' | translate}}
-            <img src="/assets/icons/add.svg" icon class="pr-3" alt="Add"/>
-          </ep-button>
-        </div>
       </div>
     </form>
+    <div class="button-container">
+      <div class="new-button">
+        <ep-button (click)="goToNew()"
+                   *ngIf="displayNew()">
+          {{prefix + 'new-button' | translate}}
+          <img src="/assets/icons/add.svg" icon class="pr-3" alt="Add"/>
+        </ep-button>
+      </div>
+    </div>
   `,
   styleUrls: ['./table-filters.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
