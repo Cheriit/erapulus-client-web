@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthFacade, UserRole} from '@erapulus/utils/auth';
+import {AuthFacade} from '@erapulus/utils/auth';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
@@ -15,14 +15,13 @@ import {UniversityPermissionsService} from '../university-permissions.service';
   template: `
     <ep-container [loading]="form.pending">
       <ep-header
-        [headerType]="headerType.H3">{{'management-panel.create.university.title' | translate:({type})}}</ep-header>
+        [headerType]="headerType.H3">{{'management-panel.create.university.title' | translate}}</ep-header>
       <ep-university-create-form [form]="form"></ep-university-create-form>
     </ep-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UniversityCreateComponent implements OnInit, OnDestroy {
-  public type!: UserRole;
   public readonly headerType = HeaderType;
   public form!: FormGroup;
   private readonly user$ = this.authFacade.authUser$;

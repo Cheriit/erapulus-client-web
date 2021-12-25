@@ -18,7 +18,7 @@ export interface FacultyCreateRequestParams {
   name: string,
   address: string,
   email: string,
-  university: string
+  universityId: string
 }
 
 export interface FacultyEditRequestParams extends FacultyCreateRequestParams {
@@ -36,7 +36,7 @@ export class FacultyDataAccessService extends ErapulusDataAccessService {
   }
 
   createFaculty (request: FacultyCreateRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.university}/faculty`, request);
+    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty`, request);
   }
 
   getFaculty (request: FacultyGetRequest): Observable<ErapulusResponse<ErapulusFaculty>> {
@@ -44,7 +44,7 @@ export class FacultyDataAccessService extends ErapulusDataAccessService {
   }
 
   editFaculty (request: FacultyEditRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.university}/faculty/${request.facultyId}`, request);
+    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`, request);
   }
 
   deleteFaculty (request: FacultyDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
