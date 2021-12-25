@@ -5,6 +5,7 @@ import {NavigationRoutes} from '@erapulus/utils/navigation';
 import {UniversityEditComponent} from './university-edit/university-edit.component';
 import {UniversityShowComponent} from './university-show/university-show.component';
 import {UniversityListComponent} from './university-list/university-list.component';
+import {UniversityGuard} from './university.guard';
 
 const routes: Routes = [
   {
@@ -12,11 +13,13 @@ const routes: Routes = [
     component: UniversityCreateComponent
   },
   {
-    path: `:id/${NavigationRoutes.EDIT}`,
+    path: `:university_id/${NavigationRoutes.EDIT}`,
+    canActivate: [UniversityGuard],
     component: UniversityEditComponent
   },
   {
-    path: ':id',
+    path: ':university_id',
+    canActivate: [UniversityGuard],
     component: UniversityShowComponent
   },
   {

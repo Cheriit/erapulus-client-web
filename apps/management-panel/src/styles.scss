@@ -7,3 +7,11 @@
 .form-element {
   @apply w-full lg:w-1/2 px-4 pb-3;
 }
+
+.footer-buttons {
+  @apply flex justify-between pt-7 py-3 border-t-2 mx-[-24px] px-[24px];
+}
+
+.section-content {
+  @apply min-h-[200px];
+}

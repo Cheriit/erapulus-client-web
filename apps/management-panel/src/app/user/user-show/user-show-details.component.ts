@@ -34,7 +34,7 @@ import {take} from 'rxjs';
         </div>
       </div>
     </div>
-    <div class="buttons">
+    <div class="footer-buttons">
       <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
         {{'management-panel.create.user.cancel' | translate}}
         <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>

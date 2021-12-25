@@ -14,7 +14,6 @@ import {UniversityShowComponent} from './university-show/university-show.compone
 import {UniversityCreateFormComponent} from './university-create/university-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UniversityEditFormComponent} from './university-edit/university-edit-form.component';
-import {UniversityShowDetailsComponent} from './university-show/university-show-details.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import {UniversityShowDetailsComponent} from './university-show/university-show-
     UniversityEditComponent,
     UniversityShowComponent,
     UniversityCreateFormComponent,
-    UniversityEditFormComponent,
-    UniversityShowDetailsComponent
+    UniversityEditFormComponent
   ],
   imports: [
     CommonModule,

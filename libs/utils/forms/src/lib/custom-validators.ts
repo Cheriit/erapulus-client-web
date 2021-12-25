@@ -34,7 +34,6 @@ export class CustomValidators {
   public static url (): ValidatorFn {
     return (urlControl: AbstractControl): ValidationErrors | null => {
       const {value} = urlControl;
-      console.log(value);
       if (StringUtils.isNotEmpty(value)) {
         if (!this.URL_REGEX.test(value)) {
           return {validUrl: false};

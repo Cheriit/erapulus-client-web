@@ -15,7 +15,7 @@ import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulu
   selector: 'ep-user-edit',
   template: `
     <ep-container [loading]="loading || form.pending">
-      <div class="content">
+      <div class="section-content">
         <ep-header
           [headerType]="headerType.H3">{{'management-panel.edit.user.title' | translate:({
           userFirstName: user?.firstName ?? '',
