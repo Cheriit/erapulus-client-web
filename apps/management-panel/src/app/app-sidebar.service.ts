@@ -11,20 +11,26 @@ export class AppSidebarService extends SidebarService {
   private readonly sidebarItems: { [key: string]: SidebarItem } = {
     'users': {
       title: 'management-panel.sidebar.users',
-      path: NavigationRoutes.USER,
+      path: [
+        NavigationRoutes.ROOT,
+        NavigationRoutes.USER
+      ],
       iconPath: '/assets/icons/user.svg',
       enabled: false
     },
     'universities': {
       title: 'management-panel.sidebar.universities',
-      path: NavigationRoutes.UNIVERSITY,
+      path: [
+        NavigationRoutes.ROOT,
+        NavigationRoutes.UNIVERSITY
+      ],
       iconPath: '/assets/icons/university.svg',
       enabled: false
     },
-    'courses': {
-      title: 'management-panel.sidebar.courses',
-      path: NavigationRoutes.COURSE,
-      iconPath: 'assets/icons/course.svg',
+    'faculties': {
+      title: 'management-panel.sidebar.faculty',
+      path: [NavigationRoutes.ROOT],
+      iconPath: 'assets/icons/faculty.svg',
       enabled: false
     }
   };
@@ -34,6 +40,14 @@ export class AppSidebarService extends SidebarService {
     private readonly authFacade: AuthFacade
   ) {
     super();
+  }
+
+  public getFacultyPath (universityId: string): string[] {
+    return [
+      NavigationRoutes.UNIVERSITY,
+      universityId,
+      NavigationRoutes.FACULTY
+    ];
   }
 
   public calculatePermissions (): void {
@@ -47,7 +61,7 @@ export class AppSidebarService extends SidebarService {
           items.push(this.sidebarItems['users']);
         }
         items.push(this.sidebarItems['universities']);
-        items.push(this.sidebarItems['courses']);
+        items.push({...this.sidebarItems['faculties'], path: this.getFacultyPath(user?.universityId ?? '-1')});
       }
       this.store.dispatch(registerSidebarItems({items}));
     });

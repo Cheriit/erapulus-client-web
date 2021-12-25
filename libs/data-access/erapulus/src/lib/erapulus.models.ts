@@ -23,6 +23,14 @@ export interface ErapulusUniversity {
   logoUrl?: string,
 }
 
+export interface ErapulusFaculty {
+  id: string,
+  name: string,
+  address: string,
+  email: string,
+  university: string
+}
+
 export interface ErapulusResponse<T> {
   status: number,
   payload: T,

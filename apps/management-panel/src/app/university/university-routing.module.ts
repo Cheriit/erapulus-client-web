@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, Type} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {UniversityCreateComponent} from './university-create/university-create.component';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
@@ -6,11 +6,18 @@ import {UniversityEditComponent} from './university-edit/university-edit.compone
 import {UniversityShowComponent} from './university-show/university-show.component';
 import {UniversityListComponent} from './university-list/university-list.component';
 import {UniversityGuard} from './university.guard';
+import {FacultyModule} from '../faculty/faculty.module';
 
 const routes: Routes = [
   {
     path: `${NavigationRoutes.CREATE}`,
     component: UniversityCreateComponent
+  },
+  {
+    path: `:university_id/${NavigationRoutes.FACULTY}`,
+    canActivate: [UniversityGuard],
+    loadChildren: (): Promise<Type<FacultyModule>> =>
+      import('../faculty/faculty.module').then((m) => m.FacultyModule)
   },
   {
     path: `:university_id/${NavigationRoutes.EDIT}`,

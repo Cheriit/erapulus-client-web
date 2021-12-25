@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {UniversityCreateFormService} from './university-create-form.service';
+import {FacultyCreateFormService} from './faculty-create-form.service';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {Router} from '@angular/router';
@@ -78,16 +78,16 @@ import {Router} from '@angular/router';
       </div>
     </form>
   `,
-  styleUrls: ['./university-create-form.component.scss'],
+  styleUrls: ['./faculty-create-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UniversityCreateFormComponent {
+export class FacultyCreateFormComponent {
   @Input() form!: FormGroup;
   public readonly buttonType = ButtonType;
 
 
   constructor (
-    public readonly formService: UniversityCreateFormService,
+    public readonly formService: FacultyCreateFormService,
     private readonly navigationService: NavigationService,
     private readonly router: Router
   ) {

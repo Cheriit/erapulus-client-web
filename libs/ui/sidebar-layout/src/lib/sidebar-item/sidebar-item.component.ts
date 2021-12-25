@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, HostListener, Input} from '@angular/core';
 import {SidebarItem} from '../+state/sidebar.models';
 import {Router} from '@angular/router';
-import {NavigationRoutes} from '@erapulus/utils/navigation';
 
 @Component({
   selector: 'ep-sidebar-item',
@@ -37,9 +36,6 @@ export class SidebarItemComponent {
 
   @HostListener('click')
   click (): void {
-    this.router.navigate([
-      NavigationRoutes.ROOT,
-      this.item.path
-    ]).then();
+    this.router.navigate(this.item.path).then();
   }
 }

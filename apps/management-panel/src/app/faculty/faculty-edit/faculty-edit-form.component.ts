@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {UniversityCreateFormService} from './university-create-form.service';
-import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
+import {FacultyEditFormService} from './faculty-edit-form.service';
+import {NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
-import {Router} from '@angular/router';
+import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
 
 @Component({
-  selector: 'ep-university-create-form',
+  selector: 'ep-university-edit-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
       <ep-form-section
@@ -68,28 +68,28 @@ import {Router} from '@angular/router';
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.university.cancel' | translate}}
+          {{'management-panel.create.user.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()">
-          {{'management-panel.create.university.create' | translate}}
-          <img src="/assets/icons/add.svg" icon class="pr-3" alt="Add"/>
+          {{'management-panel.create.user.create' | translate}}
+          <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>
     </form>
   `,
-  styleUrls: ['./university-create-form.component.scss'],
+  styleUrls: ['./faculty-edit-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UniversityCreateFormComponent {
+export class FacultyEditFormComponent {
   @Input() form!: FormGroup;
   public readonly buttonType = ButtonType;
 
 
   constructor (
-    public readonly formService: UniversityCreateFormService,
+    public readonly formService: FacultyEditFormService,
     private readonly navigationService: NavigationService,
-    private readonly router: Router
+    public readonly universityDataAccessService: UniversityDataAccessService
   ) {
   }
 
@@ -98,10 +98,7 @@ export class UniversityCreateFormComponent {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.router.navigate([
-        NavigationRoutes.ROOT,
-        NavigationRoutes.UNIVERSITY
-      ]).then();
+      this.navigationService.back();
     });
   }
 
