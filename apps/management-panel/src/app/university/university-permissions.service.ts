@@ -36,11 +36,11 @@ export class UniversityPermissionsService {
     }
   }
 
-  public static canEdit (user: AuthUser, universityId: string): boolean {
+  public static canAccess (user: AuthUser, universityId: string): boolean {
     switch (user.role) {
     case UserRole.UNIVERSITY_ADMINISTRATOR:
     case UserRole.EMPLOYEE:
-      return user.universityId === universityId;
+      return user.universityId.toString() === universityId;
     default:
       return false;
     }

@@ -14,10 +14,7 @@ import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulu
     <ep-container [loading]="!user">
       <div class="content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.user.title' | translate:({
-          userFirstName: user?.firstName ?? '',
-          userLastName: user?.lastName ?? ''
-        })}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.show.user.title' | translate}}</ep-header>
         <ep-user-show-details [user]="user" *ngIf="user"></ep-user-show-details>
       </div>
     </ep-container>

@@ -108,7 +108,6 @@ export class TableComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((result) => {
         this.loading = false;
-        console.log(result);
         if (!this.configuration.hasPagination) {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore

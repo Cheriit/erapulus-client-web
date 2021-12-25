@@ -5,19 +5,17 @@ import {take, zip} from 'rxjs';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
 import {HeaderType} from '@erapulus/ui/components';
 import {TitleService} from '@erapulus/utils/title';
-import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {ErapulusUniversity, UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {UniversityPermissionsService} from '../university-permissions.service';
 
 @Component({
-  selector: 'ep-user-show',
+  selector: 'ep-university-show',
   template: `
-    <ep-container [loading]="!user">
+    <ep-container [loading]="!university">
       <div class="content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.user.title' | translate:({
-          userFirstName: user?.firstName ?? '',
-          userLastName: user?.lastName ?? ''
-        })}}</ep-header>
-        <ep-user-show-details [user]="user" *ngIf="user"></ep-user-show-details>
+          [headerType]="headerType.H3">{{'management-panel.show.university.title' | translate}}</ep-header>
+        <ep-university-show-details [university]="university" *ngIf="university"></ep-university-show-details>
       </div>
     </ep-container>
   `,
@@ -26,33 +24,34 @@ import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulu
 })
 export class UniversityShowComponent implements OnInit {
   public readonly headerType = HeaderType;
-  public user?: ErapulusUser;
-  private readonly userRole$ = this.authFacade.role$;
+  public university?: ErapulusUniversity;
+  private readonly authUser$ = this.authFacade.authUser$;
 
   constructor (
     private readonly route: ActivatedRoute,
     private readonly authFacade: AuthFacade,
     private readonly router: Router,
     private readonly titleService: TitleService,
-    private readonly userDataAccessService: UserDataAccessService,
-    private readonly changeDetectorRef: ChangeDetectorRef) {
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly universityDataAccessService: UniversityDataAccessService) {
   }
 
   ngOnInit (): void {
     this.titleService.setTitle('management-panel.user.edit');
     const id: string = this.route.snapshot.paramMap.get('id') ?? '-1';
-    zip(this.userDataAccessService.getEmployee({id}), this.userRole$).pipe(take(1)).subscribe(([
+    zip(this.universityDataAccessService.getUniversity({id: id}), this.authUser$).pipe(take(1)).subscribe(([
       {payload},
-      userRole
+      user
     ]) => {
-      this.user = payload;
-      this.changeDetectorRef.markForCheck();
-      // if (!userRole || !UniversityPermissionsService.canSelect(userRole, this.user.type)) {
-      this.router.navigate([
-        NavigationRoutes.ROOT,
-        NavigationRoutes.USER
-      ]).then();
-      // }
+      if (!payload || !user || !UniversityPermissionsService.canAccess(user, id)) {
+        this.router.navigate([
+          NavigationRoutes.ROOT,
+          NavigationRoutes.WELCOME
+        ]).then();
+      } else {
+        this.university = payload;
+        this.changeDetectorRef.markForCheck();
+      }
     });
   }
 
