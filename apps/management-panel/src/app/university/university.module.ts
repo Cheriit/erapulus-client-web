@@ -8,13 +8,13 @@ import {TableModule} from '@erapulus/ui/table';
 import {UiComponentsModule} from '@erapulus/ui/components';
 import {TranslateModule} from '@ngx-translate/core';
 import {UniversityTableComponent} from './university-list/university-table.component';
-import {UniversityCreateComponent} from './user-create/university-create.component';
-import {UniversityEditComponent} from './user-edit/university-edit.component';
-import {UniversityShowComponent} from './user-show/university-show.component';
-import {UserCreateFormComponent} from './user-create/user-create-form.component';
+import {UniversityCreateComponent} from './university-create/university-create.component';
+import {UniversityEditComponent} from './university-edit/university-edit.component';
+import {UniversityShowComponent} from './university-show/university-show.component';
+import {UniversityCreateFormComponent} from './university-create/university-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {UserEditFormComponent} from './user-edit/user-edit-form.component';
-import {UserShowDetailsComponent} from './user-show/user-show-details.component';
+import {UserEditFormComponent} from './university-edit/user-edit-form.component';
+import {UserShowDetailsComponent} from './university-show/user-show-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import {UserShowDetailsComponent} from './user-show/user-show-details.component'
     UniversityCreateComponent,
     UniversityEditComponent,
     UniversityShowComponent,
-    UserCreateFormComponent,
+    UniversityCreateFormComponent,
     UserEditFormComponent,
     UserShowDetailsComponent
   ],

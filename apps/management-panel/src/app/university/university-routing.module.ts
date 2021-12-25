@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UniversityCreateComponent} from './user-create/university-create.component';
+import {UniversityCreateComponent} from './university-create/university-create.component';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
-import {UniversityEditComponent} from './user-edit/university-edit.component';
-import {UniversityShowComponent} from './user-show/university-show.component';
+import {UniversityEditComponent} from './university-edit/university-edit.component';
+import {UniversityShowComponent} from './university-show/university-show.component';
 import {UniversityListComponent} from './university-list/university-list.component';
 
 const routes: Routes = [
   {
-    path: `${NavigationRoutes.CREATE}/:type`,
+    path: `${NavigationRoutes.CREATE}`,
     component: UniversityCreateComponent
   },
   {

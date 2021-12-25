@@ -19,6 +19,18 @@ export interface UniversityGetListResponse {
   logoUrl: string
 }
 
+export interface UniversityCreateRequestParams {
+  name: string,
+  address: string,
+  address2?: string,
+  zipcode: string,
+  city: string,
+  country: string,
+  description?: string,
+  websiteUrl?: string
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,6 +56,10 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
 
   deleteUniversity (request: UniversityDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
     return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
+  }
+
+  createUniversity (request: UniversityCreateRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university`, request);
   }
 
 
