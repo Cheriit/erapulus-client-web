@@ -75,7 +75,7 @@ export class UniversityShowComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.user.edit');
+    this.titleService.setTitle('management-panel.university.edit');
     const id: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     this.universityDataAccessService.getUniversity({id: id}).pipe(take(1)).subscribe(({payload}) => {
       this.university = payload;

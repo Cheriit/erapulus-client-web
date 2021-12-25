@@ -1,12 +1,12 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
-import {CustomValidators, FormService} from '@erapulus/utils/forms';
+import {FormService} from '@erapulus/utils/forms';
 import {catchError, Observable, of, take, tap} from 'rxjs';
 import {
+  ErapulusFaculty,
   ErapulusResponse,
-  ErapulusUniversity,
-  UniversityDataAccessService,
-  UniversityEditRequestParams
+  FacultyDataAccessService,
+  FacultyEditRequestParams
 } from '@erapulus/data-access/erapulus';
 
 @Injectable({
@@ -14,76 +14,50 @@ import {
 })
 export class FacultyEditFormService extends FormService<ErapulusResponse<unknown>> {
   protected override form?: FormGroup;
-  private id?: string;
+  private faculty?: ErapulusFaculty;
 
-  constructor (private formBuilder: FormBuilder, private universityDataAccessService: UniversityDataAccessService) {
+  constructor (private formBuilder: FormBuilder, private facultyDataAccessService: FacultyDataAccessService) {
     super();
   }
 
-  public createForm (university: ErapulusUniversity): FormGroup {
-    this.id = university.id;
+  public createForm (faculty: ErapulusFaculty): FormGroup {
+    this.faculty = faculty;
     this.form = this.formBuilder.group({
-      name: this.formBuilder.control(university.name, [
+      name: this.formBuilder.control(faculty.name, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(128)
       ]),
-      address: this.formBuilder.control(university.address, [
+      address: this.formBuilder.control(faculty.address, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(64)
       ]),
-      address2: this.formBuilder.control(university.address2 ?? '', [
-        Validators.minLength(3),
-        Validators.maxLength(64)
-      ]),
-      zipcode: this.formBuilder.control(university.zipcode, [
+      email: this.formBuilder.control(faculty.email, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(12)
-      ]),
-      city: this.formBuilder.control(university.city, [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(64)
-      ]),
-      country: this.formBuilder.control(university.country, [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(64)
-      ]),
-      description: this.formBuilder.control(university.description ?? '', [
-        Validators.minLength(3),
-        Validators.maxLength(64)
-      ]),
-      websiteUrl: this.formBuilder.control(university.websiteUrl ?? '', [
         Validators.minLength(3),
         Validators.maxLength(64),
-        CustomValidators.url()
+        Validators.email
       ])
     });
     return this.form;
   }
 
   submitForm (): Observable<ErapulusResponse<unknown>> | null {
-    if (this.form && this.id) {
+    if (this.form && this.faculty) {
       this.form.markAllAsTouched();
       this.form.updateValueAndValidity();
       if (this.form.valid) {
         this.form?.markAsPending();
         const values = this.form.value;
-        const requestData: UniversityEditRequestParams = {
-          id: this.id,
+        const requestData: FacultyEditRequestParams = {
+          facultyId: this.faculty.id,
+          universityId: this.faculty.university,
           name: values['name'],
           address: values['address'],
-          address2: values['address2'],
-          zipcode: values['zipcode'],
-          city: values['city'],
-          country: values['country'],
-          description: values['description'],
-          websiteUrl: values['websiteUrl']
+          email: values['email']
         };
-        return this.universityDataAccessService.editUniversity(requestData).pipe(
+        return this.facultyDataAccessService.editFaculty(requestData).pipe(
           take(1),
           tap(() => {
             this.form?.enable();
