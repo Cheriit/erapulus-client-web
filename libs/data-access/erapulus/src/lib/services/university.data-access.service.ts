@@ -1,9 +1,13 @@
 import {Injectable} from '@angular/core';
 import {ErapulusDataAccessService} from './erapulus-data-access.service';
 import {SelectAccessor, SelectItem} from '@erapulus/ui/components';
-import {ErapulusResponse, ErapulusUniversity} from '@erapulus/data-access/erapulus';
+import {ErapulusResponse, ErapulusUniversity} from '../erapulus.models';
 import {map, Observable, take} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+
+export interface UniversityDeleteRequestParams {
+  id: string
+}
 
 export interface UniversityGetRequest {
   id: string
@@ -37,5 +41,10 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
   getUniversity (request: UniversityGetRequest): Observable<ErapulusResponse<ErapulusUniversity>> {
     return this.http.get<ErapulusResponse<ErapulusUniversity>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
   }
+
+  deleteUniversity (request: UniversityDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
+  }
+
 
 }

@@ -1,18 +1,18 @@
 export enum UserRole {
-  ADMINISTRATOR = 'ADMINISTRATOR',
-  UNIVERSITY_ADMINISTRATOR = 'UNIVERSITY_ADMINISTRATOR',
-  EMPLOYEE = 'EMPLOYEE',
-  STUDENT = 'STUDENT',
-  UNAUTHORIZED = ''
+    ADMINISTRATOR = 'ADMINISTRATOR',
+    UNIVERSITY_ADMINISTRATOR = 'UNIVERSITY_ADMINISTRATOR',
+    EMPLOYEE = 'EMPLOYEE',
+    STUDENT = 'STUDENT',
+    UNAUTHORIZED = ''
 }
 
 export interface SignInResponse {
-  token: string,
-  universityId: number,
-  userId: number
+    token: string,
+    universityId: string,
+    userId: string
 }
 
-export interface AuthUserData extends SignInResponse {
-  email: string,
-  role: UserRole
+export interface AuthUser extends SignInResponse {
+    email: string,
+    role: UserRole
 }

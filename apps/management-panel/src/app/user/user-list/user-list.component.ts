@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AuthFacade, AuthUserData, UserRole} from '@erapulus/utils/auth';
+import {AuthFacade, AuthUser, UserRole} from '@erapulus/utils/auth';
 import {TitleService} from '@erapulus/utils/title';
 
 @Component({
@@ -19,7 +19,7 @@ import {TitleService} from '@erapulus/utils/title';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserListComponent implements OnInit {
-  public user$: Observable<AuthUserData | undefined> = this.authFacade.authUser$;
+  public user$: Observable<AuthUser | undefined> = this.authFacade.authUser$;
   public readonly adminListPermitted = [UserRole.ADMINISTRATOR];
   public readonly universityListPermitted = [
     UserRole.ADMINISTRATOR,

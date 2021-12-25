@@ -24,7 +24,7 @@ import {TableDataAccessService} from '../table.data-access.service';
       <ep-table-header [configuration]="configuration"></ep-table-header>
       <ng-container *ngIf="content && content.length > 0; else noContent">
         <ep-table-row *ngFor="let element of content; let index = index" [configuration]="configuration"
-                      class="last:border-2 border-gray-300 odd:bg-gray-100 transition"
+                      class="border-gray-300 odd:bg-gray-100 transition"
                       [class.hover:bg-gray-200]="canSelect()"
                       [class.cursor-pointer]="canSelect()"
                       [element]="element" [rowNumber]="offset + index + 1"
@@ -108,7 +108,14 @@ export class TableComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((result) => {
         this.loading = false;
-        if (result.payload.content?.length === 0 && result.payload.currentPage !== 0) {
+        console.log(result);
+        if (!this.configuration.hasPagination) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          this.content = result.payload;
+          this.offset = 0;
+          this.changeDetectorRef.markForCheck();
+        } else if (result.payload.content?.length === 0 && result.payload.currentPage !== 0) {
           this.currentPage = 0;
           this.makeRequest();
         } else {

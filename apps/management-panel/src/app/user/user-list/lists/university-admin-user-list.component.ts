@@ -32,7 +32,7 @@ export class UniversityAdminUserListComponent implements OnInit, OnDestroy {
   public headerType = HeaderType;
   public _tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;
-  @Input() universityId!: number | null;
+  @Input() universityId!: string | null;
   public tableConfiguration$: Subject<TableConfiguration> = this.userTableService.getListConfigurationObservable(this.getBaseParameters(), ObjectUtils.isEmpty(this.universityId));
 
   constructor (

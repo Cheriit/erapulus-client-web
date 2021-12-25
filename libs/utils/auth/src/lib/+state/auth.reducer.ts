@@ -3,11 +3,11 @@ import {Action, createReducer, on} from '@ngrx/store';
 import * as AuthActions from './auth.actions';
 import {AUTH_FEATURE_KEY} from './auth.actions';
 import jwtDecode from 'jwt-decode';
-import {AuthUserData, UserRole} from './auth.models';
+import {AuthUser, UserRole} from './auth.models';
 
 
 export interface State {
-  user?: AuthUserData
+  user?: AuthUser
 }
 
 export interface AuthPartialState {

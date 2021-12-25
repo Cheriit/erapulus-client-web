@@ -32,7 +32,7 @@ export class EmployeeUserListComponent implements OnInit, OnDestroy {
   public userRole: Observable<UserRole | undefined> = this.authFacade.role$;
   public _tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;
-  @Input() universityId!: number | null;
+  @Input() universityId!: string | null;
 
   constructor (
     private readonly activatedRoute: ActivatedRoute,

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ErapulusDataAccessService} from './erapulus-data-access.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ErapulusResponse} from '../erapulus-response.model';
+import {ErapulusResponse} from '../erapulus.models';
 
 export interface LoginRequestParams {
   email: string,
@@ -10,9 +10,9 @@ export interface LoginRequestParams {
 }
 
 export interface LoginResponseParams {
-  userId: number,
+  userId: string,
   token: string,
-  universityId: number
+  universityId: string
 }
 
 @Injectable({

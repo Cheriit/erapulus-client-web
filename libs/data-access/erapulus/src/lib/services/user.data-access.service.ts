@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ErapulusDataAccessService} from './erapulus-data-access.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ErapulusResponse, ErapulusUser} from '@erapulus/data-access/erapulus';
+import {ErapulusResponse, ErapulusUser} from '../erapulus.models';
 
 export interface UserDeleteRequestParams {
   id: string

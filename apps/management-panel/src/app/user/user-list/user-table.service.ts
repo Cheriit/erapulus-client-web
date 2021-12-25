@@ -11,7 +11,7 @@ import {UniversityDataAccessService, UserDataAccessService} from '@erapulus/data
 
 export interface UserListParameters {
   type: UserRole,
-  universityId?: number,
+  universityId?: string,
   name?: string,
   page: number
   pageSize: number,

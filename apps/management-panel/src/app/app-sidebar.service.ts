@@ -17,13 +17,13 @@ export class AppSidebarService extends SidebarService {
     },
     'universities': {
       title: 'management-panel.sidebar.universities',
-      path: NavigationRoutes.UNIVERSITIES,
+      path: NavigationRoutes.UNIVERSITY,
       iconPath: '/assets/icons/university.svg',
       enabled: false
     },
     'courses': {
       title: 'management-panel.sidebar.courses',
-      path: NavigationRoutes.COURSES,
+      path: NavigationRoutes.COURSE,
       iconPath: 'assets/icons/course.svg',
       enabled: false
     }
