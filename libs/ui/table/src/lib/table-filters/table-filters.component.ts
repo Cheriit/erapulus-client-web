@@ -15,6 +15,13 @@ import {FilterConfiguration, FilterElementType, TableAction, TableActionEvent} f
               [control]="control[1]"
               [placeholder]="prefix + 'filter.' + control[0] + '.placeholder'| translate"
             ></ep-input>
+            <ep-input
+              *ngSwitchCase="filterElementTypes.DATE"
+              [label]="prefix + 'filter.' + control[0] + '.label'| translate"
+              [control]="control[1]"
+              [placeholder]="prefix + 'filter.' + control[0] + '.placeholder'| translate"
+              type="date"
+            ></ep-input>
             <ep-select
               *ngSwitchCase="filterElementTypes.SELECT"
               [placeholder]="prefix + 'filter.' + control[0] + '.placeholder'| translate"

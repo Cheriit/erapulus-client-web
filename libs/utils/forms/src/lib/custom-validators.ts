@@ -69,11 +69,31 @@ export class CustomValidators {
     };
   }
 
+  public static date (): ValidatorFn {
+    return (longitudeControl: AbstractControl): ValidationErrors | null => {
+      const {value} = longitudeControl;
+      if (StringUtils.isNotEmpty(value)) {
+        if (isNaN(Date.parse(value))) {
+          return {date: false};
+        }
+      }
+      return null;
+    };
+  }
+
   public static passwordConfirm (passwordFieldName: string): ValidatorFn {
     return (passwordControl: AbstractControl): ValidationErrors | null => {
       return !!passwordControl.parent &&
       !!passwordControl.parent.value &&
       passwordControl.value === passwordControl.parent.value[passwordFieldName] ? null : {passwordConfirm: false};
+    };
+  }
+
+  public static dateBefore (beforeFieldName: string): ValidatorFn {
+    return (afterControl: AbstractControl): ValidationErrors | null => {
+      return !!afterControl.parent &&
+      !!afterControl.parent.value &&
+      afterControl.value >= afterControl.parent.value[beforeFieldName] ? null : {dateBefore: false};
     };
   }
 

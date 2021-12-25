@@ -44,8 +44,8 @@ import {Router} from '@angular/router';
         ></ep-input>
         <ep-input
           class="form-element-full"
-          [placeholder]="'management-panel.university.country.placeholder'| translate"
-          [label]="'management-panel.university.country.label'| translate"
+          [placeholder]="'management-panel.university.country.label'| translate"
+          [label]="'management-panel.university.country.placeholder'| translate"
           [control]="formService.getControl('country')"
         ></ep-input>
       </ep-form-section>
@@ -56,15 +56,15 @@ import {Router} from '@angular/router';
           class="form-element-full"
           [label]="'management-panel.university.websiteUrl.label'| translate"
           [control]="formService.getControl('websiteUrl')"
-          [placeholder]="'management-panel.university.websiteUrl.label'| translate"
+          [placeholder]="'management-panel.university.websiteUrl.placeholder'| translate"
           type="url"
         ></ep-input>
-        <ep-input
+        <ep-editor
           class="form-element-full"
           [label]="'management-panel.university.description.label'| translate"
           [control]="formService.getControl('description')"
-          [placeholder]="'management-panel.university.description.label'| translate"
-        ></ep-input>
+          [placeholder]="'management-panel.university.description.placeholder'| translate"
+        ></ep-editor>
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">

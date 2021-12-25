@@ -40,6 +40,14 @@ export interface ErapulusBuilding {
   university: string
 }
 
+export interface ErapulusPost {
+  id: string,
+  title: string,
+  date: string,
+  content: string,
+  university: string
+}
+
 export interface ErapulusResponse<T> {
   status: number,
   payload: T,
