@@ -16,17 +16,14 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
           class="form-element-full"
           [label]="'management-panel.faculty.name.label'| translate"
           [control]="formService.getControl('name')"
-          [placeholder]="'management-panel.faculty.name.placeholder'| translate"
         ></ep-input>
         <ep-input
           class="form-element-full"
-          [placeholder]="'management-panel.faculty.address.placeholder'| translate"
           [label]="'management-panel.faculty.address.label'| translate"
           [control]="formService.getControl('address')"
         ></ep-input>
         <ep-input
           class="form-element-full"
-          [placeholder]="'management-panel.faculty.email.placeholder'| translate"
           [label]="'management-panel.faculty.email.label'| translate"
           [control]="formService.getControl('email')"
           type="email"
@@ -39,14 +36,12 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
           class="form-element-full"
           [label]="'management-panel.university.websiteUrl.label'| translate"
           [control]="formService.getControl('websiteUrl')"
-          [placeholder]="'management-panel.university.websiteUrl.label'| translate"
           type="url"
         ></ep-input>
         <ep-input
           class="form-element-full"
           [label]="'management-panel.university.description.label'| translate"
           [control]="formService.getControl('description')"
-          [placeholder]="'management-panel.university.description.label'| translate"
         ></ep-input>
       </ep-form-section>
       <div class="footer-buttons">

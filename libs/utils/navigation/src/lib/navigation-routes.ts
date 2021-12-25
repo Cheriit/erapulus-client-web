@@ -7,5 +7,7 @@ export enum NavigationRoutes {
   COURSE = 'course',
   EDIT = 'edit',
   CREATE = 'create',
-  FACULTY = 'faculty'
+  FACULTY = 'faculty',
+  BUILDING = 'building',
+  POST = 'post'
 }

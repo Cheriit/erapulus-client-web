@@ -32,6 +32,18 @@ export class AppSidebarService extends SidebarService {
       path: [NavigationRoutes.ROOT],
       iconPath: 'assets/icons/faculty.svg',
       enabled: false
+    },
+    'buildings': {
+      title: 'management-panel.sidebar.building',
+      path: [NavigationRoutes.ROOT],
+      iconPath: 'assets/icons/building.svg',
+      enabled: false
+    },
+    'posts': {
+      title: 'management-panel.sidebar.post',
+      path: [NavigationRoutes.ROOT],
+      iconPath: 'assets/icons/post.svg',
+      enabled: false
     }
   };
 
@@ -50,6 +62,22 @@ export class AppSidebarService extends SidebarService {
     ];
   }
 
+  public getBuildingPath (universityId: string): string[] {
+    return [
+      NavigationRoutes.UNIVERSITY,
+      universityId,
+      NavigationRoutes.BUILDING
+    ];
+  }
+
+  public getPostPath (universityId: string): string[] {
+    return [
+      NavigationRoutes.UNIVERSITY,
+      universityId,
+      NavigationRoutes.POST
+    ];
+  }
+
   public calculatePermissions (): void {
     this.authFacade.authUser$.subscribe((user) => {
       const items: SidebarItem[] = [];
@@ -62,6 +90,8 @@ export class AppSidebarService extends SidebarService {
         }
         items.push(this.sidebarItems['universities']);
         items.push({...this.sidebarItems['faculties'], path: this.getFacultyPath(user?.universityId ?? '-1')});
+        items.push({...this.sidebarItems['buildings'], path: this.getBuildingPath(user?.universityId ?? '-1')});
+        items.push({...this.sidebarItems['posts'], path: this.getPostPath(user?.universityId ?? '-1')});
       }
       this.store.dispatch(registerSidebarItems({items}));
     });

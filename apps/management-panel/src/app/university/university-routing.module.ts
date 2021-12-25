@@ -7,6 +7,7 @@ import {UniversityShowComponent} from './university-show/university-show.compone
 import {UniversityListComponent} from './university-list/university-list.component';
 import {UniversityGuard} from './university.guard';
 import {FacultyModule} from '../faculty/faculty.module';
+import {BuildingModule} from '../building/building.module';
 
 const routes: Routes = [
   {
@@ -18,6 +19,12 @@ const routes: Routes = [
     canActivate: [UniversityGuard],
     loadChildren: (): Promise<Type<FacultyModule>> =>
       import('../faculty/faculty.module').then((m) => m.FacultyModule)
+  },
+  {
+    path: `:university_id/${NavigationRoutes.BUILDING}`,
+    canActivate: [UniversityGuard],
+    loadChildren: (): Promise<Type<BuildingModule>> =>
+      import('../building/building.module').then((m) => m.BuildingModule)
   },
   {
     path: `:university_id/${NavigationRoutes.EDIT}`,

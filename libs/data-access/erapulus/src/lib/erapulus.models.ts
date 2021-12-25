@@ -31,6 +31,15 @@ export interface ErapulusFaculty {
   university: string
 }
 
+export interface ErapulusBuilding {
+  id: string,
+  name: string,
+  abbrev: string,
+  latitude: number,
+  longitude: number,
+  university: string
+}
+
 export interface ErapulusResponse<T> {
   status: number,
   payload: T,
