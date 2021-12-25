@@ -9,35 +9,36 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
   selector: 'ep-user-edit-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
-      <div class="flex flex-wrap">
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.firstName.label'| translate"
-            [control]="formService.getControl('firstName')"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.lastName.label'| translate"
-            [control]="formService.getControl('lastName')"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3"></div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.email.label'| translate"
-            [control]="formService.getControl('email')"
-            type="email"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.phoneNumber.label'| translate"
-            [control]="formService.getControl('phoneNumber')"
-            type="tel"
-          ></ep-input>
-        </div>
-      </div>
+      <ep-form-section
+        title="management-panel.user.edit.info.title"
+        description="management-panel.user.edit.info.description">
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.firstName.label'| translate"
+          [control]="formService.getControl('firstName')"
+        ></ep-input>
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.lastName.label'| translate"
+          [control]="formService.getControl('lastName')"
+        ></ep-input>
+      </ep-form-section>
+      <ep-form-section
+        title="management-panel.user.edit.contact.title"
+        description="management-panel.user.edit.contact.description">
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.email.label'| translate"
+          [control]="formService.getControl('email')"
+          type="email"
+        ></ep-input>
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.phoneNumber.label'| translate"
+          [control]="formService.getControl('phoneNumber')"
+          type="tel"
+        ></ep-input>
+      </ep-form-section>
       <div class="buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
           {{'management-panel.create.user.cancel' | translate}}

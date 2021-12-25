@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
 import {UserCreateFormService} from './user-create-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
-import {UserAccessService} from '../user-access.service';
+import {UserPermissionsService} from '../user-permissions.service';
 
 @Component({
   selector: 'ep-user-create',
@@ -44,7 +44,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       this.changeDetectorRef.markForCheck();
     }));
     this.userRole$.pipe(take(1)).subscribe((role) => {
-      if (!role || !UserAccessService.canAccess(role, this.type)) {
+      if (!role || !UserPermissionsService.canAccess(role, this.type)) {
         this.router.navigate([
           NavigationRoutes.ROOT,
           NavigationRoutes.USER

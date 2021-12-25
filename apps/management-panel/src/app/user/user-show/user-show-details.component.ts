@@ -9,28 +9,28 @@ import {take} from 'rxjs';
   selector: 'ep-user-show-details',
   template: `
     <div class="flex flex-wrap mt-10">
-      <div class="w-1/2 px-4">
+      <div class="w-full md:w-1/2 px-4">
         <div class="pb-3">
-          <ep-text [textType]="textType.EXTRA_LARGE">{{'management-panel.user.show.name' | translate}}</ep-text>
-          <ep-text>{{user.firstName}} {{user.lastName}}</ep-text>
+          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.name' | translate}}</ep-text>
+          <ep-text [textType]="textType.SMALL">{{user.firstName}} {{user.lastName}}</ep-text>
         </div>
         <div class="pb-3">
-          <ep-text [textType]="textType.EXTRA_LARGE">{{'management-panel.user.show.email' | translate}}</ep-text>
-          <ep-text>{{user.email}}</ep-text>
+          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.email' | translate}}</ep-text>
+          <ep-text [textType]="textType.SMALL">{{user.email}}</ep-text>
         </div>
         <div class="pb-3" *ngIf="user.phoneNumber">
-          <ep-text [textType]="textType.EXTRA_LARGE">{{'management-panel.user.show.phone' | translate}}</ep-text>
-          <ep-text>{{user.phoneNumber}}</ep-text>
+          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.phone' | translate}}</ep-text>
+          <ep-text [textType]="textType.SMALL">{{user.phoneNumber}}</ep-text>
         </div>
       </div>
-      <div class="w-1/2 px-4 ">
+      <div class="w-full md:w-1/2 px-4 ">
         <div class="pb-3">
-          <ep-text [textType]="textType.EXTRA_LARGE">{{'management-panel.user.show.type' | translate}}</ep-text>
-          <ep-text>{{'common.role.' + user.type.toLowerCase() | translate}}</ep-text>
+          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.type' | translate}}</ep-text>
+          <ep-text [textType]="textType.SMALL">{{'common.role.' + user.type.toLowerCase() | translate}}</ep-text>
         </div>
         <div class="pb-3" *ngIf="universityName">
-          <ep-text [textType]="textType.EXTRA_LARGE">{{'management-panel.user.show.type' | translate}}</ep-text>
-          <ep-text>{{universityName}}</ep-text>
+          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.type' | translate}}</ep-text>
+          <ep-text [textType]="textType.SMALL">{{universityName}}</ep-text>
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import {HeaderModule} from './header/header.module';
 import {TextModule} from './text/text.module';
 import {SpinnerModule} from './spinner/spinner.module';
 import {SelectModule} from './select/select.module';
+import {FormSectionModule} from './form-section/form-section.module';
 
 const modules = [
   ButtonModule,
@@ -20,7 +21,8 @@ const modules = [
   LogoModule,
   SpinnerModule,
   TextModule,
-  SelectModule
+  SelectModule,
+  FormSectionModule
 ];
 
 @NgModule({

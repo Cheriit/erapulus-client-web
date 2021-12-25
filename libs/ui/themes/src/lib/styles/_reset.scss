@@ -70,6 +70,10 @@ select {
   font: inherit;
 }
 
+[type] {
+  border: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;

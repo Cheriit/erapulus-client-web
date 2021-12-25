@@ -19,14 +19,14 @@ const SELECT_CONTROL_VALUE_ACCESSOR: Provider = {
       </div>
       <div class="relative" *ngIf="visible">
         <div class="window">
-          <div *ngFor="let item of displayedItems; trackBy: trackByFn" (click)="selectItem(item)">
+          <div *ngFor="let item of displayedItems; trackBy: trackByFn" (click)="selectItem(item)" class="item">
             <ep-text [textType]="textType.SMALL">{{item.name}}</ep-text>
           </div>
           <div *ngIf="displayedItems.length === 0 && !loading" class="hover:bg-white">
             <ep-text [textType]="textType.SMALL"
                      class="text-gray-500">{{'common.select.no-items' | translate}}</ep-text>
           </div>
-          <div *ngIf="loading">
+          <div *ngIf="loading" class="flex justify-center loader">
             <ep-spinner></ep-spinner>
           </div>
         </div>

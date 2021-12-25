@@ -1,3 +1,5 @@
+@import "apps/management-panel/src/styles";
+
 :host {
   .buttons {
     @apply flex justify-between pt-7 py-3 border-t-2 mx-[-24px] px-[24px];

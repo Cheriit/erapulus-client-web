@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
 import {UserEditFormService} from './user-edit-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
-import {UserAccessService} from '../user-access.service';
+import {UserPermissionsService} from '../user-permissions.service';
 import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
 
 @Component({
@@ -54,7 +54,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
       userRole
     ]) => {
       this.user = payload;
-      if (userRole && UserAccessService.canAccess(userRole, this.user.type)) {
+      if (userRole && UserPermissionsService.canAccess(userRole, this.user.type)) {
         this.form = this.userEditFormService.createForm(this.user);
         this.loading = false;
         this.subscriptionManager.subscribe(this.form.statusChanges.subscribe(() => {

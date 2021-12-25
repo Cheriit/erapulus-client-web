@@ -10,64 +10,66 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
   selector: 'ep-user-create-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
-      <div class="flex flex-wrap">
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.firstName.label'| translate"
-            [control]="formService.getControl('firstName')"
-            [placeholder]="'management-panel.user.firstName.label'| translate"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.lastName.label'| translate"
-            [control]="formService.getControl('lastName')"
-            [placeholder]="'management-panel.user.lastName.label'| translate"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3"></div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.email.label'| translate"
-            [control]="formService.getControl('email')"
-            [placeholder]="'management-panel.user.email.label'| translate"
-            type="email"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.phoneNumber.label'| translate"
-            [control]="formService.getControl('phoneNumber')"
-            [placeholder]="'management-panel.user.phoneNumber.label'| translate"
-            type="tel"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-select
-            *ngIf="form.get('university')"
-            [placeholder]="'management-panel.user.university.label'| translate"
-            [label]="'management-panel.user.university.label'| translate"
-            [control]="formService.getControl('university')"
-            [accessor]="universityDataAccessService"
-          ></ep-select>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.password.label'| translate"
-            [control]="formService.getControl('password')"
-            [placeholder]="'management-panel.user.password.label'| translate"
-            type="password"
-          ></ep-input>
-        </div>
-        <div class="w-1/2 md:w-1/3 px-4 pb-3">
-          <ep-input
-            [label]="'management-panel.user.confirmPassword.label'| translate"
-            [control]="formService.getControl('confirmPassword')"
-            [placeholder]="'management-panel.user.confirmPassword.label'| translate"
-            type="password"
-          ></ep-input>
-        </div>
-      </div>
+      <ep-form-section
+        title="management-panel.user.create.info.title"
+        description="management-panel.user.create.info.description">
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.firstName.label'| translate"
+          [control]="formService.getControl('firstName')"
+          [placeholder]="'management-panel.user.firstName.label'| translate"
+        ></ep-input>
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.lastName.label'| translate"
+          [control]="formService.getControl('lastName')"
+          [placeholder]="'management-panel.user.lastName.label'| translate"
+        ></ep-input>
+        <ep-select
+          *ngIf="form.get('university')"
+          class="form-element-full"
+          [placeholder]="'management-panel.user.university.label'| translate"
+          [label]="'management-panel.user.university.label'| translate"
+          [control]="formService.getControl('university')"
+          [accessor]="universityDataAccessService"
+        ></ep-select>
+      </ep-form-section>
+      <ep-form-section
+        title="management-panel.user.create.contact.title"
+        description="management-panel.user.create.contact.description">
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.email.label'| translate"
+          [control]="formService.getControl('email')"
+          [placeholder]="'management-panel.user.email.label'| translate"
+          type="email"
+        ></ep-input>
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.phoneNumber.label'| translate"
+          [control]="formService.getControl('phoneNumber')"
+          [placeholder]="'management-panel.user.phoneNumber.label'| translate"
+          type="tel"
+        ></ep-input>
+      </ep-form-section>
+      <ep-form-section
+        title="management-panel.user.create.password.title"
+        description="management-panel.user.create.password.description">
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.password.label'| translate"
+          [control]="formService.getControl('password')"
+          [placeholder]="'management-panel.user.password.label'| translate"
+          type="password"
+        ></ep-input>
+        <ep-input
+          class="form-element"
+          [label]="'management-panel.user.confirmPassword.label'| translate"
+          [control]="formService.getControl('confirmPassword')"
+          [placeholder]="'management-panel.user.confirmPassword.label'| translate"
+          type="password"
+        ></ep-input>
+      </ep-form-section>
       <div class="buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
           {{'management-panel.create.user.cancel' | translate}}

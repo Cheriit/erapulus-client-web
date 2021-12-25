@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import "libs/ui/themes/src/lib/styles/index";
+
+.form-element, .form-element-full {
+  @apply w-full px-4 pb-3;
+}
+
+.form-element {
+  @apply w-full lg:w-1/2 px-4 pb-3;
+}

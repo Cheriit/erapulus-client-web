@@ -5,7 +5,7 @@ import {take, zip} from 'rxjs';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
 import {HeaderType} from '@erapulus/ui/components';
 import {TitleService} from '@erapulus/utils/title';
-import {UserAccessService} from '../user-access.service';
+import {UserPermissionsService} from '../user-permissions.service';
 import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
 
 @Component({
@@ -48,7 +48,7 @@ export class UserShowComponent implements OnInit {
     ]) => {
       this.user = payload;
       this.changeDetectorRef.markForCheck();
-      if (!userRole || !UserAccessService.canAccess(userRole, this.user.type)) {
+      if (!userRole || !UserPermissionsService.canAccess(userRole, this.user.type)) {
         this.router.navigate([
           NavigationRoutes.ROOT,
           NavigationRoutes.USER

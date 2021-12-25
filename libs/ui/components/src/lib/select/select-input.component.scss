@@ -14,10 +14,18 @@
 
   .window {
     @apply absolute top-0 left-0 w-full z-50 bg-white border border-gray-300 rounded-b-lg overflow-auto ;
-    max-height: 100px;
+    max-height: 150px;
+
+    .item {
+      @apply hover:bg-gray-200 transition cursor-pointer;
+    }
+
+    .loader {
+      height: 80px;
+    }
 
     div {
-      @apply mt-2 py-2 px-3 cursor-pointer transition hover:bg-gray-200;
+      @apply mt-2 py-2 px-3;
     }
   }
 }

@@ -4,7 +4,7 @@ import {UserRole} from '@erapulus/utils/auth';
 @Injectable({
   providedIn: 'root'
 })
-export class UserAccessService {
+export class UserPermissionsService {
   public static readonly ADMINISTRATOR_ACCESS: UserRole[] = [
     UserRole.ADMINISTRATOR,
     UserRole.UNIVERSITY_ADMINISTRATOR,
@@ -18,9 +18,9 @@ export class UserAccessService {
   public static canAccess (userRole: UserRole, targetRole: UserRole): boolean {
     switch (userRole) {
     case UserRole.ADMINISTRATOR:
-      return UserAccessService.ADMINISTRATOR_ACCESS.includes(targetRole);
+      return UserPermissionsService.ADMINISTRATOR_ACCESS.includes(targetRole);
     case UserRole.UNIVERSITY_ADMINISTRATOR:
-      return UserAccessService.UNIVERSITY_ADMINISTRATOR_ACCESS.includes(targetRole);
+      return UserPermissionsService.UNIVERSITY_ADMINISTRATOR_ACCESS.includes(targetRole);
     default:
       return false;
 
