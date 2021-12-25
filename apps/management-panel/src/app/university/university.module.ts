@@ -13,7 +13,7 @@ import {UniversityEditComponent} from './university-edit/university-edit.compone
 import {UniversityShowComponent} from './university-show/university-show.component';
 import {UniversityCreateFormComponent} from './university-create/university-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {UserEditFormComponent} from './university-edit/user-edit-form.component';
+import {UniversityEditFormComponent} from './university-edit/university-edit-form.component';
 import {UniversityShowDetailsComponent} from './university-show/university-show-details.component';
 
 @NgModule({
@@ -24,7 +24,7 @@ import {UniversityShowDetailsComponent} from './university-show/university-show-
     UniversityEditComponent,
     UniversityShowComponent,
     UniversityCreateFormComponent,
-    UserEditFormComponent,
+    UniversityEditFormComponent,
     UniversityShowDetailsComponent
   ],
   imports: [

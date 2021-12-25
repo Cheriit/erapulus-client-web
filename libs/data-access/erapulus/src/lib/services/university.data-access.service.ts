@@ -30,6 +30,10 @@ export interface UniversityCreateRequestParams {
   websiteUrl?: string
 }
 
+export interface UniversityEditRequestParams extends UniversityCreateRequestParams {
+  id: string,
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -50,16 +54,20 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
     );
   }
 
+  createUniversity (request: UniversityCreateRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university`, request);
+  }
+
   getUniversity (request: UniversityGetRequest): Observable<ErapulusResponse<ErapulusUniversity>> {
     return this.http.get<ErapulusResponse<ErapulusUniversity>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
   }
 
-  deleteUniversity (request: UniversityDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
+  editUniversity (request: UniversityEditRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`, request);
   }
 
-  createUniversity (request: UniversityCreateRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university`, request);
+  deleteUniversity (request: UniversityDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
   }
 
 

@@ -5,22 +5,20 @@ import {take, zip} from 'rxjs';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
 import {HeaderType} from '@erapulus/ui/components';
 import {FormGroup} from '@angular/forms';
-import {UserEditFormService} from './user-edit-form.service';
+import {UniversityEditFormService} from './university-edit-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
-import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {ErapulusUniversity, UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {UniversityPermissionsService} from '../university-permissions.service';
 
 @Component({
-  selector: 'ep-user-edit',
+  selector: 'ep-university-edit',
   template: `
     <ep-container [loading]="loading || form.pending">
       <div class="content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.user.title' | translate:({
-          userFirstName: user?.firstName ?? '',
-          userLastName: user?.lastName ?? ''
-        })}}</ep-header>
-        <ep-user-edit-form [form]="form" *ngIf="form"></ep-user-edit-form>
+          [headerType]="headerType.H3">{{'management-panel.edit.university.title' | translate:({university: university?.name ?? ''})}}</ep-header>
+        <ep-university-edit-form [form]="form" *ngIf="form"></ep-university-edit-form>
       </div>
     </ep-container>
   `,
@@ -30,43 +28,46 @@ import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulu
 export class UniversityEditComponent implements OnInit, OnDestroy {
   public readonly headerType = HeaderType;
   public form!: FormGroup;
-  public user!: ErapulusUser;
+  public university!: ErapulusUniversity;
   public loading = true;
-  private readonly userRole$ = this.authFacade.role$;
+  private readonly authUser$ = this.authFacade.authUser$;
 
   constructor (
     private readonly route: ActivatedRoute,
     private readonly authFacade: AuthFacade,
     private readonly router: Router,
-    private readonly userEditFormService: UserEditFormService,
+    private readonly universityEditFormService: UniversityEditFormService,
     private readonly titleService: TitleService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly subscriptionManager: SubscriptionManagerService,
-    private readonly userDataAccessService: UserDataAccessService) {
+    private readonly universityDataAccessService: UniversityDataAccessService) {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.user.edit');
+    this.titleService.setTitle('management-panel.university.edit');
     const id: string = this.route.snapshot.paramMap.get('id') ?? '-1';
-    this.subscriptionManager.subscribe(zip(this.userDataAccessService.getEmployee({id}), this.userRole$).pipe(take(1)).subscribe(([
-      {payload},
-      userRole
-    ]) => {
-      this.user = payload;
-      // if (userRole && UniversityPermissionsService.canSelect(userRole, this.user.type)) {
-      this.form = this.userEditFormService.createForm(this.user);
-      this.loading = false;
-      this.subscriptionManager.subscribe(this.form.statusChanges.subscribe(() => {
-        this.changeDetectorRef.markForCheck();
-      }));
-      this.changeDetectorRef.markForCheck();
-      // } else {
-      this.router.navigate([
-        NavigationRoutes.ROOT,
-        NavigationRoutes.USER
-      ]).then();
-      // }
-    }));
+    zip(this.universityDataAccessService.getUniversity({id}), this.authUser$)
+      .pipe(take(1))
+      .subscribe(([
+        {payload},
+        user
+      ]) => {
+        this.university = payload;
+        if (user && UniversityPermissionsService.canAccess(user, id)) {
+          this.form = this.universityEditFormService.createForm(this.university);
+          this.loading = false;
+          this.subscriptionManager.subscribe(this.form.statusChanges.subscribe(() => {
+            this.changeDetectorRef.markForCheck();
+          }));
+          this.changeDetectorRef.markForCheck();
+        } else {
+          this.router.navigate([
+            NavigationRoutes.ROOT,
+            NavigationRoutes.WELCOME
+          ]).then();
+        }
+      }
+      );
   }
 
   ngOnDestroy (): void {
