@@ -36,10 +36,10 @@ import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
               <ep-text [textType]="textType.SMALL">{{university.country}}</ep-text>
             </div>
           </div>
-          <div class="w-full md:w-1/2 px-4" *ngIf="university.description">
+          <div class="w-full md:w-1/2 px-4 pb-5" *ngIf="university.description">
             <ep-text
               [textType]="textType.LARGE">{{'management-panel.university.show.description' | translate}}</ep-text>
-            <ep-text [textType]="textType.SMALL">{{university.description}}</ep-text>
+            <markdown [data]="university.description"></markdown>
           </div>
         </div>
         <div class="footer-buttons">

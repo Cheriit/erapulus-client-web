@@ -51,7 +51,9 @@
           "apps/management-panel/src/styles.scss",
           "libs/ui/themes/src/lib/styles/index.scss"
         ],
-        "scripts": []
+        "scripts": [
+          "node_modules/marked/lib/marked.js"
+        ]
       },
       "configurations": {
         "production": {

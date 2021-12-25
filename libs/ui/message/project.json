@@ -6,9 +6,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/ui/message"
-      ],
+      "outputs": ["coverage/libs/ui/message"],
       "options": {
         "jestConfig": "libs/ui/message/jest.config.js",
         "passWithNoTests": true
@@ -24,10 +22,6 @@
       }
     }
   },
-  "tags": [
-    "type:ui"
-  ],
-  "implicitDependencies": [
-    "ui-themes"
-  ]
+  "tags": ["type:ui"],
+  "implicitDependencies": ["ui-themes"]
 }

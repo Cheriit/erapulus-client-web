@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  @apply border-0 p-0;
+  .input {
+    @apply mt-1 rounded-md shadow-sm border border-gray-200 flex min-h-[300px];
+    &.error {
+      @apply border-red-400 border;
+    }
+  }
+
+  textarea {
+    @apply ring-0 border-0 block w-full md:w-1/2 p-4 border-gray-300 rounded-md;
+  }
+
+  markdown {
+    @apply w-full md:w-1/2 md:border-l-2 border-gray-300 p-2;
+  }
+}

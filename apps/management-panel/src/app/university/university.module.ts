@@ -13,6 +13,7 @@ import {UniversityShowComponent} from './university-show/university-show.compone
 import {UniversityCreateFormComponent} from './university-create/university-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UniversityEditFormComponent} from './university-edit/university-edit-form.component';
+import {MarkdownModule} from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {UniversityEditFormComponent} from './university-edit/university-edit-for
     TableModule,
     UiComponentsModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MarkdownModule
   ]
 })
 export class UniversityModule {

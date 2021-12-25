@@ -10,6 +10,7 @@ import {TextModule} from './text/text.module';
 import {SpinnerModule} from './spinner/spinner.module';
 import {SelectModule} from './select/select.module';
 import {FormSectionModule} from './form-section/form-section.module';
+import {EditorModule} from './editor/editor.module';
 
 const modules = [
   ButtonModule,
@@ -22,7 +23,8 @@ const modules = [
   SpinnerModule,
   TextModule,
   SelectModule,
-  FormSectionModule
+  FormSectionModule,
+  EditorModule
 ];
 
 @NgModule({

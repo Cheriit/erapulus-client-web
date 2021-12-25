@@ -53,12 +53,12 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
           [placeholder]="'management-panel.university.websiteUrl.label'| translate"
           type="url"
         ></ep-input>
-        <ep-input
+        <ep-editor
           class="form-element-full"
           [label]="'management-panel.university.description.label'| translate"
           [control]="formService.getControl('description')"
           [placeholder]="'management-panel.university.description.label'| translate"
-        ></ep-input>
+        ></ep-editor>
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
