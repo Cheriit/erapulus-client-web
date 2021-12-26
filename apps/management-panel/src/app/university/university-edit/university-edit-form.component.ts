@@ -4,6 +4,7 @@ import {UniversityEditFormService} from './university-edit-form.service';
 import {NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-university-edit-form',
@@ -14,32 +15,38 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
         description="management-panel.university.create.contact.description">
         <ep-input
           class="form-element-full"
-          [label]="'management-panel.university.name.placeholder'| translate"
+          [label]="'management-panel.university.name.label'| translate"
+          [placeholder]="'management-panel.university.name.placeholder'| translate"
           [control]="formService.getControl('name')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.university.address.label'| translate"
+          [placeholder]="'management-panel.university.address.placeholder'| translate"
           [control]="formService.getControl('address')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.university.address2.label'| translate"
+          [placeholder]="'management-panel.university.address2.placeholder'| translate"
           [control]="formService.getControl('address2')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.university.zipcode.label'| translate"
+          [placeholder]="'management-panel.university.zipcode.placeholder'| translate"
           [control]="formService.getControl('zipcode')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.university.city.label'| translate"
+          [placeholder]="'management-panel.university.city.placeholder'| translate"
           [control]="formService.getControl('city')"
         ></ep-input>
         <ep-input
           class="form-element-full"
           [label]="'management-panel.university.country.label'| translate"
+          [placeholder]="'management-panel.university.country.placeholder'| translate"
           [control]="formService.getControl('country')"
         ></ep-input>
       </ep-form-section>
@@ -49,24 +56,24 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
         <ep-input
           class="form-element-full"
           [label]="'management-panel.university.websiteUrl.label'| translate"
-          [control]="formService.getControl('websiteUrl')"
           [placeholder]="'management-panel.university.websiteUrl.label'| translate"
+          [control]="formService.getControl('websiteUrl')"
           type="url"
         ></ep-input>
         <ep-editor
           class="form-element-full"
           [label]="'management-panel.university.description.label'| translate"
-          [control]="formService.getControl('description')"
           [placeholder]="'management-panel.university.description.label'| translate"
+          [control]="formService.getControl('description')"
         ></ep-editor>
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.user.cancel' | translate}}
+          {{'management-panel.create.university.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()">
-          {{'management-panel.create.user.create' | translate}}
+          {{'management-panel.create.university.create' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>
@@ -88,11 +95,13 @@ export class UniversityEditFormComponent {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe(() => {
+    this.formService.submitForm()?.subscribe((response) => {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.navigationService.back();
+      if (response.status === HttpStatusCode.Ok) {
+        this.navigationService.back();
+      }
     });
   }
 

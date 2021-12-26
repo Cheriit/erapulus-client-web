@@ -1,8 +1,9 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {CustomValidators, FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
+import {Observable} from 'rxjs';
 import {
+  ErapulusHelpers,
   ErapulusResponse,
   ErapulusUniversity,
   UniversityDataAccessService,
@@ -83,19 +84,7 @@ export class UniversityEditFormService extends FormService<ErapulusResponse<unkn
           description: values['description'],
           websiteUrl: values['websiteUrl']
         };
-        return this.universityDataAccessService.editUniversity(requestData).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<unknown>);
-          })
-        );
-
+        return ErapulusHelpers.handleRequest(this.universityDataAccessService.editUniversity(requestData), this.form);
       }
     }
     return null;

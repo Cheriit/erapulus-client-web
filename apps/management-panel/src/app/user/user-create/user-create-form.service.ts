@@ -2,8 +2,13 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {Injectable} from '@angular/core';
 import {UserRole} from '@erapulus/utils/auth';
 import {CustomValidators, FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
-import {EmployeeCreateRequestParams, ErapulusResponse, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {Observable} from 'rxjs';
+import {
+  EmployeeCreateRequestParams,
+  ErapulusHelpers,
+  ErapulusResponse,
+  UserDataAccessService
+} from '@erapulus/data-access/erapulus';
 
 @Injectable({
   providedIn: 'root'
@@ -62,18 +67,7 @@ export class UserCreateFormService extends FormService<ErapulusResponse<unknown>
           request = null;
         }
         if (request !== null) {
-          return request.pipe(
-            take(1),
-            tap(() => {
-              this.form?.enable();
-              this.form?.markAsTouched();
-            }),
-            catchError((error) => {
-              this.form?.enable();
-              this.form?.markAsTouched();
-              return of(error as ErapulusResponse<unknown>);
-            })
-          );
+          return ErapulusHelpers.handleRequest(request, this.form);
         }
       }
     }

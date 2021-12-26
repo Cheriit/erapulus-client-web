@@ -10,6 +10,11 @@
 
 .footer-buttons {
   @apply flex justify-between pt-7 py-3 border-t-2 mx-[-24px] px-[24px];
+  ep-button {
+    @apply mx-3;
+  }
+
+  width: calc(100% + 48px);
 }
 
 .section-content {

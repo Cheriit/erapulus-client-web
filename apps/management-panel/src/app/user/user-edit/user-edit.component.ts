@@ -2,14 +2,15 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {AuthFacade} from '@erapulus/utils/auth';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take, zip} from 'rxjs';
-import {NavigationRoutes} from '@erapulus/utils/navigation';
+import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {HeaderType} from '@erapulus/ui/components';
 import {FormGroup} from '@angular/forms';
 import {UserEditFormService} from './user-edit-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 import {UserPermissionsService} from '../user-permissions.service';
-import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {ErapulusHelpers, ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-user-edit',
@@ -17,10 +18,7 @@ import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulu
     <ep-container [loading]="loading || form.pending">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.user.title' | translate:({
-          userFirstName: user?.firstName ?? '',
-          userLastName: user?.lastName ?? ''
-        })}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.edit.user.title' | translate}}</ep-header>
         <ep-user-edit-form [form]="form" *ngIf="form"></ep-user-edit-form>
       </div>
     </ep-container>
@@ -43,17 +41,21 @@ export class UserEditComponent implements OnInit, OnDestroy {
     private readonly titleService: TitleService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly subscriptionManager: SubscriptionManagerService,
-    private readonly userDataAccessService: UserDataAccessService) {
+    private readonly userDataAccessService: UserDataAccessService,
+    private readonly navigationService: NavigationService) {
   }
 
   ngOnInit (): void {
     this.titleService.setTitle('management-panel.user.edit');
     const id: string = this.route.snapshot.paramMap.get('id') ?? '-1';
-    this.subscriptionManager.subscribe(zip(this.userDataAccessService.getEmployee({id}), this.userRole$).pipe(take(1)).subscribe(([
-      {payload},
+    this.subscriptionManager.subscribe(zip(ErapulusHelpers.handleRequest(this.userDataAccessService.getEmployee({id})), this.userRole$).pipe(take(1)).subscribe(([
+      response,
       userRole
     ]) => {
-      this.user = payload;
+      if (response.status !== HttpStatusCode.Ok) {
+        return this.navigationService.back();
+      }
+      this.user = response.payload as ErapulusUser;
       if (userRole && UserPermissionsService.canAccess(userRole, this.user.type)) {
         this.form = this.userEditFormService.createForm(this.user);
         this.loading = false;

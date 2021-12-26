@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {take} from 'rxjs';
 import {ButtonType, HeaderType, TextType} from '@erapulus/ui/components';
 import {TitleService} from '@erapulus/utils/title';
-import {ErapulusUniversity, UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {ErapulusHelpers, ErapulusUniversity, UniversityDataAccessService} from '@erapulus/data-access/erapulus';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-university-show',
@@ -77,10 +77,14 @@ export class UniversityShowComponent implements OnInit {
   ngOnInit (): void {
     this.titleService.setTitle('management-panel.university.edit');
     const id: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
-    this.universityDataAccessService.getUniversity({id: id}).pipe(take(1)).subscribe(({payload}) => {
-      this.university = payload;
-      this.changeDetectorRef.markForCheck();
-    });
+    ErapulusHelpers.handleRequest(this.universityDataAccessService.getUniversity({id: id}))
+      .subscribe((response) => {
+        if (response.status !== HttpStatusCode.Ok) {
+          return this.navigationService.back();
+        }
+        this.university = response.payload as ErapulusUniversity;
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   public edit (): void {

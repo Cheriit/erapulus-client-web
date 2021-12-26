@@ -1,8 +1,13 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
-import {ErapulusResponse, FacultyCreateRequestParams, FacultyDataAccessService} from '@erapulus/data-access/erapulus';
+import {Observable, of} from 'rxjs';
+import {
+  ErapulusHelpers,
+  ErapulusResponse,
+  FacultyCreateRequestParams,
+  FacultyDataAccessService
+} from '@erapulus/data-access/erapulus';
 
 @Injectable({
   providedIn: 'root'
@@ -52,18 +57,7 @@ export class FacultyCreateFormService extends FormService<ErapulusResponse<unkno
           email: values['email'],
           universityId: this.universityId
         };
-        return this.facultyDataAccessService.createFaculty(requestData).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<unknown>);
-          })
-        );
+        return ErapulusHelpers.handleRequest(this.facultyDataAccessService.createFaculty(requestData), this.form);
       }
     }
     return of();

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ErapulusDataAccessService} from './erapulus-data-access.service';
+import {ErapulusDataAccessService} from './erapulus.data-access.service';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, take} from 'rxjs';
 import {ErapulusResponse} from '../erapulus.models';
 
 export interface LoginRequestParams {
@@ -25,7 +25,7 @@ export class LoginDataAccessService extends ErapulusDataAccessService {
   }
 
   loginRequest (request: LoginRequestParams): Observable<ErapulusResponse<LoginResponseParams>> {
-    return this.http.post<ErapulusResponse<LoginResponseParams>>(`${ErapulusDataAccessService.API_URL}/user/login/employee`, request);
+    return this.http.post<ErapulusResponse<LoginResponseParams>>(`${ErapulusDataAccessService.API_URL}/user/login/employee`, request).pipe(take(1));
   }
 
 }

@@ -4,7 +4,7 @@ import {mergeMap, Observable, take} from 'rxjs';
 import {LocalStorageService} from '@erapulus/utils/local-storage';
 import {StringUtils} from '@erapulus/utils/helpers';
 import {AuthFacade} from '@erapulus/utils/auth';
-import {ErapulusDataAccessService} from './services/erapulus-data-access.service';
+import {ErapulusDataAccessService} from './services/erapulus.data-access.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {

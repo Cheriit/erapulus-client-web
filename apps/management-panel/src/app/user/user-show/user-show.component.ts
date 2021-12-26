@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuthFacade} from '@erapulus/utils/auth';
 import {ActivatedRoute, Router} from '@angular/router';
-import {take, zip} from 'rxjs';
-import {NavigationRoutes} from '@erapulus/utils/navigation';
+import {zip} from 'rxjs';
+import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {HeaderType} from '@erapulus/ui/components';
 import {TitleService} from '@erapulus/utils/title';
 import {UserPermissionsService} from '../user-permissions.service';
-import {ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {ErapulusHelpers, ErapulusUser, UserDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-user-show',
@@ -33,17 +34,21 @@ export class UserShowComponent implements OnInit {
     private readonly router: Router,
     private readonly titleService: TitleService,
     private readonly userDataAccessService: UserDataAccessService,
-    private readonly changeDetectorRef: ChangeDetectorRef) {
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly navigationService: NavigationService) {
   }
 
   ngOnInit (): void {
     this.titleService.setTitle('management-panel.user.edit');
     const id: string = this.route.snapshot.paramMap.get('id') ?? '-1';
-    zip(this.userDataAccessService.getEmployee({id}), this.userRole$).pipe(take(1)).subscribe(([
-      {payload},
+    zip(ErapulusHelpers.handleRequest(this.userDataAccessService.getEmployee({id})), this.userRole$).subscribe(([
+      response,
       userRole
     ]) => {
-      this.user = payload;
+      if (response.status !== HttpStatusCode.Ok) {
+        return this.navigationService.back();
+      }
+      this.user = response.payload as ErapulusUser;
       this.changeDetectorRef.markForCheck();
       if (!userRole || !UserPermissionsService.canAccess(userRole, this.user.type)) {
         this.router.navigate([

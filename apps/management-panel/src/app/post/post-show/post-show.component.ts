@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {take} from 'rxjs';
 import {ButtonType, HeaderType, TextType} from '@erapulus/ui/components';
 import {TitleService} from '@erapulus/utils/title';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
-import {ErapulusPost, PostDataAccessService} from '@erapulus/data-access/erapulus';
+import {ErapulusHelpers, ErapulusPost, PostDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-university-show',
@@ -61,8 +61,11 @@ export class PostShowComponent implements OnInit {
     this.titleService.setTitle('management-panel.post.edit');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     const postId: string = this.route.snapshot.paramMap.get('post_id') ?? '-1';
-    this.postDataAccessService.getPost({postId, universityId}).pipe(take(1)).subscribe(({payload}) => {
-      this.post = payload;
+    ErapulusHelpers.handleRequest(this.postDataAccessService.getPost({postId, universityId})).subscribe((response) => {
+      if (response.status !== HttpStatusCode.Ok) {
+        return this.navigationService.back();
+      }
+      this.post = response.payload as ErapulusPost;
       this.changeDetectorRef.markForCheck();
     });
   }

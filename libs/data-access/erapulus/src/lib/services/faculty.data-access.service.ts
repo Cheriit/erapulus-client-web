@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ErapulusDataAccessService} from './erapulus-data-access.service';
+import {ErapulusDataAccessService} from './erapulus.data-access.service';
 import {ErapulusFaculty, ErapulusResponse} from '../erapulus.models';
-import {Observable} from 'rxjs';
+import {Observable, take} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 export interface FacultyDeleteRequestParams {
@@ -36,19 +36,19 @@ export class FacultyDataAccessService extends ErapulusDataAccessService {
   }
 
   createFaculty (request: FacultyCreateRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty`, request);
+    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty`, request).pipe(take(1));
   }
 
   getFaculty (request: FacultyGetRequest): Observable<ErapulusResponse<ErapulusFaculty>> {
-    return this.http.get<ErapulusResponse<ErapulusFaculty>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`);
+    return this.http.get<ErapulusResponse<ErapulusFaculty>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`).pipe(take(1));
   }
 
   editFaculty (request: FacultyEditRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`, request);
+    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`, request).pipe(take(1));
   }
 
   deleteFaculty (request: FacultyDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`);
+    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/faculty/${request.facultyId}`).pipe(take(1));
   }
 
 

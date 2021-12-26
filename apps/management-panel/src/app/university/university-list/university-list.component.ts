@@ -32,7 +32,7 @@ export class UniversityListComponent implements OnInit {
           NavigationRoutes.ROOT,
           NavigationRoutes.UNIVERSITY,
           user?.universityId
-        ]);
+        ]).then();
       }
     });
     this.titleService.setTitle('management-panel.title.university-list');

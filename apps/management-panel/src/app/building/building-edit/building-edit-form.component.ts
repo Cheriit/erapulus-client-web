@@ -4,6 +4,7 @@ import {BuildingEditFormService} from './building-edit-form.service';
 import {NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-university-edit-form',
@@ -15,22 +16,26 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
         <ep-input
           class="form-element"
           [label]="'management-panel.building.name.label'| translate"
+          [placeholder]="'management-panel.building.name.placeholder'| translate"
           [control]="formService.getControl('name')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.building.abbrev.label'| translate"
+          [placeholder]="'management-panel.building.abbrev.placeholder'| translate"
           [control]="formService.getControl('abbrev')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.building.latitude.label'| translate"
+          [placeholder]="'management-panel.building.latitude.placeholder'| translate"
           [control]="formService.getControl('latitude')"
           type="number"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.building.longitude.label'| translate"
+          [placeholder]="'management-panel.building.longitude.placeholder'| translate"
           [control]="formService.getControl('longitude')"
           type="number"
         ></ep-input>
@@ -63,11 +68,13 @@ export class BuildingEditFormComponent {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe(() => {
+    this.formService.submitForm()?.subscribe((response) => {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.navigationService.back();
+      if (response.status === HttpStatusCode.Ok) {
+        this.navigationService.back();
+      }
     });
   }
 

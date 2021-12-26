@@ -4,6 +4,7 @@ import {FacultyCreateFormService} from './faculty-create-form.service';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {Router} from '@angular/router';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-faculty-create-form',
@@ -15,19 +16,19 @@ import {Router} from '@angular/router';
         <ep-input
           class="form-element-full"
           [label]="'management-panel.faculty.name.label'| translate"
-          [control]="formService.getControl('name')"
           [placeholder]="'management-panel.faculty.name.placeholder'| translate"
+          [control]="formService.getControl('name')"
         ></ep-input>
         <ep-input
           class="form-element-full"
-          [placeholder]="'management-panel.faculty.address.placeholder'| translate"
           [label]="'management-panel.faculty.address.label'| translate"
+          [placeholder]="'management-panel.faculty.address.placeholder'| translate"
           [control]="formService.getControl('address')"
         ></ep-input>
         <ep-input
           class="form-element-full"
-          [placeholder]="'management-panel.faculty.email.placeholder'| translate"
           [label]="'management-panel.faculty.email.label'| translate"
+          [placeholder]="'management-panel.faculty.email.placeholder'| translate"
           [control]="formService.getControl('email')"
           type="email"
         ></ep-input>
@@ -61,16 +62,18 @@ export class FacultyCreateFormComponent {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe(() => {
+    this.formService.submitForm()?.subscribe((response) => {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.router.navigate([
-        NavigationRoutes.ROOT,
-        NavigationRoutes.UNIVERSITY,
-        this.universityId,
-        NavigationRoutes.FACULTY
-      ]).then();
+      if (response.status === HttpStatusCode.Created) {
+        this.router.navigate([
+          NavigationRoutes.ROOT,
+          NavigationRoutes.UNIVERSITY,
+          this.universityId,
+          NavigationRoutes.FACULTY
+        ]).then();
+      }
     });
   }
 

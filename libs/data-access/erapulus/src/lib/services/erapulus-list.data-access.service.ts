@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ErapulusDataAccessService} from './erapulus-data-access.service';
+import {ErapulusDataAccessService} from './erapulus.data-access.service';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, take} from 'rxjs';
 import {ErapulusResponse, ErapulusUser} from '../erapulus.models';
 import {TableDataAccessService, TableRequest} from '@erapulus/ui/table';
 
@@ -24,7 +24,7 @@ export class ErapulusListDataAccessService extends TableDataAccessService {
     return this.http.get<ErapulusResponse<Res>>(`${ErapulusDataAccessService.API_URL}/${request.url}`, {
       withCredentials: true,
       params: {...request.parameters, page: request.page, pageSize: request.pageSize}
-    });
+    }).pipe(take(1));
   }
 
 }

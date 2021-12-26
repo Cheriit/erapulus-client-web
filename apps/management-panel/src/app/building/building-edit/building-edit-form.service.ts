@@ -1,11 +1,12 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {CustomValidators, FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
+import {Observable} from 'rxjs';
 import {
   BuildingDataAccessService,
   BuildingEditRequestParams,
   ErapulusBuilding,
+  ErapulusHelpers,
   ErapulusResponse
 } from '@erapulus/data-access/erapulus';
 
@@ -60,19 +61,7 @@ export class BuildingEditFormService extends FormService<ErapulusResponse<unknow
           latitude: values['latitude'],
           longitude: values['longitude']
         };
-        return this.buildingDataAccessService.editBuilding(requestData).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<unknown>);
-          })
-        );
-
+        return ErapulusHelpers.handleRequest(this.buildingDataAccessService.editBuilding(requestData), this.form);
       }
     }
     return null;

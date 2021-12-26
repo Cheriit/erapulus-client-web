@@ -2,8 +2,13 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} fr
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType, HeaderType, TextType} from '@erapulus/ui/components';
 import {Router} from '@angular/router';
-import {ErapulusUser, UniversityDataAccessService} from '@erapulus/data-access/erapulus';
-import {take} from 'rxjs';
+import {
+  ErapulusHelpers,
+  ErapulusUniversity,
+  ErapulusUser,
+  UniversityDataAccessService
+} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-user-show-details',
@@ -79,10 +84,12 @@ export class UserShowDetailsComponent implements OnInit {
 
   ngOnInit (): void {
     if (this.user.university && this.user.university !== '0') {
-      this.universityDataAccessService.getUniversity({id: this.user.university})
-        .pipe(take(1))
+      ErapulusHelpers.handleRequest(this.universityDataAccessService.getUniversity({id: this.user.university}))
         .subscribe((universityResponse) => {
-          this.universityName = universityResponse.payload.name;
+          if (universityResponse.status !== HttpStatusCode.Ok) {
+            return this.navigationService.back();
+          }
+          this.universityName = (universityResponse.payload as ErapulusUniversity).name;
           this.changeDetectorRef.markForCheck();
         });
 

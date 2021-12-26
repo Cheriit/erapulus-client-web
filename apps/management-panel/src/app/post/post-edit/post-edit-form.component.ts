@@ -4,6 +4,7 @@ import {PostEditFormService} from './post-edit-form.service';
 import {NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-university-edit-form',
@@ -53,11 +54,12 @@ export class PostEditFormComponent {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe(() => {
+    this.formService.submitForm()?.subscribe((response) => {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.navigationService.back();
+      if (response.status === HttpStatusCode.Ok)
+        this.navigationService.back();
     });
   }
 

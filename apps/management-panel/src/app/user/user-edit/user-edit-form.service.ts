@@ -1,9 +1,10 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {CustomValidators, FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
+import {Observable} from 'rxjs';
 import {
   EmployeeEditRequestParams,
+  ErapulusHelpers,
   ErapulusResponse,
   ErapulusUser,
   UserDataAccessService
@@ -63,19 +64,7 @@ export class UserEditFormService extends FormService<ErapulusResponse<unknown>> 
           lastName: values['lastName'],
           phoneNumber: values['phoneNumber']
         };
-        return this.userDataAccessService.editEmployee(requestData).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<unknown>);
-          })
-        );
-
+        return ErapulusHelpers.handleRequest(this.userDataAccessService.editEmployee(requestData), this.form);
       }
     }
     return null;

@@ -1,8 +1,13 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {CustomValidators, FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
-import {BuildingCreateRequestParams, BuildingDataAccessService, ErapulusResponse} from '@erapulus/data-access/erapulus';
+import {Observable, of} from 'rxjs';
+import {
+  BuildingCreateRequestParams,
+  BuildingDataAccessService,
+  ErapulusHelpers,
+  ErapulusResponse
+} from '@erapulus/data-access/erapulus';
 
 @Injectable({
   providedIn: 'root'
@@ -55,18 +60,7 @@ export class BuildingCreateFormService extends FormService<ErapulusResponse<unkn
           longitude: values['longitude'],
           universityId: this.universityId
         };
-        return this.buildingDataAccessService.createBuilding(requestData).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<unknown>);
-          })
-        );
+        return ErapulusHelpers.handleRequest(this.buildingDataAccessService.createBuilding(requestData), this.form);
       }
     }
     return of();

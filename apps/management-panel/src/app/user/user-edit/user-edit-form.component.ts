@@ -4,6 +4,7 @@ import {UserEditFormService} from './user-edit-form.service';
 import {NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-user-edit-form',
@@ -15,11 +16,13 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
         <ep-input
           class="form-element"
           [label]="'management-panel.user.firstName.label'| translate"
+          [placeholder]="'management-panel.user.firstName.placeholder'| translate"
           [control]="formService.getControl('firstName')"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.user.lastName.label'| translate"
+          [placeholder]="'management-panel.user.lastName.placeholder'| translate"
           [control]="formService.getControl('lastName')"
         ></ep-input>
       </ep-form-section>
@@ -29,12 +32,14 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
         <ep-input
           class="form-element"
           [label]="'management-panel.user.email.label'| translate"
+          [placeholder]="'management-panel.user.email.placeholder'| translate"
           [control]="formService.getControl('email')"
           type="email"
         ></ep-input>
         <ep-input
           class="form-element"
           [label]="'management-panel.user.phoneNumber.label'| translate"
+          [placeholder]="'management-panel.user.phoneNumber.placeholder'| translate"
           [control]="formService.getControl('phoneNumber')"
           type="tel"
         ></ep-input>
@@ -67,11 +72,13 @@ export class UserEditFormComponent {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe(() => {
+    this.formService.submitForm()?.subscribe((response) => {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.navigationService.back();
+      if (response.status === HttpStatusCode.Ok) {
+        this.navigationService.back();
+      }
     });
   }
 

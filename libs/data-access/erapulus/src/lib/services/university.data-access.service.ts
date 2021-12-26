@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ErapulusDataAccessService} from './erapulus-data-access.service';
+import {ErapulusDataAccessService} from './erapulus.data-access.service';
 import {SelectAccessor, SelectItem} from '@erapulus/ui/components';
 import {ErapulusResponse, ErapulusUniversity} from '../erapulus.models';
 import {map, Observable, take} from 'rxjs';
@@ -55,19 +55,19 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
   }
 
   createUniversity (request: UniversityCreateRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university`, request);
+    return this.http.post<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university`, request).pipe(take(1));
   }
 
   getUniversity (request: UniversityGetRequest): Observable<ErapulusResponse<ErapulusUniversity>> {
-    return this.http.get<ErapulusResponse<ErapulusUniversity>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
+    return this.http.get<ErapulusResponse<ErapulusUniversity>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`).pipe(take(1));
   }
 
   editUniversity (request: UniversityEditRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`, request);
+    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`, request).pipe(take(1));
   }
 
   deleteUniversity (request: UniversityDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`);
+    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`).pipe(take(1));
   }
 
 

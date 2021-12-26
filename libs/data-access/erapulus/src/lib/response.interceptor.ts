@@ -11,7 +11,7 @@ import {
 import {catchError, map, Observable, throwError, timeout} from 'rxjs';
 import {ErapulusHelpers} from './erapulus-helpers';
 import {Router} from '@angular/router';
-import {ErapulusDataAccessService} from './services/erapulus-data-access.service';
+import {ErapulusDataAccessService} from './services/erapulus.data-access.service';
 import {MessageService} from '@erapulus/ui/message';
 import {ObjectUtils} from '@erapulus/utils/helpers';
 import {ErapulusResponse} from './erapulus.models';

@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {take} from 'rxjs';
 import {ButtonType, HeaderType, TextType} from '@erapulus/ui/components';
 import {TitleService} from '@erapulus/utils/title';
-import {BuildingDataAccessService, ErapulusBuilding} from '@erapulus/data-access/erapulus';
+import {BuildingDataAccessService, ErapulusBuilding, ErapulusHelpers} from '@erapulus/data-access/erapulus';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-university-show',
@@ -61,8 +61,14 @@ export class BuildingShowComponent implements OnInit {
     this.titleService.setTitle('management-panel.building.edit');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     const buildingId: string = this.route.snapshot.paramMap.get('building_id') ?? '-1';
-    this.buildingDataAccessService.getBuilding({buildingId, universityId}).pipe(take(1)).subscribe(({payload}) => {
-      this.building = payload;
+    ErapulusHelpers.handleRequest(this.buildingDataAccessService.getBuilding({
+      buildingId,
+      universityId
+    })).subscribe((response) => {
+      if (response.status !== HttpStatusCode.Ok) {
+        return this.navigationService.back();
+      }
+      this.building = response.payload as ErapulusBuilding;
       this.changeDetectorRef.markForCheck();
     });
   }

@@ -113,13 +113,7 @@ export class PostListService {
           }
           return of(false);
         }
-        ),
-        switchMap((x) => {
-          if (typeof x === 'boolean') {
-            return of(x);
-          }
-          return of(true);
-        })).subscribe((reload) => {
+        )).subscribe((reload) => {
         if (reload) {
           this.reloadList$.next();
         }

@@ -4,6 +4,7 @@ import {PostCreateFormService} from './post-create-form.service';
 import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {ButtonType} from '@erapulus/ui/components';
 import {Router} from '@angular/router';
+import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
   selector: 'ep-post-create-form',
@@ -15,14 +16,14 @@ import {Router} from '@angular/router';
         <ep-input
           class="form-element-full"
           [label]="'management-panel.post.title.label'| translate"
-          [control]="formService.getControl('title')"
           [placeholder]="'management-panel.post.title.placeholder'| translate"
+          [control]="formService.getControl('title')"
         ></ep-input>
         <ep-editor
           class="form-element-full"
           [label]="'management-panel.post.content.label'| translate"
-          [control]="formService.getControl('content')"
           [placeholder]="'management-panel.post.content.placeholder'| translate"
+          [control]="formService.getControl('content')"
         ></ep-editor>
       </ep-form-section>
       <div class="footer-buttons">
@@ -54,16 +55,18 @@ export class PostCreateFormComponent {
   }
 
   public submit (): void {
-    this.formService.submitForm()?.subscribe(() => {
+    this.formService.submitForm()?.subscribe((response) => {
       this.form.enable();
       this.form.markAsTouched();
       this.form.markAsDirty();
-      this.router.navigate([
-        NavigationRoutes.ROOT,
-        NavigationRoutes.UNIVERSITY,
-        this.universityId,
-        NavigationRoutes.POST
-      ]).then();
+      if (response.status === HttpStatusCode.Created) {
+        this.router.navigate([
+          NavigationRoutes.ROOT,
+          NavigationRoutes.UNIVERSITY,
+          this.universityId,
+          NavigationRoutes.POST
+        ]).then();
+      }
     });
   }
 

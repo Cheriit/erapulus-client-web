@@ -1,8 +1,9 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {FormService} from '@erapulus/utils/forms';
-import {catchError, Observable, of, take, tap} from 'rxjs';
+import {Observable} from 'rxjs';
 import {
+  ErapulusHelpers,
   ErapulusPost,
   ErapulusResponse,
   PostDataAccessService,
@@ -49,19 +50,7 @@ export class PostEditFormService extends FormService<ErapulusResponse<unknown>> 
           title: values['title'],
           content: values['content']
         };
-        return this.postDataAccessService.editPost(requestData).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<unknown>);
-          })
-        );
-
+        return ErapulusHelpers.handleRequest(this.postDataAccessService.editPost(requestData), this.form);
       }
     }
     return null;
