@@ -29,7 +29,7 @@ import {TableDataAccessService} from '../table.data-access.service';
                       [class.hover:bg-gray-200]="canSelect()"
                       [class.cursor-pointer]="canSelect()"
                       [element]="element" [rowNumber]="offset + index + 1"
-                      (click)="rowClick(element['id'])"
+                      (click)="rowClick(element[configuration.selectKey ?? 'id'])"
                       (tableElementEvent)="tableElementEvent.emit($event)"></ep-table-row>
         <ep-table-pagination
           *ngIf="configuration.hasPagination"

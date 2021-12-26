@@ -60,5 +60,6 @@ export interface TableConfiguration {
   actions: TableAction[],
   columns: TableColumn[],
   parameters: { [key: string]: string | undefined },
-  hasPagination: boolean
+  hasPagination: boolean,
+  selectKey?: string
 }

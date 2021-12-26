@@ -42,7 +42,8 @@ export class FileTableService {
       columns: [{key: 'name', widthPercentage: 100}],
       url: this.fileManagerService?.getTableUrl() ?? '',
       prefix: 'common.file-manager.table.',
-      parameters: {}
+      parameters: {},
+      selectKey: 'path'
     };
   }
 
