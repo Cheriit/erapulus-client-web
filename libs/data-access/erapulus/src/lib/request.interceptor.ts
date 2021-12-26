@@ -21,7 +21,11 @@ export class RequestInterceptor implements HttpInterceptor {
           if (StringUtils.isNotEmpty(token)) {
             req = req.clone({headers: req.headers.set('Authorization', `Bearer ${token}`)});
           }
-          req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
+          if (StringUtils.isEmpty(req.headers.get('Content-Type'))) {
+            req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
+          } else if (req.headers.get('Content-Type') === 'delete') {
+            req = req.clone({headers: req.headers.delete('Content-Type')});
+          }
           req = req.clone({headers: req.headers.set('Accept', 'application/json')});
           return next.handle(req);
         })

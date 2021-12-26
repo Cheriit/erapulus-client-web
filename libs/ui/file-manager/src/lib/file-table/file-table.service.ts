@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {TableAction, TableActionEvent, TableConfiguration} from '@erapulus/ui/table';
 import {FormBuilder} from '@angular/forms';
 import {FileManagerService} from '../file-manager.service';
@@ -12,12 +12,17 @@ import {Router} from '@angular/router';
 })
 export class FileTableService {
   public reloadList$: Subject<void> = new Subject<void>();
+  private fileManagerService?: FileManagerService;
 
   constructor (
     private readonly formBuilder: FormBuilder,
     private readonly messageService: MessageService,
-    private readonly router: Router,
-    @Inject('MANAGER_SERVICE') private readonly fileManagerService: FileManagerService) {
+    private readonly router: Router
+  ) {
+  }
+
+  setFileManager (fileManagerService: FileManagerService): void {
+    this.fileManagerService = fileManagerService;
   }
 
   getListConfigurationObservable (): Subject<TableConfiguration> {
@@ -35,8 +40,8 @@ export class FileTableService {
         TableAction.DELETE
       ],
       columns: [{key: 'name', widthPercentage: 100}],
-      url: this.fileManagerService.getBaseRequestUrl(),
-      prefix: 'common.file-list.table.',
+      url: this.fileManagerService?.getBaseRequestUrl() ?? '',
+      prefix: 'common.file-manager.table.',
       parameters: {}
     };
   }
@@ -45,7 +50,7 @@ export class FileTableService {
     switch (event.type) {
     case TableAction.EDIT:
       this.router.navigate([
-        ...this.fileManagerService.getBaseRedirectUrl(),
+        ...this.fileManagerService?.getBaseRedirectUrl() ?? [],
         event.content,
         NavigationRoutes.EDIT
       ]).then();
@@ -61,7 +66,7 @@ export class FileTableService {
         take(1),
         switchMap((action) => {
           if (action === MessageAction.ACCEPT) {
-            return this.fileManagerService.deleteFile(event.content);
+            return this.fileManagerService?.deleteFile(event.content) ?? of(false);
           }
           return of(false);
         }
@@ -73,7 +78,7 @@ export class FileTableService {
       break;
     case TableAction.SELECT:
     default:
-      window.open(`${this.fileManagerService.getBaseFileUrl()}/${event.content}`, '_blank');
+      window.open(`${event.content}`, '_blank');
       break;
     }
   }

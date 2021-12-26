@@ -14,6 +14,8 @@ import {UniversityCreateFormComponent} from './university-create/university-crea
 import {ReactiveFormsModule} from '@angular/forms';
 import {UniversityEditFormComponent} from './university-edit/university-edit-form.component';
 import {MarkdownModule} from 'ngx-markdown';
+import {UniversityEditLogoComponent} from './university-edit/university-edit-logo.component';
+import {FileManagerModule} from '@erapulus/ui/file-manager';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {MarkdownModule} from 'ngx-markdown';
     UniversityEditComponent,
     UniversityShowComponent,
     UniversityCreateFormComponent,
-    UniversityEditFormComponent
+    UniversityEditFormComponent,
+    UniversityEditLogoComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import {MarkdownModule} from 'ngx-markdown';
     UiComponentsModule,
     TranslateModule,
     ReactiveFormsModule,
-    MarkdownModule
+    MarkdownModule,
+    FileManagerModule
   ]
 })
 export class UniversityModule {

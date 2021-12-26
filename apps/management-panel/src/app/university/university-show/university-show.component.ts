@@ -16,18 +16,16 @@ import {HttpStatusCode} from '@angular/common/http';
         <div class="flex flex-wrap mt-10" *ngIf="university">
           <div class="w-full md:w-1/2 px-4">
             <div class="pb-3" *ngIf="university.logoUrl">
-              <img [src]="university.logoUrl" [alt]="university.name + ' logo'" class="w-full"/>
-            </div>
-            <div class="pb-3">
-              <ep-text [textType]="textType.LARGE">{{'management-panel.university.show.name' | translate}}</ep-text>
-              <ep-text [textType]="textType.SMALL">{{university.name}}</ep-text>
-            </div>
-            <div class="pb-3" *ngIf="university.websiteUrl">
-              <ep-text [textType]="textType.LARGE">{{'management-panel.university.show.url' | translate}}</ep-text>
-              <ep-text [textType]="textType.SMALL">{{university.websiteUrl}}</ep-text>
+              <img [src]="university.logoUrl" [alt]="university.name + ' logo'"
+                   class="image"/>
             </div>
           </div>
           <div class="w-full md:w-1/2 px-4 ">
+            <div class="pb-3">
+              <ep-text [textType]="textType.LARGE">{{'management-panel.university.show.name' | translate}}</ep-text>
+              <ep-text [textType]="textType.SMALL">{{university.name}}</ep-text>
+              <ep-text [textType]="textType.SMALL">{{university.websiteUrl}}</ep-text>
+            </div>
             <div class="pb-3">
               <ep-text [textType]="textType.LARGE">{{'management-panel.university.show.address' | translate}}</ep-text>
               <ep-text [textType]="textType.SMALL">{{university.address}}</ep-text>

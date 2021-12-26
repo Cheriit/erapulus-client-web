@@ -2,15 +2,15 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {FileTableComponent} from './file-table/file-table.component';
-import {FileTableRowComponent} from './file-table-row/file-table-row.component';
 import {FileUploaderComponent} from './file-uploader/file-uploader.component';
 import {FileUploaderListComponent} from './file-uploader-list/file-uploader-list.component';
 import {FileManagerComponent} from './file-manager/file-manager.component';
 import {TableModule} from '@erapulus/ui/table';
+import {UiComponentsModule} from '@erapulus/ui/components';
+import {TranslateModule} from '@ngx-translate/core';
 
 const components = [
   FileTableComponent,
-  FileTableRowComponent,
   FileUploaderComponent,
   FileUploaderListComponent,
   FileManagerComponent
@@ -21,7 +21,9 @@ const components = [
   imports: [
     CommonModule,
     RouterModule,
-    TableModule
+    TableModule,
+    UiComponentsModule,
+    TranslateModule
   ],
   exports: components
 })
