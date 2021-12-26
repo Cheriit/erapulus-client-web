@@ -22,6 +22,7 @@
       "@erapulus/features/login": ["libs/features/login/src/index.ts"],
       "@erapulus/ui/assets": ["libs/ui/assets/src/index.ts"],
       "@erapulus/ui/components": ["libs/ui/components/src/index.ts"],
+      "@erapulus/ui/file-manager": ["libs/ui/file-manager/src/index.ts"],
       "@erapulus/ui/message": ["libs/ui/message/src/index.ts"],
       "@erapulus/ui/sidebar-layout": ["libs/ui/sidebar-layout/src/index.ts"],
       "@erapulus/ui/table": ["libs/ui/table/src/index.ts"],

@@ -48,6 +48,18 @@ export interface ErapulusPost {
   university: string
 }
 
+export interface ErapulusUniversityFile extends File {
+  university: string
+}
+
+export interface ErapulusProgramFile extends ErapulusUniversityFile {
+  program: string
+}
+
+export interface ErapulusModuleFile extends ErapulusProgramFile {
+  module: string
+}
+
 export interface ErapulusResponse<T> {
   status: number,
   payload: T,

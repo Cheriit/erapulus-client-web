@@ -9,6 +9,7 @@
     "storybook-e2e-components-e2e": "apps/storybook-e2e/components-e2e",
     "ui-assets": "libs/ui/assets",
     "ui-components": "libs/ui/components",
+    "ui-file-manager": "libs/ui/file-manager",
     "ui-message": "libs/ui/message",
     "ui-sidebar-layout": "libs/ui/sidebar-layout",
     "ui-table": "libs/ui/table",
