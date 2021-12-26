@@ -55,7 +55,7 @@ export class BuildingEditFormService extends FormService<ErapulusResponse<unknow
         const values = this.form.value;
         const requestData: BuildingEditRequestParams = {
           buildingId: this.building.id,
-          universityId: this.building.university,
+          universityId: this.building.universityId,
           name: values['name'],
           abbrev: values['abbrev'],
           latitude: values['latitude'],

@@ -72,7 +72,7 @@ import {HttpStatusCode} from '@angular/common/http';
           {{'management-panel.create.university.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
-        <ep-button (click)="submit()">
+        <ep-button (click)="submit()" [submit]="true">
           {{'management-panel.create.university.create' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>

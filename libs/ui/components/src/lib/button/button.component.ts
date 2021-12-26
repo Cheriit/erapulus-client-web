@@ -15,7 +15,8 @@ export enum AnimationType {
   selector: 'ep-button',
   template: `
     <button class="button hover:-translate-y-0.5 hover:scale-105" [class.loading]="isLoading() || disabled"
-            [disabled]="isLoading() || disabled" [class]="type" (click)="onClickEvent($event)">
+            [disabled]="isLoading() || disabled" [class]="type" (click)="onClickEvent($event)"
+            [type]="submit ? 'submit' : 'button'">
       <ng-container *ngIf="!isLoading()">
         <ng-content select="[icon]"></ng-content>
       </ng-container>
@@ -37,6 +38,7 @@ export class ButtonComponent {
   @Input() public type: ButtonType = ButtonType.PRIMARY;
   @Input() public animationType?: AnimationType = undefined;
   @Input() public disabled = false;
+  @Input() public submit = false;
 
   onClickEvent (event: MouseEvent): void {
     if (event && !this.isLoading()) {

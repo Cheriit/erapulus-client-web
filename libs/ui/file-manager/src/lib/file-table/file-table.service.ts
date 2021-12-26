@@ -71,7 +71,13 @@ export class FileTableService {
           }
           return of(false);
         }
-        )).subscribe((reload) => {
+        ),
+        switchMap((x) => {
+          if (typeof x === 'boolean') {
+            return of(x);
+          }
+          return of(true);
+        })).subscribe((reload) => {
         if (reload) {
           this.reloadList$.next();
         }

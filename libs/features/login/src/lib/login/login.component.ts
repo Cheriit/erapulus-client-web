@@ -31,7 +31,7 @@ import {LoginResponseParams} from '@erapulus/data-access/erapulus';
           type="password"
         ></ep-input>
         <ep-button
-          class="float-right">
+          class="float-right" [submit]="true">
           Log in
           <img alt="Sing in" src="/assets/icons/forward.svg" class="pl-2 fill-white h-4 pt-[2px]"/>
         </ep-button>

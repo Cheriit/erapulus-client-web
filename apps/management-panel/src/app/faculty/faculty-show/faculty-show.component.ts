@@ -79,7 +79,7 @@ export class FacultyShowComponent implements OnInit {
     this.router.navigate([
       NavigationRoutes.ROOT,
       NavigationRoutes.UNIVERSITY,
-      this.faculty?.university,
+      this.faculty?.universityId,
       NavigationRoutes.FACULTY,
       this.faculty?.id,
       NavigationRoutes.EDIT

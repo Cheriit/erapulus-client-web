@@ -53,7 +53,7 @@ export class FacultyEditFormService extends FormService<ErapulusResponse<unknown
         const values = this.form.value;
         const requestData: FacultyEditRequestParams = {
           facultyId: this.faculty.id,
-          universityId: this.faculty.university,
+          universityId: this.faculty.universityId,
           name: values['name'],
           address: values['address'],
           email: values['email']

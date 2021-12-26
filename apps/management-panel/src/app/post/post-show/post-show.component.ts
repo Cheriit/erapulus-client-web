@@ -74,7 +74,7 @@ export class PostShowComponent implements OnInit {
     this.router.navigate([
       NavigationRoutes.ROOT,
       NavigationRoutes.UNIVERSITY,
-      this.post?.university,
+      this.post?.universityId,
       NavigationRoutes.POST,
       this.post?.id,
       NavigationRoutes.EDIT

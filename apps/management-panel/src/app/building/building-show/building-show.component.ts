@@ -77,7 +77,7 @@ export class BuildingShowComponent implements OnInit {
     this.router.navigate([
       NavigationRoutes.ROOT,
       NavigationRoutes.UNIVERSITY,
-      this.building?.university,
+      this.building?.universityId,
       NavigationRoutes.BUILDING,
       this.building?.id,
       NavigationRoutes.EDIT

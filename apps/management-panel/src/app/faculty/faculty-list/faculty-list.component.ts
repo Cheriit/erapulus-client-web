@@ -29,7 +29,7 @@ export class FacultyListComponent implements OnInit, OnDestroy {
   public user$: Observable<AuthUser | undefined> = this.authFacade.authUser$;
   public headerType = HeaderType;
   public reload$: Subject<void> = new Subject();
-  public tableConfiguration$: Subject<TableConfiguration> = this.universityTableService.getListConfigurationObservable(this.getBaseParameters());
+  public tableConfiguration$: Subject<TableConfiguration> = this.facultyListService.getListConfigurationObservable(this.getBaseParameters());
   public _tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;
   private universityId!: string;
@@ -39,7 +39,7 @@ export class FacultyListComponent implements OnInit, OnDestroy {
     private readonly titleService: TitleService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly universityTableService: FacultyListService,
+    private readonly facultyListService: FacultyListService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly location: Location,
     private readonly subscriptionManager: SubscriptionManagerService,
@@ -51,7 +51,7 @@ export class FacultyListComponent implements OnInit, OnDestroy {
     this.universityId = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     this.titleService.setTitle('management-panel.title.university-list');
     this.subscriptionManager.subscribe(
-      this.universityTableService.reloadList$.subscribe(() => {
+      this.facultyListService.reloadList$.subscribe(() => {
         this.reloadList();
       }));
 
@@ -79,7 +79,7 @@ export class FacultyListComponent implements OnInit, OnDestroy {
   }
 
   public handleTableEvent (event: TableActionEvent): void {
-    this.universityTableService.handleTableEvent(event);
+    this.facultyListService.handleTableEvent(event);
   }
 
   private updateRoute (): void {
@@ -87,7 +87,7 @@ export class FacultyListComponent implements OnInit, OnDestroy {
   }
 
   private reloadList (): void {
-    this._tableConfiguration = this.universityTableService.getListConfiguration(this.getBaseParameters());
+    this._tableConfiguration = this.facultyListService.getListConfiguration(this.getBaseParameters());
     this.tableConfiguration$.next(this._tableConfiguration);
     this.reload$.next();
     this.changeDetectorRef.markForCheck();

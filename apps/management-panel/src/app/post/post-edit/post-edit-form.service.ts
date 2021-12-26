@@ -46,7 +46,7 @@ export class PostEditFormService extends FormService<ErapulusResponse<unknown>> 
         const values = this.form.value;
         const requestData: PostEditRequestParams = {
           postId: this.post.id,
-          university: this.post.university,
+          university: this.post.universityId,
           title: values['title'],
           content: values['content']
         };

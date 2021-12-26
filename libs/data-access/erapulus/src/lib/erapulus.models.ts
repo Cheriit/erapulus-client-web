@@ -28,7 +28,7 @@ export interface ErapulusFaculty {
   name: string,
   address: string,
   email: string,
-  university: string
+  universityId: string
 }
 
 export interface ErapulusBuilding {
@@ -37,7 +37,7 @@ export interface ErapulusBuilding {
   abbrev: string,
   latitude: number,
   longitude: number,
-  university: string
+  universityId: string
 }
 
 export interface ErapulusPost {
@@ -45,7 +45,7 @@ export interface ErapulusPost {
   title: string,
   date: string,
   content: string,
-  university: string
+  universityId: string
 }
 
 export interface ErapulusUniversityFile extends File {

@@ -9,7 +9,7 @@ import {HttpStatusCode} from '@angular/common/http';
 @Component({
   selector: 'ep-faculty-create-form',
   template: `
-    <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
+    <form [formGroup]="form" (ngSubmit)="formService.submitForm()" (submit)="formService.submitForm()">
       <ep-form-section
         title="management-panel.faculty.create.contact.title"
         description="management-panel.faculty.create.contact.description">
@@ -38,7 +38,7 @@ import {HttpStatusCode} from '@angular/common/http';
           {{'management-panel.create.faculty.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
-        <ep-button (click)="submit()">
+        <ep-button (click)="submit()" [submit]="true">
           {{'management-panel.create.faculty.create' | translate}}
           <img src="/assets/icons/add.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
