@@ -10,6 +10,7 @@ import {Store} from '@ngrx/store';
 import {AuthActions, AuthFacade} from '@erapulus/utils/auth';
 import {NavigationService} from '@erapulus/utils/navigation';
 import {MessageService} from '@erapulus/ui/message';
+import {LoginResponseParams} from '@erapulus/data-access/erapulus';
 
 @Component({
   selector: 'ep-login',
@@ -19,14 +20,14 @@ import {MessageService} from '@erapulus/ui/message';
       <form [formGroup]="form" (ngSubmit)="submit()">
         <ep-input
           [label]="'common.login.email.label' | translate"
-          [control]="loginFormService.getControl('email')"
           [placeholder]="'common.login.email.placeholder' | translate"
+          [control]="loginFormService.getControl('email')"
           type="email"
         ></ep-input>
         <ep-input
           [label]="'common.login.password.label' | translate"
-          [control]="loginFormService.getControl('password')"
           [placeholder]="'common.login.email.placeholder' | translate"
+          [control]="loginFormService.getControl('password')"
           type="password"
         ></ep-input>
         <ep-button
@@ -72,8 +73,8 @@ export class LoginComponent implements OnInit {
       this.loading.next(true);
       request?.subscribe((response) => {
         this.loading.next(false);
-        if (response.status === HttpStatusCode.Ok) {
-          this.store.dispatch(AuthActions.signIn({authData: response.payload}));
+        if (response.status === HttpStatusCode.Ok && response.payload) {
+          this.store.dispatch(AuthActions.signIn({authData: response.payload as LoginResponseParams}));
         }
       });
     }

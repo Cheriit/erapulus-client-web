@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
 import {FormService} from '@erapulus/utils/forms';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ErapulusResponse, LoginDataAccessService, LoginResponseParams} from '@erapulus/data-access/erapulus';
-import {catchError, Observable, of, take, tap} from 'rxjs';
+import {
+  ErapulusHelpers,
+  ErapulusResponse,
+  LoginDataAccessService,
+  LoginResponseParams
+} from '@erapulus/data-access/erapulus';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
 })
-export class LoginFormService extends FormService<ErapulusResponse<LoginResponseParams>> {
+export class LoginFormService extends FormService<ErapulusResponse<LoginResponseParams> | unknown> {
   protected override form?: FormGroup;
 
   constructor (private formBuilder: FormBuilder, private loginDataAccessService: LoginDataAccessService) {
@@ -30,28 +35,17 @@ export class LoginFormService extends FormService<ErapulusResponse<LoginResponse
     return this.form;
   }
 
-  submitForm (): Observable<ErapulusResponse<LoginResponseParams>> | null {
+  submitForm (): Observable<ErapulusResponse<unknown>> | null {
     if (this.form) {
       this.form.markAllAsTouched();
       this.form.updateValueAndValidity();
       if (this.form.valid) {
         this.form?.disable();
         this.form?.markAsPending();
-        return this.loginDataAccessService.loginRequest({
+        return ErapulusHelpers.handleRequest(this.loginDataAccessService.loginRequest({
           email: this.form.get('email')?.value,
           password: this.form.get('password')?.value
-        }).pipe(
-          take(1),
-          tap(() => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-          }),
-          catchError((error) => {
-            this.form?.enable();
-            this.form?.markAsTouched();
-            return of(error as ErapulusResponse<LoginResponseParams>);
-          })
-        );
+        }), this.form);
       }
     }
     return null;
