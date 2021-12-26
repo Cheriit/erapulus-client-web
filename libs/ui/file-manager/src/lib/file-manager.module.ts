@@ -6,6 +6,7 @@ import {FileTableRowComponent} from './file-table-row/file-table-row.component';
 import {FileUploaderComponent} from './file-uploader/file-uploader.component';
 import {FileUploaderListComponent} from './file-uploader-list/file-uploader-list.component';
 import {FileManagerComponent} from './file-manager/file-manager.component';
+import {TableModule} from '@erapulus/ui/table';
 
 const components = [
   FileTableComponent,
@@ -19,7 +20,8 @@ const components = [
   declarations: components,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    TableModule
   ],
   exports: components
 })

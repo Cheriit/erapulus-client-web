@@ -11,5 +11,4 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 })
 export class FileManagerComponent {
   @Input() hasUpload = true;
-  @Input() baseUrl!: string;
 }
