@@ -7,7 +7,7 @@
     }
 
     &.secondary {
-      @apply bg-transparent border text-base-to border-base-to shadow-md shadow-base-to outline-base-to/50;
+      @apply bg-transparent border-2 border-gray-500 text-base-to border-base-to shadow-md shadow-base-to outline-base-to/50;
     }
 
 

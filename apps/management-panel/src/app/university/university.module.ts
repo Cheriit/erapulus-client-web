@@ -17,6 +17,8 @@ import {MarkdownModule} from 'ngx-markdown';
 import {UniversityEditLogoComponent} from './university-edit/university-edit-logo.component';
 import {FileManagerModule} from '@erapulus/ui/file-manager';
 import {UniversityFilesComponent} from './university-show/university-files.component';
+import {UniversityDocumentEditComponent} from './university-document/university-document-edit.component';
+import {UniversityDocumentEditFormComponent} from './university-document/university-document-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import {UniversityFilesComponent} from './university-show/university-files.compo
     UniversityCreateFormComponent,
     UniversityEditFormComponent,
     UniversityEditLogoComponent,
-    UniversityFilesComponent
+    UniversityFilesComponent,
+    UniversityDocumentEditComponent,
+    UniversityDocumentEditFormComponent
   ],
   imports: [
     CommonModule,

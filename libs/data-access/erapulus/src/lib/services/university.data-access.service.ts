@@ -9,7 +9,7 @@ export interface UniversityDeleteRequestParams {
   id: string
 }
 
-export interface UniversityDeleteDocumentRequestParams {
+export interface UniversityDocumentRequestParams {
   universityId: string,
   documentId: string
 }
@@ -37,6 +37,13 @@ export interface UniversityCreateRequestParams {
 
 export interface UniversityEditRequestParams extends UniversityCreateRequestParams {
   id: string,
+}
+
+export interface UniversityDocumentEditRequestParams {
+  id: string,
+  universityId: string,
+  name: string,
+  description: string
 }
 
 
@@ -75,8 +82,16 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
     return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`).pipe(take(1));
   }
 
-  deleteDocument (request: UniversityDeleteDocumentRequestParams): Observable<ErapulusResponse<unknown>> {
+  getDocument (request: UniversityDocumentRequestParams): Observable<ErapulusResponse<unknown>> {
     return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
+  }
+
+  editUniversityDocument (request: UniversityDocumentEditRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.put<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.id}`, request).pipe(take(1));
+  }
+
+  deleteDocument (request: UniversityDocumentRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.get<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
   }
 
 

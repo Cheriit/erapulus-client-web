@@ -48,11 +48,14 @@ export interface ErapulusPost {
   universityId: string
 }
 
-export interface ErapulusUniversityFile extends File {
+export interface ErapulusUniversityDocument extends File {
+  id: string,
   university: string
+  name: string,
+  description: string
 }
 
-export interface ErapulusProgramFile extends ErapulusUniversityFile {
+export interface ErapulusProgramFile extends ErapulusUniversityDocument {
   program: string
 }
 

@@ -9,6 +9,7 @@ import {UniversityGuard} from './university.guard';
 import {FacultyModule} from '../faculty/faculty.module';
 import {BuildingModule} from '../building/building.module';
 import {PostModule} from '../post/post.module';
+import {UniversityDocumentEditComponent} from './university-document/university-document-edit.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
     path: `:university_id/${NavigationRoutes.EDIT}`,
     canActivate: [UniversityGuard],
     component: UniversityEditComponent
+  },
+  {
+    path: `:university_id/${NavigationRoutes.DOCUMENT}/:document_id/${NavigationRoutes.EDIT}`,
+    canActivate: [UniversityGuard],
+    component: UniversityDocumentEditComponent
   },
   {
     path: ':university_id',

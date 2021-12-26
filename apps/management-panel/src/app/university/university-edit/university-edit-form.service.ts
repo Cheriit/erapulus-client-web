@@ -53,10 +53,7 @@ export class UniversityEditFormService extends FormService<ErapulusResponse<unkn
         Validators.minLength(3),
         Validators.maxLength(64)
       ]),
-      description: this.formBuilder.control(university.description ?? '', [
-        Validators.minLength(3),
-        Validators.maxLength(64)
-      ]),
+      description: this.formBuilder.control(university.description ?? '', [Validators.minLength(3)]),
       websiteUrl: this.formBuilder.control(university.websiteUrl ?? '', [
         Validators.minLength(3),
         Validators.maxLength(64),
