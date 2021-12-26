@@ -10,6 +10,7 @@ import {FileTableService} from '../file-table/file-table.service';
 })
 export class FileUploaderService {
   files$: Subject<File[]> = new Subject<File[]>();
+  uploadFinish$: Subject<boolean> = new Subject<boolean>();
   files: File[] = [];
   private fileManagerService?: FileManagerService;
 
@@ -24,12 +25,17 @@ export class FileUploaderService {
   }
 
   addFile (file: File): void {
+    for (let i = 0; i < this.files.length; i++) {
+      if (file.name === this.files[i].name) {
+        return;
+      }
+    }
     this.files.push(file);
     this.files$.next(this.files);
   }
 
   removeFile (index: number): void {
-    if (this.files.length <= index) {
+    if (this.files.length > index) {
       this.files.splice(index, 1);
       this.files$.next(this.files);
     }
@@ -39,6 +45,7 @@ export class FileUploaderService {
     let filesSent = this.files.length;
     let removedCount = 0;
     this.files$.next(this.files);
+    this.uploadFinish$.next(false);
     this.files.forEach((file, index) => {
       const formData: FormData = new FormData();
       formData.append('file', file);
@@ -53,6 +60,7 @@ export class FileUploaderService {
           filesSent--;
           if (filesSent === 0) {
             this.fileTableService.reloadList$.next();
+            this.uploadFinish$.next(true);
           }
         }),
         catchError((error) => {

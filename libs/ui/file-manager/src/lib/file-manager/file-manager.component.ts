@@ -18,7 +18,8 @@ import {FileManagerService} from '@erapulus/ui/file-manager';
   template: `
     <div>
       <ep-file-uploader *ngIf="hasUpload" [uploadMultiple]="uploadMultiple" [accept]="accept"
-                        [patch]="patch"></ep-file-uploader>
+                        [patch]="patch" [class.text-right]="uploadMultiple" [class.pb-3]="uploadMultiple"
+      ></ep-file-uploader>
       <ep-file-table *ngIf="hasList"></ep-file-table>
     </div>
   `,

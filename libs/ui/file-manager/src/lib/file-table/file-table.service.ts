@@ -40,7 +40,7 @@ export class FileTableService {
         TableAction.DELETE
       ],
       columns: [{key: 'name', widthPercentage: 100}],
-      url: this.fileManagerService?.getBaseRequestUrl() ?? '',
+      url: this.fileManagerService?.getTableUrl() ?? '',
       prefix: 'common.file-manager.table.',
       parameters: {}
     };

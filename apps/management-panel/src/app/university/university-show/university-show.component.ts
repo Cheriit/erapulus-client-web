@@ -52,6 +52,7 @@ import {HttpStatusCode} from '@angular/common/http';
         </div>
       </div>
     </ep-container>
+    <ep-university-files></ep-university-files>
   `,
   styleUrls: ['./university-show.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

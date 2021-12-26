@@ -23,7 +23,8 @@ import {TableDataAccessService} from '../table.data-access.service';
     <div class="w-full">
       <ep-table-header [configuration]="configuration"></ep-table-header>
       <ng-container *ngIf="content && content.length > 0; else noContent">
-        <ep-table-row *ngFor="let element of content; let index = index" [configuration]="configuration"
+        <ep-table-row *ngFor="let element of content; let index = index"
+                      [configuration]="configuration"
                       class="border-gray-300 odd:bg-gray-100 transition"
                       [class.hover:bg-gray-200]="canSelect()"
                       [class.cursor-pointer]="canSelect()"

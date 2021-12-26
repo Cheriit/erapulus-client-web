@@ -1,12 +1,12 @@
 import {FileManagerService} from '@erapulus/ui/file-manager';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
-import {ErapulusDataAccessService} from '@erapulus/data-access/erapulus';
 import {Injectable} from '@angular/core';
+import {ErapulusDataAccessService} from '@erapulus/data-access/erapulus';
 
 @Injectable({
   providedIn: 'any'
 })
-export class UniversityEditLogoService extends FileManagerService {
+export class UniversityFilesService extends FileManagerService {
 
   private universityId?: string;
 
@@ -31,11 +31,12 @@ export class UniversityEditLogoService extends FileManagerService {
   }
 
   getBaseRequestUrl (): string {
-    return `${ErapulusDataAccessService.API_URL}/university/${this.universityId}/logo`;
+    return `${ErapulusDataAccessService.API_URL}/university/${this.universityId}/document`;
   }
 
-  getTableUrl (): string {
-    return '';
+  public getTableUrl (): string {
+    return `/university/${this.universityId}/document`;
   }
+
 
 }

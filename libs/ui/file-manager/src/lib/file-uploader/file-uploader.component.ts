@@ -1,12 +1,14 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FileUploaderService} from './file-uploader.service';
+import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 
 @Component({
   selector: 'ep-file-uploader',
   template: `
-    <ep-button (click)="fileInput.click()">
-      {{'common.file-manager.upload' | translate}}
-      <img src="/assets/icons/upload.svg" icon class="pr-3" alt="Upload"/>
+    <ep-button (click)="fileInput.click()" [disabled]="disabled">
+      {{(uploadMultiple ? 'common.file-manager.select' : 'common.file-manager.upload') | translate}}
+      <img [src]="uploadMultiple ? '/assets/icons/select.svg' :'/assets/icons/upload.svg'" icon class="pr-3"
+           [alt]="uploadMultiple ? 'Select' : 'Upload'"/>
       <input type="file"
              [multiple]="uploadMultiple"
              #fileInput
@@ -19,12 +21,27 @@ import {FileUploaderService} from './file-uploader.service';
   styleUrls: ['./file-uploader.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FileUploaderComponent {
+export class FileUploaderComponent implements OnInit, OnDestroy {
+  uploadFinish$ = this.fileUploaderService.uploadFinish$;
   @Input() uploadMultiple!: boolean;
   @Input() accept!: string;
   @Input() patch!: boolean;
+  public disabled = false;
 
-  constructor (private readonly fileUploaderService: FileUploaderService) {
+  constructor (private readonly fileUploaderService: FileUploaderService,
+              private readonly changeDetectorRef: ChangeDetectorRef,
+              private readonly subscriptionManager: SubscriptionManagerService) {
+  }
+
+  ngOnInit (): void {
+    this.subscriptionManager.subscribe(this.uploadFinish$.subscribe((isFinished) => {
+      this.disabled = !isFinished;
+      this.changeDetectorRef.markForCheck();
+    }));
+  }
+
+  ngOnDestroy (): void {
+    this.subscriptionManager.unsubscribeAll();
   }
 
   addFilesToUpload (event: Event): void {

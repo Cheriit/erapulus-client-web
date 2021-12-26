@@ -1,3 +1,15 @@
 :host {
   display: block;
+
+  .header {
+    @apply text-left p-3;
+  }
+
+  .remove-icon {
+    @apply cursor-pointer w-5 h-5 pt-[5px] hover:scale-125 transition-transform ml-3;
+  }
+
+  .item {
+    @apply border-gray-300 odd:bg-gray-100 transition w-full flex p-5 border-t last:border-b
+  }
 }

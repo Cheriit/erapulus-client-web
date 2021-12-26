@@ -9,5 +9,6 @@ export enum NavigationRoutes {
   CREATE = 'create',
   FACULTY = 'faculty',
   BUILDING = 'building',
-  POST = 'post'
+  POST = 'post',
+  DOCUMENT = 'document'
 }
