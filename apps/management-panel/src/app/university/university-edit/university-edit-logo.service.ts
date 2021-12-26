@@ -2,6 +2,7 @@ import {FileManagerService} from '@erapulus/ui/file-manager';
 import {NavigationRoutes} from '@erapulus/utils/navigation';
 import {ErapulusDataAccessService} from '@erapulus/data-access/erapulus';
 import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
@@ -18,8 +19,8 @@ export class UniversityEditLogoService extends FileManagerService {
     this.universityId = id;
   }
 
-  deleteFile (id: string): string[] {
-    return [];
+  deleteFile (id: string): Observable<unknown> {
+    return of();
   }
 
   getBaseRedirectUrl (): string[] {

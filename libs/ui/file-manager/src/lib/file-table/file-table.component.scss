@@ -1,3 +1,7 @@
 :host {
   display: block;
+
+  .table-content {
+    @apply min-h-[200px] min-w-[600px] mx-[-24px] -mb-4;
+  }
 }

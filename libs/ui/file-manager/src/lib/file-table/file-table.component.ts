@@ -8,7 +8,7 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
   selector: 'ep-file-table',
   template: `
     <div *ngIf="tableConfiguration$ | async as tableConfiguration"
-         class="min-h-[200px] min-w-[600px] mx-[-24px]">
+         class="table-content">
       <ep-table
         [configuration]="tableConfiguration"
         (tableElementEvent)="handleTableEvent($event)"
@@ -39,7 +39,7 @@ export class FileTableComponent implements OnInit, OnDestroy {
   ngOnDestroy (): void {
     this.subscriptionManager.unsubscribeAll();
   }
-  
+
   public handleTableEvent (event: TableActionEvent): void {
     this.fileTableService.handleTableEvent(event);
   }

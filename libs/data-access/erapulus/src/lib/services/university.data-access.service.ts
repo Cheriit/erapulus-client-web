@@ -9,6 +9,11 @@ export interface UniversityDeleteRequestParams {
   id: string
 }
 
+export interface UniversityDeleteDocumentRequestParams {
+  universityId: string,
+  documentId: string
+}
+
 export interface UniversityGetRequest {
   id: string
 }
@@ -68,6 +73,10 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
 
   deleteUniversity (request: UniversityDeleteRequestParams): Observable<ErapulusResponse<unknown>> {
     return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.id}`).pipe(take(1));
+  }
+
+  deleteDocument (request: UniversityDeleteDocumentRequestParams): Observable<ErapulusResponse<unknown>> {
+    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
   }
 
 
