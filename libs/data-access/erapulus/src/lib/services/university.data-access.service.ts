@@ -83,7 +83,7 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
   }
 
   getDocument (request: UniversityDocumentRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
+    return this.http.get<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
   }
 
   editUniversityDocument (request: UniversityDocumentEditRequestParams): Observable<ErapulusResponse<unknown>> {
@@ -91,7 +91,7 @@ export class UniversityDataAccessService extends ErapulusDataAccessService imple
   }
 
   deleteDocument (request: UniversityDocumentRequestParams): Observable<ErapulusResponse<unknown>> {
-    return this.http.get<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
+    return this.http.delete<ErapulusResponse<unknown>>(`${ErapulusDataAccessService.API_URL}/university/${request.universityId}/document/${request.documentId}`).pipe(take(1));
   }
 
 

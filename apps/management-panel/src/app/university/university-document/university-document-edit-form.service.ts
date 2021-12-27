@@ -43,7 +43,7 @@ export class UniversityDocumentEditFormService extends FormService<ErapulusRespo
         const values = this.form.value;
         const requestData: UniversityDocumentEditRequestParams = {
           id: this.document?.id,
-          universityId: this.document.university,
+          universityId: this.document.universityId,
           name: values['name'],
           description: values['description']
         };

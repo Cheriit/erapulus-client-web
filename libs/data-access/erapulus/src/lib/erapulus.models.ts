@@ -50,17 +50,17 @@ export interface ErapulusPost {
 
 export interface ErapulusUniversityDocument extends File {
   id: string,
-  university: string
+  universityId: string
   name: string,
   description: string
 }
 
 export interface ErapulusProgramFile extends ErapulusUniversityDocument {
-  program: string
+  programId: string
 }
 
 export interface ErapulusModuleFile extends ErapulusProgramFile {
-  module: string
+  moduleId: string
 }
 
 export interface ErapulusResponse<T> {
