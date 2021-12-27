@@ -5,15 +5,15 @@ import {TitleService} from '@erapulus/utils/title';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HeaderType} from '@erapulus/ui/components';
 import {TableActionEvent, TableConfiguration} from '@erapulus/ui/table';
-import {PostListParameters, PostListService} from './post-list.service';
+import {ProgramListParameters, ProgramListService} from './program-list.service';
 import {Location} from '@angular/common';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 
 @Component({
-  selector: 'ep-post-list',
+  selector: 'ep-program-list',
   template: `
     <ep-container>
-      <ep-header [headerType]="headerType.H3">{{'management-panel.post.list.header' | translate}}</ep-header>
+      <ep-header [headerType]="headerType.H3">{{'management-panel.program.list.header' | translate}}</ep-header>
       <div *ngIf="tableConfiguration$ | async as tableConfiguration"
            class="min-h-[200px] min-w-[600px] mx-[-24px]">
         <ep-table
@@ -26,20 +26,21 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostListComponent implements OnInit, OnDestroy {
+export class ProgramListComponent implements OnInit, OnDestroy {
   public headerType = HeaderType;
   public reload$: Subject<void> = new Subject();
   public _tableConfiguration!: TableConfiguration;
   public lastParameters!: Params;
   public tableConfiguration$!: Subject<TableConfiguration>;
   private universityId!: string;
+  private facultyId!: string;
 
   constructor (
     private readonly authFacade: AuthFacade,
     private readonly titleService: TitleService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly postListService: PostListService,
+    private readonly programListService: ProgramListService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly location: Location,
     private readonly subscriptionManager: SubscriptionManagerService,
@@ -49,10 +50,11 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit (): void {
     this.universityId = this.route.snapshot.paramMap.get('university_id') ?? '-1';
-    this.tableConfiguration$ = this.postListService.getListConfigurationObservable(this.getBaseParameters());
+    this.facultyId = this.route.snapshot.paramMap.get('faculty_id') ?? '-1';
+    this.tableConfiguration$ = this.programListService.getListConfigurationObservable(this.getBaseParameters());
 
     this.subscriptionManager.subscribe(
-      this.postListService.reloadList$.subscribe(() => {
+      this.programListService.reloadList$.subscribe(() => {
         this.reloadList();
       }));
 
@@ -68,7 +70,7 @@ export class PostListComponent implements OnInit, OnDestroy {
           this.updateRoute();
         }));
 
-    this.titleService.setTitle('management-panel.title.post-list');
+    this.titleService.setTitle('management-panel.title.program-list');
   }
 
   ngOnDestroy (): void {
@@ -81,28 +83,27 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   public handleTableEvent (event: TableActionEvent): void {
-    this.postListService.handleTableEvent(event);
+    this.programListService.handleTableEvent(event);
   }
 
   private updateRoute (): void {
     this.location.go(
-      `${this.router.url.split('?')[0]}?post_page=${this._tableConfiguration.currentPage}&post_title=${this._tableConfiguration.filters.value['title']}&post_from=${this._tableConfiguration.filters.value['from']}&post_to=${this._tableConfiguration.filters.value['to']}`);
+      `${this.router.url.split('?')[0]}?program_page=${this._tableConfiguration.currentPage}&program_title=${this._tableConfiguration.filters.value['title']}`);
   }
 
   private reloadList (): void {
-    this._tableConfiguration = this.postListService.getListConfiguration(this.getBaseParameters());
+    this._tableConfiguration = this.programListService.getListConfiguration(this.getBaseParameters());
     this.tableConfiguration$.next(this._tableConfiguration);
     this.reload$.next();
     this.changeDetectorRef.markForCheck();
   }
 
-  private getBaseParameters (): PostListParameters {
+  private getBaseParameters (): ProgramListParameters {
     return {
       universityId: this.universityId,
-      dateFrom: this.lastParameters?.post_from ?? '',
-      dateTo: this.lastParameters?.post_to ?? '',
-      page: this.lastParameters?.post_page ?? 0,
-      title: this.lastParameters?.post_title ?? '',
+      facultyId: this.facultyId,
+      page: this.lastParameters?.program_page ?? 0,
+      name: this.lastParameters?.program_name ?? '',
       pageSize: 10
     };
   }

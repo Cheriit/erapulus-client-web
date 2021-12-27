@@ -2,57 +2,61 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {ActivatedRoute} from '@angular/router';
 import {HeaderType} from '@erapulus/ui/components';
 import {FormGroup} from '@angular/forms';
-import {BuildingEditFormService} from './building-edit-form.service';
+import {ProgramDocumentEditFormService} from './program-document-edit-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
-import {BuildingDataAccessService, ErapulusBuilding, ErapulusHelpers} from '@erapulus/data-access/erapulus';
-import {NavigationService} from '@erapulus/utils/navigation';
+import {ErapulusHelpers, ErapulusProgramDocument, ProgramDataAccessService} from '@erapulus/data-access/erapulus';
 import {HttpStatusCode} from '@angular/common/http';
+import {NavigationService} from '@erapulus/utils/navigation';
 
 @Component({
-  selector: 'ep-building-edit',
+  selector: 'ep-program-document-edit',
   template: `
     <ep-container [loading]="loading || form.pending">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.building.title' | translate}}</ep-header>
-        <ep-university-edit-form [form]="form" *ngIf="form"></ep-university-edit-form>
+          [headerType]="headerType.H3">{{'management-panel.edit.document.title' | translate}}</ep-header>
+        <ep-program-document-edit-form [form]="form" *ngIf="form"></ep-program-document-edit-form>
       </div>
     </ep-container>
   `,
+  styleUrls: ['./program-document-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BuildingEditComponent implements OnInit, OnDestroy {
+export class ProgramDocumentEditComponent implements OnInit, OnDestroy {
   public readonly headerType = HeaderType;
   public form!: FormGroup;
-  public building!: ErapulusBuilding;
+  public programDocument!: ErapulusProgramDocument;
   public loading = true;
 
   constructor (
     private readonly route: ActivatedRoute,
-    private readonly buildingEditFormService: BuildingEditFormService,
+    private readonly programEditFormService: ProgramDocumentEditFormService,
     private readonly titleService: TitleService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly subscriptionManager: SubscriptionManagerService,
-    private readonly buildingDataAccessService: BuildingDataAccessService,
+    private readonly programDataAccessService: ProgramDataAccessService,
     private readonly navigationService: NavigationService) {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.building.edit');
+    this.titleService.setTitle('management-panel.program.edit');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
-    const buildingId: string = this.route.snapshot.paramMap.get('building_id') ?? '-1';
-    ErapulusHelpers.handleRequest(this.buildingDataAccessService.getBuilding({
-      buildingId,
-      universityId
+    const facultyId: string = this.route.snapshot.paramMap.get('faculty_id') ?? '-1';
+    const programId: string = this.route.snapshot.paramMap.get('program_id') ?? '-1';
+    const documentId: string = this.route.snapshot.paramMap.get('document_id') ?? '-1';
+    ErapulusHelpers.handleRequest(this.programDataAccessService.getDocument({
+      universityId,
+      documentId,
+      facultyId,
+      id: programId
     }))
-      .subscribe((
-        response) => {
+      .subscribe((response) => {
         if (response.status !== HttpStatusCode.Ok) {
           return this.navigationService.back();
         }
-        this.building = response.payload as ErapulusBuilding;
-        this.form = this.buildingEditFormService.createForm(this.building);
+        this.programDocument = response.payload as ErapulusProgramDocument;
+        this.form = this.programEditFormService.createForm(this.programDocument);
         this.loading = false;
         this.subscriptionManager.subscribe(this.form.statusChanges.subscribe(() => {
           this.changeDetectorRef.markForCheck();

@@ -10,3 +10,4 @@ export * from './lib/services/university.data-access.service';
 export * from './lib/services/faculty.data-access.service';
 export * from './lib/services/building.data-access.service';
 export * from './lib/services/post.data-access.service';
+export * from './lib/services/program.data-access.service';

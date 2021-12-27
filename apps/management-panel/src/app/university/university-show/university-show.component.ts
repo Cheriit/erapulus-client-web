@@ -74,7 +74,7 @@ export class UniversityShowComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.university.edit');
+    this.titleService.setTitle('management-panel.university.show');
     const id: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     ErapulusHelpers.handleRequest(this.universityDataAccessService.getUniversity({id: id}))
       .subscribe((response) => {

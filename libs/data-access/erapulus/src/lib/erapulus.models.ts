@@ -55,12 +55,21 @@ export interface ErapulusUniversityDocument extends File {
   description: string
 }
 
-export interface ErapulusProgramFile extends ErapulusUniversityDocument {
+export interface ErapulusProgramDocument extends ErapulusUniversityDocument {
   programId: string
+  facultyId: string
 }
 
-export interface ErapulusModuleFile extends ErapulusProgramFile {
+export interface ErapulusModuleDocument extends ErapulusProgramDocument {
   moduleId: string
+}
+
+export interface ErapulusProgram {
+  id: string,
+  name: string,
+  abbrev: string,
+  description?: string,
+  facultyId: string
 }
 
 export interface ErapulusResponse<T> {

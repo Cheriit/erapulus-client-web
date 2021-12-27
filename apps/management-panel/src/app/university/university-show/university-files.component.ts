@@ -13,7 +13,6 @@ import {UniversityFilesService} from './university-files.service';
       </div>
     </ep-container>
   `,
-  styleUrls: ['./university-show.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UniversityFilesComponent implements OnInit {

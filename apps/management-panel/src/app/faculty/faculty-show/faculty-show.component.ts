@@ -41,6 +41,8 @@ import {HttpStatusCode} from '@angular/common/http';
         </div>
       </div>
     </ep-container>
+
+    <ep-program-list></ep-program-list>
   `,
   styleUrls: ['./faculty-show.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

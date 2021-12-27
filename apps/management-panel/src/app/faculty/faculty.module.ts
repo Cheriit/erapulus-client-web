@@ -12,6 +12,7 @@ import {FacultyShowComponent} from './faculty-show/faculty-show.component';
 import {FacultyCreateFormComponent} from './faculty-create/faculty-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FacultyEditFormComponent} from './faculty-edit/faculty-edit-form.component';
+import {ProgramModule} from '../program/program.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {FacultyEditFormComponent} from './faculty-edit/faculty-edit-form.compone
     TableModule,
     UiComponentsModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProgramModule
   ]
 })
 export class FacultyModule {
