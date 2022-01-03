@@ -72,6 +72,15 @@ export interface ErapulusProgram {
   facultyId: string
 }
 
+export interface ErapulusModule {
+  id: string,
+  name: string,
+  abbrev: string,
+  description?: string,
+  facultyId: string,
+  programId: string
+}
+
 export interface ErapulusResponse<T> {
   status: number,
   payload: T,

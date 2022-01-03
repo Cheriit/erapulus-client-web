@@ -1,0 +1,7 @@
+@import "apps/management-panel/src/styles";
+
+:host {
+  .image {
+    @apply m-auto text-center rounded-lg shadow-lg border border-gray-300 max-h-[200px];
+  }
+}

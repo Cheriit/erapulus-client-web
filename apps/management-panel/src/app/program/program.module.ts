@@ -17,6 +17,7 @@ import {FileManagerModule} from '@erapulus/ui/file-manager';
 import {ProgramFilesComponent} from './program-show/program-files.component';
 import {ProgramDocumentEditComponent} from './program-document/program-document-edit.component';
 import {ProgramDocumentEditFormComponent} from './program-document/program-document-edit-form.component';
+import {ModuleModule} from '../module/module.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {ProgramDocumentEditFormComponent} from './program-document/program-docum
     TranslateModule,
     ReactiveFormsModule,
     MarkdownModule,
-    FileManagerModule
+    FileManagerModule,
+    ModuleModule
   ]
 })
 export class ProgramModule {
