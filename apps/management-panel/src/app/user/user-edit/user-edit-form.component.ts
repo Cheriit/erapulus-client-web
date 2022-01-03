@@ -46,11 +46,11 @@ import {HttpStatusCode} from '@angular/common/http';
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.user.cancel' | translate}}
+          {{'management-panel.user.action.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.user.create' | translate}}
+          {{'management-panel.user.action.edit' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>

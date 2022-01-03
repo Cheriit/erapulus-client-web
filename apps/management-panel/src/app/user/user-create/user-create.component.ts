@@ -14,7 +14,7 @@ import {UserPermissionsService} from '../user-permissions.service';
   selector: 'ep-user-create',
   template: `
     <ep-container [loading]="form.pending">
-      <ep-header [headerType]="headerType.H3">{{'management-panel.create.user.title' | translate:({type})}}</ep-header>
+      <ep-header [headerType]="headerType.H3">{{'management-panel.user.create.title' | translate:({type})}}</ep-header>
       <ep-user-create-form [form]="form"></ep-user-create-form>
     </ep-container>
   `,

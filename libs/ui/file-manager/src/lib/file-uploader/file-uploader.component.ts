@@ -8,7 +8,7 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
     <ep-button (click)="fileInput.click()" [disabled]="disabled">
       {{(uploadMultiple ? 'common.file-manager.select' : 'common.file-manager.upload') | translate}}
       <img [src]="uploadMultiple ? '/assets/icons/select.svg' :'/assets/icons/upload.svg'" icon class="pr-3"
-           [alt]="uploadMultiple ? 'Select' : 'Upload'"/>
+           [alt]="(uploadMultiple ? 'common.file-manager.select' : 'common.file-manager.upload') | translate"/>
       <input type="file"
              [multiple]="uploadMultiple"
              #fileInput

@@ -15,8 +15,8 @@ import {NavigationService} from '@erapulus/utils/navigation';
     <ep-container [loading]="loading || form.pending">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.post.title' | translate}}</ep-header>
-        <ep-university-edit-form [form]="form" *ngIf="form"></ep-university-edit-form>
+          [headerType]="headerType.H3">{{'management-panel.post.edit.title' | translate}}</ep-header>
+        <ep-post-edit-form [form]="form" *ngIf="form"></ep-post-edit-form>
       </div>
     </ep-container>
   `,

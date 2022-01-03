@@ -13,7 +13,7 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class ProgramDocumentEditFormService extends FormService<ErapulusResponse<unknown>> {
+export class ModuleDocumentEditFormService extends FormService<ErapulusResponse<unknown>> {
   protected override form?: FormGroup;
   private document?: ErapulusProgramDocument;
 

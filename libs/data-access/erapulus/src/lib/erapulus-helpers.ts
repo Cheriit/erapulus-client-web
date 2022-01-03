@@ -6,7 +6,7 @@ import {FormGroup} from '@angular/forms';
 export class ErapulusHelpers {
   public static getErrors (response: string): string[] {
     if (ObjectUtils.isNotEmpty(response)) {
-      const errors = response.split(';').map((error) => `common.erapulus.server.${error}`);
+      const errors = response.split(';').map((error) => `erapulus.server.${error}.error`);
       if (errors.length > 1) {
         errors.shift();
       }

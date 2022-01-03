@@ -5,11 +5,13 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
   template: `
     <div class="w-full flex justify-between pt-2 px-5">
       <div>
-        <img src="/assets/icons/arrow_left.svg" alt="Go Back" title="Go Back" *ngIf="canGoBack"
+        <img src="/assets/icons/arrow_left.svg" alt="Go Back" [title]="'common.table.action.back' | translate"
+             *ngIf="canGoBack"
              (click)="pageChange.emit(-1)"/>
       </div>
       <div>
-        <img src="/assets/icons/arrow_right.svg" alt="Go Further" title="Go Further" *ngIf="canGoNext"
+        <img src="/assets/icons/arrow_right.svg" alt="Go Further" [title]="'common.table.action.next' | translate"
+             *ngIf="canGoNext"
              (click)="pageChange.emit(1)"/>
       </div>
     </div>`,

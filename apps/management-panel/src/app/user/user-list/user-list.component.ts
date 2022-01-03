@@ -36,7 +36,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.title.user-list');
+    this.titleService.setTitle('management-panel.user.list.title');
   }
 
 }

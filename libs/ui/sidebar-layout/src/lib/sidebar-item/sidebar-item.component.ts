@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
              class="opacity-0 group-hover:opacity-20 absolute top-0 left-0 w-full h-full origin-bottom-right group-hover:rotate-[15deg] transition-all group-hover:scale-90"/>
       </div>
       <div *ngIf="opened" class="text-white truncate w-full whitespace-normal">
-        {{item.title}}
+        {{item.title | translate}}
       </div>
     </div>
   `,

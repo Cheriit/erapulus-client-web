@@ -11,8 +11,8 @@ import {HttpStatusCode} from '@angular/common/http';
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
       <ep-form-section
-        title="management-panel.building.create.contact.title"
-        description="management-panel.building.create.contact.description">
+        title="management-panel.building.create.base.title"
+        description="management-panel.building.create.base.description">
         <ep-input
           class="form-element"
           [label]="'management-panel.building.name.label'| translate"
@@ -42,11 +42,11 @@ import {HttpStatusCode} from '@angular/common/http';
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.building.cancel' | translate}}
+          {{'management-panel.building.actions.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.building.create' | translate}}
+          {{'management-panel.building.actions.create' | translate}}
           <img src="/assets/icons/add.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>

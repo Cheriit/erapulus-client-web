@@ -5,7 +5,7 @@ import {TitleService} from '@erapulus/utils/title';
   selector: 'ep-not-found',
   template: `
     <div class="w-full h-full flex place-content-center p-10">
-      <ep-header>404 | {{'common.not-found.content' | translate}}</ep-header>
+      <ep-header>404 | {{'not-found.content' | translate}}</ep-header>
     </div>
   `,
   styleUrls: ['./not-found.component.scss'],
@@ -16,6 +16,6 @@ export class NotFoundComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('common.title.not-found');
+    this.titleService.setTitle('not-found.title');
   }
 }

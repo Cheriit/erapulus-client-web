@@ -49,7 +49,7 @@ export class FacultyListComponent implements OnInit, OnDestroy {
 
   ngOnInit (): void {
     this.universityId = this.route.snapshot.paramMap.get('university_id') ?? '-1';
-    this.titleService.setTitle('management-panel.title.university-list');
+    this.titleService.setTitle('management-panel.faculty.list.title');
     this.subscriptionManager.subscribe(
       this.facultyListService.reloadList$.subscribe(() => {
         this.reloadList();

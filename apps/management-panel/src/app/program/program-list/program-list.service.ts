@@ -58,7 +58,7 @@ export class ProgramListService {
         {key: 'abbrev', widthPercentage: 20}
       ],
       url: `university/${parameters.universityId}/faculty/${parameters.facultyId}/program`,
-      prefix: 'management-panel.program-list.table.',
+      prefix: 'management-panel.program.list.',
       parameters: {}
     };
   }

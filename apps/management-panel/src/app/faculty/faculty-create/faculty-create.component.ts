@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
   template: `
     <ep-container [loading]="form.pending">
       <ep-header
-        [headerType]="headerType.H3">{{'management-panel.create.faculty.title' | translate}}</ep-header>
+        [headerType]="headerType.H3">{{'management-panel.faculty.create.title' | translate}}</ep-header>
       <ep-faculty-create-form [form]="form" [universityId]="universityId"></ep-faculty-create-form>
     </ep-container>
   `,
@@ -31,7 +31,7 @@ export class FacultyCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.university.create');
+    this.titleService.setTitle('management-panel.faculty.create');
     this.universityId = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     this.form = this.facultyCreateFormService.createForm(this.universityId);
     this.subscriptionManager.subscribe(this.form.statusChanges.subscribe(() => {

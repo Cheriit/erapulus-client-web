@@ -9,7 +9,7 @@ import {NavigationRoutes} from '@erapulus/utils/navigation';
 @Component({
   selector: 'ep-university-list',
   template: `
-    <ng-container *ngIf="(user$ | async) as user">
+    <ng-container *ngIf="display && (user$ | async) as user">
       <ep-university-table></ep-university-table>
     </ng-container>
   `,
@@ -17,6 +17,8 @@ import {NavigationRoutes} from '@erapulus/utils/navigation';
 })
 export class UniversityListComponent implements OnInit {
   public user$: Observable<AuthUser | undefined> = this.authFacade.authUser$;
+
+  public display = false;
 
   constructor (
     private readonly authFacade: AuthFacade,
@@ -33,6 +35,8 @@ export class UniversityListComponent implements OnInit {
           NavigationRoutes.UNIVERSITY,
           user?.universityId
         ]).then();
+      } else {
+        this.display = true;
       }
     });
     this.titleService.setTitle('management-panel.title.university-list');

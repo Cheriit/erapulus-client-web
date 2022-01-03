@@ -15,7 +15,7 @@ import {UniversityPermissionsService} from '../university-permissions.service';
   template: `
     <ep-container [loading]="form.pending">
       <ep-header
-        [headerType]="headerType.H3">{{'management-panel.create.university.title' | translate}}</ep-header>
+        [headerType]="headerType.H3">{{'management-panel.university.create.title' | translate}}</ep-header>
       <ep-university-create-form [form]="form"></ep-university-create-form>
     </ep-container>
   `,

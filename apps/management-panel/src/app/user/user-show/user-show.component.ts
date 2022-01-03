@@ -15,7 +15,7 @@ import {HttpStatusCode} from '@angular/common/http';
     <ep-container [loading]="!user">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.user.title' | translate}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.user.show.title' | translate}}</ep-header>
         <ep-user-show-details [user]="user" *ngIf="user"></ep-user-show-details>
       </div>
     </ep-container>
@@ -39,7 +39,7 @@ export class UserShowComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.user.edit');
+    this.titleService.setTitle('management-panel.user.show');
     const id: string = this.route.snapshot.paramMap.get('id') ?? '-1';
     zip(ErapulusHelpers.handleRequest(this.userDataAccessService.getEmployee({id})), this.userRole$).subscribe(([
       response,

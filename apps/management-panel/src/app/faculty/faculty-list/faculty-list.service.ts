@@ -52,7 +52,7 @@ export class FacultyListService {
       ],
       columns: [{key: 'name', widthPercentage: 100}],
       url: `university/${parameters.universityId}/faculty`,
-      prefix: 'management-panel.faculty-list.table.',
+      prefix: 'management-panel.faculty.list.',
       parameters: {}
     };
   }

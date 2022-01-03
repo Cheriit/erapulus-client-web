@@ -7,12 +7,12 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
 import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
-  selector: 'ep-university-edit-form',
+  selector: 'ep-building-edit-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
       <ep-form-section
-        title="management-panel.university.create.contact.title"
-        description="management-panel.university.create.contact.description">
+        title="management-panel.building.edit.base.title"
+        description="management-panel.building.edit.base.description">
         <ep-input
           class="form-element"
           [label]="'management-panel.building.name.label'| translate"
@@ -42,11 +42,11 @@ import {HttpStatusCode} from '@angular/common/http';
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.user.cancel' | translate}}
+          {{'management-panel.building.actions.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.user.create' | translate}}
+          {{'management-panel.building.actions.save' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>

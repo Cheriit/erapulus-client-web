@@ -16,17 +16,17 @@ import {LoginResponseParams} from '@erapulus/data-access/erapulus';
   selector: 'ep-login',
   template: `
     <ep-container class="container" [loading]="loading | async">
-      <ep-header [headerType]="headerType">{{'common.login.welcome' | translate}}</ep-header>
+      <ep-header [headerType]="headerType">{{'login.welcome' | translate}}</ep-header>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <ep-input
-          [label]="'common.login.email.label' | translate"
-          [placeholder]="'common.login.email.placeholder' | translate"
+          [label]="'login.email.label' | translate"
+          [placeholder]="'login.email.placeholder' | translate"
           [control]="loginFormService.getControl('email')"
           type="email"
         ></ep-input>
         <ep-input
-          [label]="'common.login.password.label' | translate"
-          [placeholder]="'common.login.email.placeholder' | translate"
+          [label]="'login.password.label' | translate"
+          [placeholder]="'login.password.placeholder' | translate"
           [control]="loginFormService.getControl('password')"
           type="password"
         ></ep-input>

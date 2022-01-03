@@ -44,7 +44,7 @@ export class BuildingListService {
       ],
       columns: [{key: 'name', widthPercentage: 100}],
       url: `university/${universityId}/building`,
-      prefix: 'management-panel.building-list.table.',
+      prefix: 'management-panel.building.list.',
       parameters: {}
     };
   }

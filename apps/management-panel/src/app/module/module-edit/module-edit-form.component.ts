@@ -10,8 +10,8 @@ import {HttpStatusCode} from '@angular/common/http';
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
       <ep-form-section
-        title="management-panel.module.create.contact.title"
-        description="management-panel.module.create.contact.description">
+        title="management-panel.module.edit.general-data.title"
+        description="management-panel.module.edit.general-data.description">
         <ep-input
           class="form-element-full"
           [label]="'management-panel.module.name.label'| translate"
@@ -20,14 +20,14 @@ import {HttpStatusCode} from '@angular/common/http';
         ></ep-input>
         <ep-input
           class="form-element"
-          [label]="'management-panel.module.address.label'| translate"
-          [placeholder]="'management-panel.module.address.placeholder'| translate"
+          [label]="'management-panel.module.abbrev.label'| translate"
+          [placeholder]="'management-panel.module.abbrev.placeholder'| translate"
           [control]="formService.getControl('abbrev')"
         ></ep-input>
       </ep-form-section>
       <ep-form-section
-        title="management-panel.module.create.details.title"
-        description="management-panel.module.create.details.description">
+        title="management-panel.module.edit.details.title"
+        description="management-panel.module.edit.details.description">
         <ep-editor
           class="form-element-full"
           [label]="'management-panel.module.description.label'| translate"
@@ -37,11 +37,11 @@ import {HttpStatusCode} from '@angular/common/http';
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.module.cancel' | translate}}
+          {{'management-panel.module.actions.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.module.create' | translate}}
+          {{'management-panel.module.actions.save' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>

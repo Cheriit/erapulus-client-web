@@ -11,28 +11,28 @@ import {HttpStatusCode} from '@angular/common/http';
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
       <ep-form-section
-        title="management-panel.university.create.contact.title"
-        description="management-panel.university.create.contact.description">
+        title="management-panel.university.document.edit-section.title"
+        description="management-panel.university.document.edit-section.description">
         <ep-input
           class="form-element-full"
-          [label]="'management-panel.university.name.label'| translate"
-          [placeholder]="'management-panel.university.name.placeholder'| translate"
+          [label]="'management-panel.university.document.name.label'| translate"
+          [placeholder]="'management-panel.university.document.name.placeholder'| translate"
           [control]="formService.getControl('name')"
         ></ep-input>
         <ep-editor
           class="form-element-full"
-          [label]="'management-panel.university.description.label'| translate"
-          [placeholder]="'management-panel.university.description.label'| translate"
+          [label]="'management-panel.university.document.description.label'| translate"
+          [placeholder]="'management-panel.university.document.description.placeholder'| translate"
           [control]="formService.getControl('description')"
         ></ep-editor>
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.university.cancel' | translate}}
+          {{'management-panel.create.university.document.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.university.create' | translate}}
+          {{'management-panel.create.university.document.edit' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>

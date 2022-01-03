@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {ActivatedRoute} from '@angular/router';
 import {HeaderType} from '@erapulus/ui/components';
 import {FormGroup} from '@angular/forms';
-import {ProgramDocumentEditFormService} from './program-document-edit-form.service';
+import {ModuleDocumentEditFormService} from './module-document-edit-form.service';
 import {TitleService} from '@erapulus/utils/title';
 import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
 import {ErapulusHelpers, ErapulusProgramDocument, ProgramDataAccessService} from '@erapulus/data-access/erapulus';
@@ -10,13 +10,13 @@ import {HttpStatusCode} from '@angular/common/http';
 import {NavigationService} from '@erapulus/utils/navigation';
 
 @Component({
-  selector: 'ep-program-document-edit',
+  selector: 'ep-module-document-edit',
   template: `
     <ep-container [loading]="loading || form.pending">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.document.title' | translate}}</ep-header>
-        <ep-program-document-edit-form [form]="form" *ngIf="form"></ep-program-document-edit-form>
+          [headerType]="headerType.H3">{{'management-panel.module.document.edit.title' | translate}}</ep-header>
+        <ep-module-document-edit-form [form]="form" *ngIf="form"></ep-module-document-edit-form>
       </div>
     </ep-container>
   `,
@@ -31,7 +31,7 @@ export class ModuleDocumentEditComponent implements OnInit, OnDestroy {
 
   constructor (
     private readonly route: ActivatedRoute,
-    private readonly programEditFormService: ProgramDocumentEditFormService,
+    private readonly programEditFormService: ModuleDocumentEditFormService,
     private readonly titleService: TitleService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly subscriptionManager: SubscriptionManagerService,

@@ -15,7 +15,7 @@ import {NavigationService} from '@erapulus/utils/navigation';
     <ep-container [loading]="loading || form.pending">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.document.title' | translate}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.program.document.edit.title' | translate}}</ep-header>
         <ep-program-document-edit-form [form]="form" *ngIf="form"></ep-program-document-edit-form>
       </div>
     </ep-container>
@@ -40,7 +40,7 @@ export class ProgramDocumentEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.program.edit');
+    this.titleService.setTitle('management-panel.program.document.edit');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     const facultyId: string = this.route.snapshot.paramMap.get('faculty_id') ?? '-1';
     const programId: string = this.route.snapshot.paramMap.get('program_id') ?? '-1';

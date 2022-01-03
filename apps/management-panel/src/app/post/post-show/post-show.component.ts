@@ -12,11 +12,11 @@ import {HttpStatusCode} from '@angular/common/http';
     <ep-container [loading]="!post">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.post.title' | translate}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.post.show.title' | translate}}</ep-header>
         <div class="flex flex-wrap mt-10" *ngIf="post">
           <div class="w-full px-4">
             <div class="pb-3">
-              <ep-text [textType]="textType.LARGE">{{'management-panel.post.show.title' | translate}}</ep-text>
+              <ep-text [textType]="textType.LARGE">{{'management-panel.post.show.title-data' | translate}}</ep-text>
               <ep-text [textType]="textType.SMALL">{{post.title}}</ep-text>
             </div>
             <div class="pb-3">
@@ -26,11 +26,11 @@ import {HttpStatusCode} from '@angular/common/http';
           </div>
           <div class="footer-buttons">
             <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-              {{'management-panel.create.post.cancel' | translate}}
+              {{'management-panel.post.actions.cancel' | translate}}
               <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
             </ep-button>
             <ep-button (click)="edit()">
-              {{'management-panel.create.post.edit' | translate}}
+              {{'management-panel.post.actions.edit' | translate}}
               <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
             </ep-button>
           </div>
@@ -58,7 +58,7 @@ export class PostShowComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.post.edit');
+    this.titleService.setTitle('management-panel.post.show');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     const postId: string = this.route.snapshot.paramMap.get('post_id') ?? '-1';
     ErapulusHelpers.handleRequest(this.postDataAccessService.getPost({postId, universityId})).subscribe((response) => {

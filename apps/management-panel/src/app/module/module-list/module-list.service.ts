@@ -61,7 +61,7 @@ export class ModuleListService {
         {key: 'abbrev', widthPercentage: 20}
       ],
       url: `university/${parameters.universityId}/faculty/${parameters.facultyId}/program/${parameters.programId}/module`,
-      prefix: 'management-panel.module-list.table.',
+      prefix: 'management-panel.module.list.',
       parameters: {}
     };
   }

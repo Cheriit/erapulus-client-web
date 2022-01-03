@@ -41,7 +41,7 @@ export class UniversityTableService {
       ],
       columns: [{key: 'name', widthPercentage: 100}],
       url: 'university',
-      prefix: 'management-panel.university-list.table.',
+      prefix: 'management-panel.university.list.',
       parameters: {}
     };
   }

@@ -74,7 +74,7 @@ export class CustomValidators {
       const {value} = longitudeControl;
       if (StringUtils.isNotEmpty(value)) {
         if (isNaN(Date.parse(value))) {
-          return {date: false};
+          return {validDate: false};
         }
       }
       return null;

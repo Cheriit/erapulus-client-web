@@ -34,18 +34,18 @@ import {HttpStatusCode} from '@angular/common/http';
           <ep-text [textType]="textType.SMALL">{{'common.role.' + user.type.toLowerCase() | translate}}</ep-text>
         </div>
         <div class="pb-3" *ngIf="universityName">
-          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.type' | translate}}</ep-text>
+          <ep-text [textType]="textType.LARGE">{{'management-panel.user.show.university' | translate}}</ep-text>
           <ep-text [textType]="textType.SMALL">{{universityName}}</ep-text>
         </div>
       </div>
     </div>
     <div class="footer-buttons">
       <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-        {{'management-panel.create.user.cancel' | translate}}
+        {{'management-panel.user.show.cancel' | translate}}
         <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
       </ep-button>
       <ep-button (click)="edit()">
-        {{'management-panel.create.user.edit' | translate}}
+        {{'management-panel.user.show.edit' | translate}}
         <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
       </ep-button>
     </div>

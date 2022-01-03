@@ -69,7 +69,7 @@ export class PostListService {
         {key: 'date', widthPercentage: 40}
       ],
       url: `university/${parameters.universityId}/post`,
-      prefix: 'management-panel.post-list.table.',
+      prefix: 'management-panel.post.list.',
       parameters: {}
     };
   }

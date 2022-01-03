@@ -68,7 +68,7 @@ export class PostListComponent implements OnInit, OnDestroy {
           this.updateRoute();
         }));
 
-    this.titleService.setTitle('management-panel.title.post-list');
+    this.titleService.setTitle('management-panel.post.list.title');
   }
 
   ngOnDestroy (): void {

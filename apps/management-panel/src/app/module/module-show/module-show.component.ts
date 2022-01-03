@@ -12,7 +12,7 @@ import {HttpStatusCode} from '@angular/common/http';
     <ep-container [loading]="!module">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.module.title' | translate}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.module.show.title' | translate}}</ep-header>
         <div class="flex flex-wrap mt-10" *ngIf="module">
           <div class="w-full  px-4 pb-3">
             <ep-text [textType]="textType.LARGE">{{'management-panel.module.show.name' | translate}}</ep-text>
@@ -26,11 +26,11 @@ import {HttpStatusCode} from '@angular/common/http';
         </div>
         <div class="footer-buttons">
           <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-            {{'management-panel.create.module.cancel' | translate}}
+            {{'management-panel.module.actions.cancel' | translate}}
             <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
           </ep-button>
           <ep-button (click)="edit()">
-            {{'management-panel.create.module.edit' | translate}}
+            {{'management-panel.module.actions.edit' | translate}}
             <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
           </ep-button>
         </div>

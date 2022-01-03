@@ -21,7 +21,7 @@ import {SubscriptionManagerService} from '@erapulus/utils/subscription-manager';
       </div>
       <ep-button class="py-4" (click)="upload()" *ngIf="files.length" [disabled]="disabled">
         <img src="/assets/icons/upload.svg" icon class="pr-3" alt="Upload"/>
-        {{'commin.file-manager.upload' | translate}}
+        {{'common.file-manager.upload' | translate}}
       </ep-button>
     </div>`,
   styleUrls: ['./file-uploader-list.component.scss'],

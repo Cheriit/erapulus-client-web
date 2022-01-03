@@ -7,12 +7,12 @@ import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
-  selector: 'ep-university-show',
+  selector: 'ep-building-show',
   template: `
     <ep-container [loading]="!building">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.building.title' | translate}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.building.show.title' | translate}}</ep-header>
         <div class="flex flex-wrap mt-10" *ngIf="building">
           <div class="w-full px-4">
             <div class="pb-3">
@@ -20,17 +20,18 @@ import {HttpStatusCode} from '@angular/common/http';
               <ep-text [textType]="textType.SMALL">{{building.name}} ({{building.abbrev}})</ep-text>
             </div>
             <div class="pb-3">
-              <ep-text [textType]="textType.LARGE">{{'management-panel.building.show.position' | translate}}</ep-text>
+              <ep-text
+                [textType]="textType.LARGE">{{'management-panel.building.show.localization' | translate}}</ep-text>
               <ep-text [textType]="textType.SMALL">{{building.latitude}}, {{building.longitude}}</ep-text>
             </div>
           </div>
           <div class="footer-buttons">
             <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-              {{'management-panel.create.building.cancel' | translate}}
+              {{'management-panel.building.actions.cancel' | translate}}
               <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
             </ep-button>
             <ep-button (click)="edit()">
-              {{'management-panel.create.building.edit' | translate}}
+              {{'management-panel.building.actions.edit' | translate}}
               <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
             </ep-button>
           </div>
@@ -58,7 +59,7 @@ export class BuildingShowComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.building.edit');
+    this.titleService.setTitle('management-panel.building.show');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     const buildingId: string = this.route.snapshot.paramMap.get('building_id') ?? '-1';
     ErapulusHelpers.handleRequest(this.buildingDataAccessService.getBuilding({

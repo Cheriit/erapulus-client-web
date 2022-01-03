@@ -23,10 +23,12 @@ export class TableHeaderComponent implements OnInit {
   public getHeaderElement (): void {
     const headerElements: { [key: string]: string } = this.configuration.columns.reduce((o, column) => Object.assign(o, {[column.key]: `${this.configuration.prefix}${column.key}.header`}), {});
     this.translateService.get(Object.values(headerElements)).subscribe((translations) => {
-      let i = 0;
-      for (const [key] of Object.entries(headerElements)) {
-        headerElements[key] = translations[i] ?? headerElements[key];
-        i++;
+
+      for (const [
+        key,
+        value
+      ] of Object.entries(headerElements)) {
+        headerElements[key] = translations[value] ?? headerElements[key];
       }
       this.headerElement = headerElements;
       this.changeDetectorRef.markForCheck();

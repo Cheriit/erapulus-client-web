@@ -15,8 +15,8 @@ import {HttpStatusCode} from '@angular/common/http';
     <ep-container [loading]="loading || form.pending">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.edit.building.title' | translate}}</ep-header>
-        <ep-university-edit-form [form]="form" *ngIf="form"></ep-university-edit-form>
+          [headerType]="headerType.H3">{{'management-panel.building.edit.title' | translate}}</ep-header>
+        <ep-building-edit-form [form]="form" *ngIf="form"></ep-building-edit-form>
       </div>
     </ep-container>
   `,

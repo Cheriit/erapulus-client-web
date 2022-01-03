@@ -56,24 +56,24 @@ import {HttpStatusCode} from '@angular/common/http';
         <ep-input
           class="form-element-full"
           [label]="'management-panel.university.websiteUrl.label'| translate"
-          [placeholder]="'management-panel.university.websiteUrl.label'| translate"
+          [placeholder]="'management-panel.university.websiteUrl.placeholder'| translate"
           [control]="formService.getControl('websiteUrl')"
           type="url"
         ></ep-input>
         <ep-editor
           class="form-element-full"
           [label]="'management-panel.university.description.label'| translate"
-          [placeholder]="'management-panel.university.description.label'| translate"
+          [placeholder]="'management-panel.university.description.placeholder'| translate"
           [control]="formService.getControl('description')"
         ></ep-editor>
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.university.cancel' | translate}}
+          {{'management-panel.university.action.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.university.create' | translate}}
+          {{'management-panel.university.action.create' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>

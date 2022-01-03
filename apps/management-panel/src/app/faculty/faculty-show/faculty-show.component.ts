@@ -7,12 +7,12 @@ import {NavigationRoutes, NavigationService} from '@erapulus/utils/navigation';
 import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
-  selector: 'ep-university-show',
+  selector: 'ep-faculty-show',
   template: `
     <ep-container [loading]="!faculty">
       <div class="section-content">
         <ep-header
-          [headerType]="headerType.H3">{{'management-panel.show.faculty.title' | translate}}</ep-header>
+          [headerType]="headerType.H3">{{'management-panel.faculty.show.title' | translate}}</ep-header>
         <div class="flex flex-wrap mt-10" *ngIf="faculty">
           <div class="w-full px-4">
             <div class="pb-3 w-full">
@@ -30,11 +30,11 @@ import {HttpStatusCode} from '@angular/common/http';
           </div>
           <div class="footer-buttons w-full">
             <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-              {{'management-panel.create.faculty.cancel' | translate}}
+              {{'management-panel.faculty.actions.cancel' | translate}}
               <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
             </ep-button>
             <ep-button (click)="edit()">
-              {{'management-panel.create.faculty.edit' | translate}}
+              {{'management-panel.faculty.actions.edit' | translate}}
               <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
             </ep-button>
           </div>
@@ -64,7 +64,7 @@ export class FacultyShowComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.titleService.setTitle('management-panel.faculty.edit');
+    this.titleService.setTitle('management-panel.faculty.show');
     const universityId: string = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     const facultyId: string = this.route.snapshot.paramMap.get('faculty_id') ?? '-1';
     ErapulusHelpers.handleRequest(this.facultyDataAccessService.getFaculty({facultyId, universityId}))

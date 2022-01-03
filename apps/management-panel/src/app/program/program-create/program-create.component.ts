@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
   template: `
     <ep-container [loading]="form.pending">
       <ep-header
-        [headerType]="headerType.H3">{{'management-panel.create.program.title' | translate}}</ep-header>
+        [headerType]="headerType.H3">{{'management-panel.program.create.title' | translate}}</ep-header>
       <ep-program-create-form [form]="form"></ep-program-create-form>
     </ep-container>
   `,

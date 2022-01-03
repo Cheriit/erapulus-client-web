@@ -50,21 +50,26 @@ export class ResponseInterceptor implements HttpInterceptor {
               'login'
             ]).then(() => {
               this.messageService.generateMessage({
-                title: 'common.erapulus.server.401.title',
-                content: 'common.erapulus.server.401.content'
+                title: 'erapulus.server.401.title',
+                content: 'erapulus.server.401.content'
               });
             });
             break;
           case 0:
+            this.messageService.generateMessage({
+              title: 'erapulus.server.0.title',
+              content: 'erapulus.server.0.content'
+            });
+            break;
           case HttpStatusCode.InternalServerError:
             this.messageService.generateMessage({
-              title: 'common.erapulus.server.500.title',
-              content: 'common.erapulus.server.500.content'
+              title: 'erapulus.server.500.title',
+              content: 'erapulus.server.500.content'
             });
             break;
           default:
             this.messageService.generateMessage({
-              title: `common.erapulus.server.error.${error.error?.status}.title`,
+              title: `erapulus.server.error.${error.error?.status}.title`,
               content: ErapulusHelpers.getErrors(error.error?.message)
             });
           }

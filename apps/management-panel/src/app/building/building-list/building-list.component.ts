@@ -51,7 +51,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
     this.universityId = this.route.snapshot.paramMap.get('university_id') ?? '-1';
     this.tableConfiguration$ = this.universityTableService.getListConfigurationObservable(this.universityId);
 
-    this.titleService.setTitle('management-panel.title.university-list');
+    this.titleService.setTitle('management-panel.building.list');
     this.subscriptionManager.subscribe(
       this.universityTableService.reloadList$.subscribe(() => {
         this.reloadList();

@@ -59,7 +59,7 @@ export class UserTableService {
         {key: 'email', widthPercentage: 40}
       ],
       url: 'user',
-      prefix: 'management-panel.user-list.table.',
+      prefix: 'management-panel.user.list.',
       currentPage: parameters.page,
       pageSize: parameters.pageSize,
       parameters: {

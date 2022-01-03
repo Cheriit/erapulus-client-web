@@ -7,36 +7,39 @@ import {UniversityDataAccessService} from '@erapulus/data-access/erapulus';
 import {HttpStatusCode} from '@angular/common/http';
 
 @Component({
-  selector: 'ep-university-edit-form',
+  selector: 'ep-faculty-edit-form',
   template: `
     <form [formGroup]="form" (ngSubmit)="formService.submitForm()">
       <ep-form-section
-        title="management-panel.university.create.contact.title"
-        description="management-panel.university.create.contact.description">
+        title="management-panel.faculty.edit.base.title"
+        description="management-panel.faculty.edit.base.description">
         <ep-input
           class="form-element-full"
           [label]="'management-panel.faculty.name.label'| translate"
+          [placeholder]="'management-panel.faculty.name.placeholder'| translate"
           [control]="formService.getControl('name')"
         ></ep-input>
         <ep-input
           class="form-element-full"
           [label]="'management-panel.faculty.address.label'| translate"
+          [placeholder]="'management-panel.faculty.address.placeholder'| translate"
           [control]="formService.getControl('address')"
         ></ep-input>
         <ep-input
           class="form-element-full"
           [label]="'management-panel.faculty.email.label'| translate"
+          [placeholder]="'management-panel.faculty.email.placeholder'| translate"
           [control]="formService.getControl('email')"
           type="email"
         ></ep-input>
       </ep-form-section>
       <div class="footer-buttons">
         <ep-button [type]="buttonType.SECONDARY" (click)="cancel()">
-          {{'management-panel.create.user.cancel' | translate}}
+          {{'management-panel.faculty.actions.cancel' | translate}}
           <img src="/assets/icons/arrow_left.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
         <ep-button (click)="submit()" [submit]="true">
-          {{'management-panel.create.user.create' | translate}}
+          {{'management-panel.faculty.actions.save' | translate}}
           <img src="/assets/icons/edit_white.svg" icon class="pr-3" alt="Add"/>
         </ep-button>
       </div>
