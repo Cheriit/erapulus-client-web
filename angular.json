@@ -5,7 +5,6 @@
     "features-login": "libs/features/login",
     "features-not-found": "libs/features/not-found",
     "management-panel": "apps/management-panel",
-    "management-panel-e2e": "apps/management-panel-e2e",
     "storybook-e2e-components-e2e": "apps/storybook-e2e/components-e2e",
     "ui-assets": "libs/ui/assets",
     "ui-components": "libs/ui/components",

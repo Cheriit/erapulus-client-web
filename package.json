@@ -8,7 +8,7 @@
     "start": "nx serve",
     "start management-panel": "nx serve management-panel --parallel",
     "build management-panel": "nx build management-panel --parallel",
-    "lint": "nx lint",
+    "lint": "nx workspace-lint",
     "build": "nx build",
     "build-prod": "nx build --prod --parallel",
     "test": "nx affected --target=test --parllalel=5 --base=master --head=HEAD",
