@@ -32,7 +32,7 @@ import {LoginResponseParams} from '@erapulus/data-access/erapulus';
         ></ep-input>
         <ep-button
           class="float-right" [submit]="true">
-          Log in
+          {{'login.button' | translate}}
           <img alt="Sing in" src="/assets/icons/forward.svg" class="pl-2 fill-white h-4 pt-[2px]"/>
         </ep-button>
       </form>

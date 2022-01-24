@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, take} from 'rxjs';
 import {Title} from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core';
+import {StringUtils} from '@erapulus/utils/helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class TitleService {
 
   constructor (private titleService: Title, private translateService: TranslateService) {
     this.title.subscribe((title) => {
-      this.titleService.setTitle(`${this.translateService.instant(title || ' ')} | Erapulus`);
+      if (StringUtils.isNotEmpty(title)) {
+        this.translateService.get(title).pipe(take(1)).subscribe((title) => {
+          this.titleService.setTitle(`${title} | Erapulus`);
+        });
+      }
     });
   }
 

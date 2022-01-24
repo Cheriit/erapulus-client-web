@@ -16,10 +16,11 @@ import {ButtonType} from '@erapulus/ui/components';
           </div>
           <div class="grow mx-4 min-w-0">
             <p class="font-semibold mb-2 truncate">{{title | translate}}</p>
-            <p class="text-gray-500 truncate" *ngIf="getSingleContent(); else contentList">{{getSingleContent()}}</p>
+            <p class="text-gray-500 truncate"
+               *ngIf="getSingleContent(); else contentList">{{getSingleContent() || '' | translate}}</p>
             <ng-template #contentList>
               <ul class="list-disc text-gray-500 list-inside">
-                <li *ngFor="let message of getContentList()" class="truncate">{{message}}</li>
+                <li *ngFor="let message of getContentList()" class="truncate">{{message | translate}}</li>
               </ul>
             </ng-template>
             <div class="flex justify-around w-100 m-5" *ngIf="hasButtons">
