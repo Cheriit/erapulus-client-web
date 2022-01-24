@@ -43,13 +43,17 @@
           }
         ],
         "stylePreprocessorOptions": {
-          "includePaths": ["libs/ui/themes/src/lib/styles"]
+          "includePaths": [
+            "libs/ui/themes/src/lib/styles"
+          ]
         },
         "styles": [
           "apps/management-panel/src/styles.scss",
           "libs/ui/themes/src/lib/styles/index.scss"
         ],
-        "scripts": ["node_modules/marked/lib/marked.js"]
+        "scripts": [
+          "node_modules/marked/lib/marked.js"
+        ]
       },
       "configurations": {
         "production": {
@@ -61,8 +65,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "100kb",
+              "maximumError": "150kb"
             }
           ],
           "fileReplacements": [
@@ -120,6 +124,11 @@
       }
     }
   },
-  "tags": ["type:application"],
-  "implicitDependencies": ["ui-assets", "ui-themes"]
+  "tags": [
+    "type:application"
+  ],
+  "implicitDependencies": [
+    "ui-assets",
+    "ui-themes"
+  ]
 }
