@@ -15,6 +15,7 @@ import {ErapulusDataAccessService} from './services/erapulus.data-access.service
 import {MessageService} from '@erapulus/ui/message';
 import {ObjectUtils} from '@erapulus/utils/helpers';
 import {ErapulusResponse} from './erapulus.models';
+import {NavigationRoutes} from '@erapulus/utils/navigation';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
@@ -47,11 +48,22 @@ export class ResponseInterceptor implements HttpInterceptor {
           case HttpStatusCode.Unauthorized:
             this.router.navigate([
               '/',
-              'login'
+              NavigationRoutes.LOGIN
             ]).then(() => {
               this.messageService.generateMessage({
                 title: 'erapulus.server.401.title',
                 content: 'erapulus.server.401.content'
+              });
+            });
+            break;
+          case HttpStatusCode.Forbidden:
+            this.router.navigate([
+              '/',
+              NavigationRoutes.WELCOME
+            ]).then(() => {
+              this.messageService.generateMessage({
+                title: 'erapulus.server.403.title',
+                content: 'erapulus.server.403.content'
               });
             });
             break;

@@ -20,8 +20,8 @@ import {HttpStatusCode} from '@angular/common/http';
         ></ep-input>
         <ep-input
           class="form-element"
-          [label]="'management-panel.module.address.label'| translate"
-          [placeholder]="'management-panel.module.address.placeholder'| translate"
+          [label]="'management-panel.module.abbrev.label'| translate"
+          [placeholder]="'management-panel.module.abbrev.placeholder'| translate"
           [control]="formService.getControl('abbrev')"
         ></ep-input>
       </ep-form-section>
